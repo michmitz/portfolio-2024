@@ -4,14 +4,14 @@ import { JobExperience } from './components/JobExperience'
 
 export default function Home() {
   return (
-    <main className="bg-red-100 w-screen h-screen flex items-center justify-center flex-col">
+    <main className="bg-red-100 w-screen h-screen flex items-center justify-center">
       <video autoPlay loop muted playsInline className="video">
         <source src="clouds.mp4" type="video/mp4" />
       </video>
 
       <div className="h-4/5 w-4/5 fixed glass2 p-2">
-        <div className="w-full h-full border flex">
-          <div className="w-1/3 border flex flex-col justify-center items-center">
+        <div className="w-full h-full border md:flex max-sm:bg-red max-md:overflow-y-scroll">
+          <div className="w-1/3 flex flex-col justify-center items-center max-md:w-full max-md:mb-5">
             <img
               src="/Profile-pink.jpg"
               alt="profile"
@@ -31,8 +31,8 @@ export default function Home() {
               <p>Secret Page</p>
             </div>
           </div>
-          <div className="w-2/3 border overflow-y-scroll">
-            <div className="p-5">
+          <div className="w-2/3 max-md:w-full border overflow-y-scroll">
+            <div className="p-5 flex flex-col">
               <p className="font-emblemaOne text-green text-style">
                 I'm Michelle.
               </p>
