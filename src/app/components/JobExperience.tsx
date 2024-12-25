@@ -19,7 +19,7 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
 }) => {
   return (
       <div className="glass m-5 pb-3 font-nunito cursor-pointer">
-        <p className="font-nunito text-xl mb-1 font-bold mt-4 ml-4">
+        <p className="font-nunito text-xl mb-1 font-bold mt-4 ml-4 text-white">
           {jobTitle} - {company}
         </p>
         <p className="text-white font-bold ml-4 mt-1">{startDate} - {endDate}</p>
