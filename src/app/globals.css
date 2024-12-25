@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=Emblema+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .gradient {
+    background: linear-gradient(90deg, #b9deed, #efefef, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
 
 :root {
   --background: #ffffff;
@@ -19,3 +30,56 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.glass {
+  background: rgba(254, 213, 253, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass2 {
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(200%);
+  background-color: rgba(245, 218, 250, 0.19);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+/* .gradient {
+  background: linear-gradient(90deg, #b9deed, #efefef, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+} */
+
+.video {
+  height: 100%;
+  width: 177.77777778vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
+}
+
+.text-style {
+  color: pink;
+  letter-spacing: 6px;
+  font-size: 25px;
+}
+
+.skillpill {
+  border-radius: 50px;
+  background: #ffd6e7;
+  box-shadow:  20px 20px 60px #d9b6c4,
+               -20px -20px 60px #fff6ff;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 5px;
+  font-family: corben;
+  color: purple;
+}
+
+.skillpill:hover {
+  background: white;
+}
+
