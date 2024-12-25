@@ -6,7 +6,8 @@ module.exports = {
       fontFamily: {
         playfair: ['Playfair Display', 'serif'],
         emblemaOne: ['Emblema One', 'serif'],
-        corben: ['Corben', 'serif']
+        corben: ['Corben', 'serif'],
+        nunito: ['Nunito', 'serif'],
       },
     },
   },

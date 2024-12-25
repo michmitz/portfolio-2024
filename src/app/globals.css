@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=Emblema+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=Emblema+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -69,17 +69,15 @@ body {
 
 .skillpill {
   border-radius: 50px;
-  background: #ffd6e7;
-  box-shadow:  20px 20px 60px #d9b6c4,
-               -20px -20px 60px #fff6ff;
   padding-left: 5px;
   padding-right: 5px;
   margin-right: 5px;
-  font-family: corben;
-  color: purple;
+  background: #f4c3e9;
+  box-shadow: inset 4px 4px 8px #cfa6c6,
+              inset -4px -4px 8px #ffe0ff;
 }
 
 .skillpill:hover {
-  background: white;
+  background: pink;
 }
 
