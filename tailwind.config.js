@@ -8,8 +8,9 @@ module.exports = {
         emblemaOne: ['Emblema One', 'serif'],
         corben: ['Corben', 'serif'],
         nunito: ['Nunito', 'serif'],
+        cinzel: ['Cinzel Decorative', 'serif'],
       },
-    },
+  },
   },
   plugins: [],
 };
