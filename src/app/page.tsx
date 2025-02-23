@@ -1,96 +1,163 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import { appStrings } from "./appStrings";
 import { JobExperience } from "./components/JobExperience";
 import CloudBackground from "./CloudBackground";
+import { useState } from "react";
+import { ProfessionalProject } from "./components/ProfessionalProject";
 
 export default function Home() {
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [displaySection, setDisplaySection] = useState<string>("About");
   return (
-    <main className="w-screen h-screen bg-[#e5849c] font-nunito">
-      <CloudBackground />
-      <div className="flex items-center justify-center">
-        <div className="h-4/5 w-4/5 glass p-2 absolute top-20">
-          <div className="w-full h-full border md:flex max-sm:bg-red max-md:overflow-y-scroll">
-            <div className="w-1/3 flex flex-col justify-center items-center max-md:w-full max-md:mb-5 border">
-              <img
-                src="/profile-blush.jpg"
-                alt="profile"
-                className="h-[250px] w-[160px] object-cover border rounded-full"
-              />
-
-              <div className="mt-3 text-white">
-                <p className="hover:text-2xl">About</p>
-                <p>Software Experience</p>
-                <p>Professional Projects</p>
-                <p>Personal Projects</p>
-                <p>Secret Page</p>
+    <main className="w-screen h-screen font-nunito bg-[#616c84]">
+      <CloudBackground loaded={loaded} setLoaded={setLoaded} />
+      <div className={`${"flex items-center justify-center fade-in bg-[#616c84]"}`}>
+        <div className="w-3/4 h-4/5 border absolute flex justify-center top-20">
+          <div className="w-full flex justify-between max-md:flex-col cursor-auto">
+            {/* When small, maybe make this a sticky hamburger menu with a cloud icon or something */}
+            <div className="float rounded-3xl flex flex-col justify-center items-center max-md:w-full max-md:mb-5 pl-5">
+              <div className="select-none">
+                <p className="text-4xl text-white font-bold font-cinzel">
+                  Michelle
+                </p>
+                <p className="text-4xl text-white font-bold font-cinzel">
+                  Stermitz
+                </p>
+              </div>
+              <div className="mt-3 text-xl text-white cursor-pointer">
+                <p onClick={() => setDisplaySection("about")}>About</p>
+                <p onClick={() => setDisplaySection("experience")}>
+                  Experience
+                </p>
+                <p onClick={() => setDisplaySection("professional-projects")}>
+                  Professional Projects
+                </p>
+                <p onClick={() => setDisplaySection("personal-projects")}>
+                  Personal Projects
+                </p>
+                <p>Contact</p>
+                {/* <p>Secret Page</p> */}
               </div>
             </div>
-            <div className="w-2/3 max-md:w-full border overflow-y-scroll">
-              <div className="p-5 flex flex-col">
-                <p className="text-green text-3xl text-style">I'm Michelle.</p>
-                <p>{appStrings.about}</p>
-              </div>
-              <div className="h-[17px] bg-white" />
 
-              <div className="p-5">
-                <p className="font-nunito text-3xl text-style">
-                  Software Experience
-                </p>
-                <JobExperience
-                  startDate="Jan 2024"
-                  endDate="Present"
-                  jobTitle="Frontend Software Engineer"
-                  company="Powell's City of Books"
-                  jobDuties={[
-                    "Owned UX, UI, and accessibility improvements for Powell’s new e-commerce site",
-                    "Collaborated with a newly-formed engineering team to establish development guidelines and define design/UX standards for MVP.",
-                    "Engaged in in pair programming, pull request reviews, and ticket creation to ensure efficient, high-quality development.",
-                    "Led Storybook integration for responsive, atomic design, serving as primary owner to drive consistent component use across the platform.",
-                  ]}
-                  skills={[
-                    "Vue",
-                    "TypeScript",
-                    "Storybook",
-                    "Tailwind",
-                    "Vuetify",
-                    "Node",
-                    "Nuxt",
-                  ]}
-                />
-                <JobExperience
-                  startDate="Mar 2023"
-                  endDate="Oct 2023"
-                  jobTitle="Career Break"
-                  company=""
-                  jobDuties={[
-                    "Personal sabbatical in order to devote time to personal and professional goals, as well as further improve as a developer. Add info about AI app here",
-                  ]}
-                  skills={["TypeScript", "OpenAI", "Vue", "Tailwind"]}
-                />
-                <JobExperience
-                  startDate="May 2021"
-                  endDate="March 2023"
-                  jobTitle="Software Engineer"
-                  company="Olio Apps"
-                  jobDuties={[
-                    "Independently completed the frontend for two React Native mobile apps, including the barometric pressure app designed for EarPlanes products",
-                    "Led three-person team for Solar Redline, the “Yelp of solar panel installation”, managing ticket creation and workflow",
-                    "Played a key role in the frontend development of a carbon reduction software platform, Carbon Title, via technical design, sprint planning, ticket creation, and project board management",
-                    "Specialized in atomic design and trained new team members in the concept of Storybook-driven development",
-                    "Worked closely with clients to perform manual and automated testing, fix bugs, and respond to feedback",
-                  ]}
-                  skills={[
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Material UI",
-                    "Bootstrap",
-                    "Firebase",
-                    "Node",
-                    "GraphQL",
-                    "Figma",
-                  ]}
-                />
+            <div className="w-2/3 overflow-y-scroll p-6 light-glass max-md:w-full">
+              <div
+                id="about"
+                className={`${
+                  displaySection === "about" ? "visible" : "hidden"
+                }`}
+              >
+                About Section
+              </div>
+
+              <div
+                id="experience"
+                className={`${
+                  displaySection === "experience" ? "visible fade-in" : "hidden"
+                }`}
+              >
+                <h2 className="my-4 ml-1 text-3xl text-white font-cinzel font-bold select-none">
+                  Experience
+                </h2>
+                <div className="w-full flex flex-wrap justify-center gap-4 max-md:justify-center">
+                  <JobExperience
+                    startDate="Jan 2024"
+                    endDate="Present"
+                    jobTitle="Frontend Software Engineer"
+                    company="Powell's Books"
+                    jobDescription={appStrings.powellsDescription}
+                    skills={[
+                      "Vue",
+                      "TypeScript",
+                      "Storybook",
+                      "Tailwind",
+                      "Vuetify",
+                      "Node",
+                      "Nuxt",
+                    ]}
+                  />
+                  <JobExperience
+                    startDate="Mar 2023"
+                    endDate="Oct 2023"
+                    jobTitle="Career Break"
+                    jobDescription={appStrings.careerGapDescription}
+                    skills={["TypeScript", "OpenAI", "Vue", "Tailwind"]}
+                  />
+                  <JobExperience
+                    startDate="May 2021"
+                    endDate="March 2023"
+                    jobTitle="Software Engineer"
+                    company="Olio Apps"
+                    jobDescription={appStrings.olioDescription}
+                    skills={[
+                      "React",
+                      "Next.js",
+                      "TypeScript",
+                      "Material UI",
+                      "Bootstrap",
+                      "Firebase",
+                      "Node",
+                      "GraphQL",
+                      "Figma",
+                    ]}
+                  />
+                  <JobExperience
+                    startDate="May"
+                    endDate="fill this out"
+                    jobTitle="Graphic Designer, Marketing"
+                    company="Various Companies"
+                    jobDescription={appStrings.graphicDesignDescription}
+                    skills={["Adobe Photoshop", "Adobe Illustrator"]}
+                  />
+                </div>
+              </div>
+              <div
+                id="professional-projects"
+                className={`${
+                  displaySection === "professional-projects"
+                    ? "visible fade-in"
+                    : "hidden"
+                }`}
+              >
+                <h2 className="my-4 ml-1 text-3xl text-white font-cinzel font-bold select-none">
+                  Professional Projects
+                </h2>
+                <div className="w-full flex flex-wrap justify-center gap-4 max-md:justify-center">
+                  <ProfessionalProject
+                    initials="PN"
+                    projectName="Powell's Next"
+                    description={appStrings.powellsNextDescription}
+                  />
+                  <ProfessionalProject
+                    initials="CT"
+                    projectName="Carbon Title"
+                    description={appStrings.carbonTitleDescription}
+                  />
+                  <ProfessionalProject
+                    initials="SR"
+                    projectName="Solar Redline"
+                    description={appStrings.solarRedlineDescription}
+                    image="/assets/professional-projects/cloud-solar-icon.png"
+                  />
+                  <ProfessionalProject
+                    initials="EP"
+                    projectName="EarPlanes"
+                    description={appStrings.earplanesDescription}
+                    image="/assets/professional-projects/cloud-earplanes.png"
+                  />
+                  <ProfessionalProject
+                    initials="GT"
+                    projectName="Gut Health App"
+                    description={appStrings.giThriveDescription}
+                  />
+                  <ProfessionalProject
+                    initials="SMA"
+                    projectName="Social Media App"
+                    description={appStrings.receiptsDescription}
+                  />
+                </div>
               </div>
             </div>
           </div>
