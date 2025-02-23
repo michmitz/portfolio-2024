@@ -1,6 +1,6 @@
 "use client";
 import * as THREE from "three";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Clouds,
@@ -11,9 +11,15 @@ import {
   Stars,
 } from "@react-three/drei";
 
-export default function CloudBackground() {
-  const [loaded, setLoaded] = useState(false);
+interface CloudBackgroundProps {
+  loaded: boolean;
+  setLoaded: (v: boolean) => void;
+}
 
+export default function CloudBackground({
+  loaded,
+  setLoaded,
+}: CloudBackgroundProps) {
   return (
     <>
       <Canvas
@@ -79,11 +85,26 @@ function Sky() {
           azimuth={-50}
           distance={800}
         />
-        <Clouds material={THREE.MeshLambertMaterial} limit={300}>
-          {/* <Cloud ref={addCloudRef} color="#eed0d0" seed={8} position={[12, -10, 0]} volume={150} /> */}
-          {/* <Cloud ref={addCloudRef} color="#ffffff" seed={8} position={[50, -80, 0]} volume={180} /> */}
-          {/* <Cloud ref={addCloudRef} color="#d0e0d0" seed={3} position={[-15, -40, 100]} />
-          <Cloud ref={addCloudRef} color="#a0b0d0" seed={4} position={[0, -20, -12]} /> */}
+        <Clouds material={THREE.MeshPhongMaterial} limit={300}>
+          <Cloud
+            ref={addCloudRef}
+            color="#ffffff"
+            seed={8}
+            position={[50, -80, 0]}
+            volume={180}
+          />
+          <Cloud
+            ref={addCloudRef}
+            color="#d0e0d0"
+            seed={3}
+            position={[-15, -40, 100]}
+          />
+          <Cloud
+            ref={addCloudRef}
+            color="#a0b0d0"
+            seed={4}
+            position={[0, -20, -12]}
+          />
           <Cloud
             ref={addCloudRef}
             color="#c0c0dd"

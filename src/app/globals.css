@@ -84,6 +84,6 @@ body {
 }
 
 .fade-in {
-  -webkit-animation: fadein 2s linear forwards;
-  animation: fadein 2s linear forwards;
+  -webkit-animation: fadein 1s linear forwards;
+  animation: fadein 1s linear forwards;
 }

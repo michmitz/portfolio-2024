@@ -42,7 +42,9 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
           {jobDuties && jobDuties.length > 0 && (
             <ul className="ml-4 mt-2 list-disc text-[#3d4f63] text-sm font-medium leading-relaxed">
               {jobDuties.map((d) => (
-                <li key={d} className="text-sm">✧{d}</li>
+                <li key={d} className="text-sm">
+                  ✧{d}
+                </li>
               ))}
             </ul>
           )}
