@@ -20,7 +20,7 @@ export const ProfessionalProject: React.FC<ProfessionalProjectProps> = ({
 
   return (
     <motion.div
-      className="relative w-[200px] h-[200px] rounded-2xl shadow-lg border border-gray-700 overflow-hidden cursor-pointer max-md:w-full"
+      className="relative w-[200px] h-[200px] rounded-2xl shadow-lg border-gray-700 overflow-hidden cursor-pointer max-md:w-full light-glass"
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
@@ -37,7 +37,7 @@ export const ProfessionalProject: React.FC<ProfessionalProjectProps> = ({
           <motion.img
             src={image}
             alt={projectName}
-            className="w-3/4 h-auto rounded-lg"
+            className="max-md:w-1/3 md:w-1/2 h-auto rounded-full aspect-square contain"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
