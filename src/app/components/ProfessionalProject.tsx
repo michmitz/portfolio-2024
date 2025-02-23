@@ -28,20 +28,9 @@ export const ProfessionalProject: React.FC<ProfessionalProjectProps> = ({
       onMouseLeave={() => setHovered(false)}
     >
       <motion.div
-        className="absolute inset-0 flex flex-col justify-center items-center light-glass text-white transition-opacity"
+        className="absolute inset-0 flex flex-col justify-center items-center text-white transition-opacity"
         initial={{ opacity: 1 }}
         animate={{ opacity: hovered ? 0 : 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-white/10 text-3xl font-bold">
-          {initials}
-        </div>
-        <p className="text-xl font-bold mt-2 text-center">{projectName}</p>
-      </motion.div>
-      <motion.div
-        className="absolute inset-0 flex flex-col justify-center items-center bg-[#2c3547] text-white p-4 transition-opacity"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.9 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {image ? (
@@ -54,15 +43,27 @@ export const ProfessionalProject: React.FC<ProfessionalProjectProps> = ({
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           />
         ) : (
-          <motion.p
-            className="text-sm text-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          >
-            {description}
-          </motion.p>
+          <div className="w-20 h-20 flex items-center justify-center rounded-full bg-white/10 text-3xl font-bold">
+            {initials}
+          </div>
         )}
+        <p className="text-xl font-bold mt-2 text-center">{projectName}</p>
+      </motion.div>
+      <motion.div
+        className="absolute inset-0 flex flex-col justify-center items-center text-white p-4 transition-opacity"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.9 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <motion.p
+          className="text-sm text-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+        >
+          {description}
+        </motion.p>
+
         {link && (
           <a
             href={link}
