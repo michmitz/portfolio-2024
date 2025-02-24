@@ -6,6 +6,7 @@ import { JobExperience } from "./components/JobExperience";
 import CloudBackground from "./CloudBackground";
 import { useState } from "react";
 import { ProfessionalProject } from "./components/ProfessionalProject";
+import { Navigation } from "./components/Navigation";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -14,10 +15,11 @@ export default function Home() {
     <main className="w-screen h-screen font-nunito bg-[#616c84]">
       <CloudBackground loaded={loaded} setLoaded={setLoaded} />
       <div className={`${"flex items-center justify-center fade-in bg-[#616c84]"}`}>
-        <div className="w-3/4 h-4/5 border absolute flex justify-center top-20">
+        <div className="w-3/4 h-4/5 border absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%]">
           <div className="w-full flex justify-between max-md:flex-col cursor-auto">
-            {/* When small, maybe make this a sticky hamburger menu with a cloud icon or something */}
-            <div className="float rounded-3xl flex flex-col justify-center items-center max-md:w-full max-md:mb-5 pl-5">
+            
+            <Navigation displaySection={displaySection} setDisplaySection={setDisplaySection} />
+            <div className="max-md:hidden float rounded-3xl flex flex-col justify-center items-center max-md:w-full max-md:mb-5 pl-5">
               <div className="select-none">
                 <p className="text-4xl text-white font-bold font-cinzel">
                   Michelle
@@ -41,6 +43,8 @@ export default function Home() {
                 {/* <p>Secret Page</p> */}
               </div>
             </div>
+
+
 
             <div className="w-2/3 overflow-y-scroll p-6 light-glass max-md:w-full">
               <div
