@@ -10,43 +10,21 @@ import { Navigation } from "./components/Navigation";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [displaySection, setDisplaySection] = useState<string>("About");
+  const [displaySection, setDisplaySection] = useState<string>("about");
   return (
     <main className="w-screen h-screen font-nunito bg-[#616c84]">
       <CloudBackground loaded={loaded} setLoaded={setLoaded} />
-      <div className={`${"flex items-center justify-center fade-in bg-[#616c84]"}`}>
+      <div
+        className={`${"flex items-center justify-center fade-in bg-[#616c84]"}`}
+      >
         <div className="w-3/4 h-4/5 border absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%]">
           <div className="w-full flex justify-between max-md:flex-col cursor-auto">
-            
-            <Navigation displaySection={displaySection} setDisplaySection={setDisplaySection} />
-            <div className="max-md:hidden float rounded-3xl flex flex-col justify-center items-center max-md:w-full max-md:mb-5 pl-5">
-              <div className="select-none">
-                <p className="text-4xl text-white font-bold font-cinzel">
-                  Michelle
-                </p>
-                <p className="text-4xl text-white font-bold font-cinzel">
-                  Stermitz
-                </p>
-              </div>
-              <div className="mt-3 text-xl text-white cursor-pointer">
-                <p onClick={() => setDisplaySection("about")}>About</p>
-                <p onClick={() => setDisplaySection("experience")}>
-                  Experience
-                </p>
-                <p onClick={() => setDisplaySection("professional-projects")}>
-                  Professional Projects
-                </p>
-                <p onClick={() => setDisplaySection("personal-projects")}>
-                  Personal Projects
-                </p>
-                <p>Contact</p>
-                {/* <p>Secret Page</p> */}
-              </div>
-            </div>
+            <Navigation
+              displaySection={displaySection}
+              setDisplaySection={setDisplaySection}
+            />
 
-
-
-            <div className="w-2/3 overflow-y-scroll p-6 light-glass max-md:w-full">
+            <div className="w-2/3 overflow-y-scroll p-6 light-glass max-md:w-full max-md:h-full">
               <div
                 id="about"
                 className={`${
