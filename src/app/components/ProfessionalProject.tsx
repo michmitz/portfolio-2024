@@ -20,7 +20,7 @@ export const ProfessionalProject: React.FC<ProfessionalProjectProps> = ({
 
   return (
     <motion.div
-      className="relative w-[200px] h-[200px] rounded-2xl shadow-lg border-gray-700 overflow-hidden cursor-pointer max-md:w-full light-glass"
+      className="relative w-[200px] h-[200px] rounded-2xl shadow-lg border-gray-700 overflow-hidden cursor-pointer max-md:w-full glass"
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}

@@ -12,37 +12,49 @@ export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [displaySection, setDisplaySection] = useState<string>("about");
   return (
-    <main className="w-screen h-screen font-nunito bg-[#616c84]">
+    <main className="w-screen h-screen bg-[#576885]">
       <CloudBackground loaded={loaded} setLoaded={setLoaded} />
       <div
-        className={`${"flex items-center justify-center fade-in bg-[#616c84]"}`}
+        className={`${
+          loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
+        }`}
       >
-        <div className="w-3/4 h-4/5 border absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%]">
-          <div className="w-full flex justify-between max-md:flex-col cursor-auto">
+        <div className="w-3/4 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%] min-w-[300px]">
+          <div className="w-full flex justify-between max-md:flex-col cursor-auto float">
             <Navigation
               displaySection={displaySection}
               setDisplaySection={setDisplaySection}
             />
-
-            <div className="w-2/3 overflow-y-scroll p-6 light-glass max-md:w-full max-md:h-full">
+            <div
+              className="w-2/3 p-6 max-md:w-full max-md:h-full rounded-r-xl shadow-lg backdrop-blur-lg backdrop-saturate-150 overflow-y-auto will-change-scroll [&::-webkit-scrollbar]:w-2
+                      [&::-webkit-scrollbar-track]:bg-sky-100 [&::-webkit-scrollbar-track]:rounded-xl
+                      [&::-webkit-scrollbar-thumb]:bg-blue-300 [&::-webkit-scrollbar-thumb]:rounded-xl scroll"
+            >
               <div
                 id="about"
                 className={`${
-                  displaySection === "about" ? "visible" : "hidden"
+                  displaySection === "about"
+                    ? "visible flex flex-col h-full align-center justify-center"
+                    : "hidden"
                 }`}
               >
-                About Section
+                <p className="text-blue-200 text-3xl font-rubikMono">Welcome</p>
+                <p className="text-white font-semibold font-nunito rounded-3xl mt-3">
+                  About
+                </p>
               </div>
-
               <div
                 id="experience"
                 className={`${
                   displaySection === "experience" ? "visible fade-in" : "hidden"
                 }`}
               >
-                <h2 className="my-4 ml-1 text-3xl text-white font-cinzel font-bold select-none">
+                <h2 className="my-4 ml-1 text-3xl text-blue-200 font-rubikMono font-bold select-none scroll">
                   Experience
                 </h2>
+                {/* <span className="bg-blue-200 text-pink-800 text-lg font-semibold px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105 float cursor-pointer">
+                  Click here for my resume
+                </span> */}
                 <div className="w-full flex flex-wrap justify-center gap-4 max-md:justify-center">
                   <JobExperience
                     startDate="Jan 2024"
@@ -103,7 +115,7 @@ export default function Home() {
                     : "hidden"
                 }`}
               >
-                <h2 className="my-4 ml-1 text-3xl text-white font-cinzel font-bold select-none">
+                <h2 className="my-4 ml-1 text-3xl text-white font-rubikMono font-bold select-none">
                   Professional Projects
                 </h2>
                 <div className="w-full flex flex-wrap justify-center gap-4 max-md:justify-center">

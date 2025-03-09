@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavProps> = ({
     { label: "About", section: "about" },
     { label: "Experience", section: "experience" },
     { label: "Professional Projects", section: "professional-projects" },
-    { label: "Personal Projects", section: "personal-projects" },
+    { label: "Other Fun Projects", section: "personal-projects" },
     { label: "Contact", section: "contact" },
   ];
 
@@ -43,7 +43,7 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center items-center md:pl-5">
+      <div className="max-md:hidden flex flex-col justify-center md:pl-5 font-rubikMono">
         <Header />
         <NavLinks links={navLinks} onClick={setDisplaySection} />
       </div>
@@ -72,10 +72,10 @@ export const Navigation: React.FC<NavProps> = ({
 
 const Header = () => (
   <div className="select-none max-md:p-3">
-    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-white font-bold font-cinzel">
+    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-blue-200 font-bold font-rubikMono">
       Michelle
     </p>
-    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-white font-bold font-cinzel">
+    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-white font-bold font-rubikMono">
       Stermitz
     </p>
   </div>
