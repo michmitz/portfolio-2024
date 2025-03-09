@@ -21,10 +21,10 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
 }) => {
   return (
     <div className="relative w-full max-w-xl cursor-pointer">
-      <div className="group relative w-full overflow-hidden rounded-3xl border-2 border-[#576885] p-4 shadow-lg transition-all duration-1000 ease-in-out">
+      <div className="group relative w-full overflow-hidden rounded-3xl border-2 border-[#576885] p-4 shadow-lg transition-all duration-1000 ease-in-out bg-blue-300">
         <div className="flex justify-between items-center cursor-pointer">
           <div>
-            <p className="text-lg md:text-xl font-bold text-[#576885]">
+            <p className="text-lg md:text-xl font-bold text-sky-100">
               {jobTitle}
             </p>
             {company && (
@@ -33,7 +33,7 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
               </p>
             )}
           </div>
-          <p className="text-neutral-500 text-xs md:text-sm font-medium tracking-wide">
+          <p className="text-white text-xs md:text-sm font-bold tracking-wide">
             {startDate} - {endDate}
           </p>
         </div>

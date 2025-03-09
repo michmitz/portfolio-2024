@@ -9,6 +9,7 @@ module.exports = {
         corben: ['Corben', 'serif'],
         nunito: ['Nunito', 'serif'],
         cinzel: ['Cinzel Decorative', 'serif'],
+        rubikMono: ['Rubik Mono One', 'monospace'],
       },
   },
   },
