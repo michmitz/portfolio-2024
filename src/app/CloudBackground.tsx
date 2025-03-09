@@ -27,7 +27,7 @@ export default function CloudBackground({
         onCreated={() => setLoaded(true)}
       >
         <Sky />
-        <ambientLight intensity={4} color="#fef1f3" />
+        <ambientLight intensity={9} color="#fef1f3" />
         {/* <ambientLight intensity={4} color="#ffb6c1" /> */}
         {/* <spotLight
         color='white'
@@ -37,17 +37,36 @@ export default function CloudBackground({
           penumbra={1}
           intensity={100}
         /> */}
-        <CameraControls
-          distance={80}
-          maxDistance={100}
-          azimuthAngle={130}
-          // minPolarAngle={Math.PI / 3}
-          // maxPolarAngle={Math.PI / 1.2}
-          polarAngle={2.2}
-        />
+
+        <RotatingCamera />
       </Canvas>
       <Loader />
     </>
+  );
+}
+
+function RotatingCamera() {
+  const cameraRef = useRef<CameraControls>(null);
+  const rotationSpeed = 0.4;
+
+  useFrame((_, delta) => {
+    if (cameraRef.current) {
+      cameraRef.current.azimuthAngle = THREE.MathUtils.lerp(
+        cameraRef.current.azimuthAngle,
+        cameraRef.current.azimuthAngle + rotationSpeed * delta,
+        0.02
+      );
+    }
+  });
+
+  return (
+    <CameraControls
+      ref={cameraRef}
+      distance={80}
+      maxDistance={100}
+      azimuthAngle={130}
+      polarAngle={2.2}
+    />
   );
 }
 
@@ -91,7 +110,7 @@ function Sky() {
             color="#ffffff"
             seed={8}
             position={[50, -80, 0]}
-            volume={180}
+            volume={100}
           />
           <Cloud
             ref={addCloudRef}
