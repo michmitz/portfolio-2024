@@ -62,7 +62,7 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute right-5 mt-8 p-4 w-[250px] rounded-xl shadow-lg bg-slate-700 border border-white/20 transition-opacity duration-300"
+              className="absolute mt-8 p-4 w-[250px] rounded-xl shadow-lg bg-blue-200/80 border border-white/20 transition-opacity duration-300"
             >
               <NavLinks
                 links={navLinks}
@@ -79,10 +79,10 @@ export const Navigation: React.FC<NavProps> = ({
 
 const Header = () => (
   <div className="select-none max-md:p-3">
-    <p className="max-md:text-2xl md:text-2xl lg:text-4xl text-blue-200 font-bold font-rubikMono">
+    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-blue-200 font-bold font-rubikMono">
       Michelle
     </p>
-    <p className="max-md:text-2xl md:text-2xl lg:text-4xl text-white font-bold font-rubikMono">
+    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-white font-bold font-rubikMono">
       Stermitz
     </p>
   </div>
@@ -93,7 +93,7 @@ const NavLinks: React.FC<{
   onClick: (section: string) => void;
   displaySection: string;
 }> = ({ links, onClick, displaySection }) => (
-  <div className="mt-4 cursor-pointer flex flex-row ">
+  <div className="mt-4 cursor-pointer flex max-md:flex-col flex-row">
     {links.map(({ label, section }) => (
       <button
         key={section}

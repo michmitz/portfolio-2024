@@ -27,7 +27,7 @@ export const Project: React.FC<ProjectProps> = ({
 }) => {
   return (
     <motion.div
-      className="flex items-center justify-center w-full h-fit pt-6 pb-6 pr-7"
+      className="flex items-center justify-center w-full h-fit pt-6 pb-6 w-[90%]"
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({
       className="rounded-2xl p-4 cursor-pointer bg-opacity-80 backdrop-blur-md border border-sky-300 w-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.04 }}
       transition={{ duration: 0.3 }}
     >
       <motion.p
