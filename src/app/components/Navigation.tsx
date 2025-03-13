@@ -17,9 +17,8 @@ export const Navigation: React.FC<NavProps> = ({
   const navLinks = [
     { label: "About", section: "about" },
     { label: "Experience", section: "experience" },
-    { label: "Professional Projects", section: "professional-projects" },
-    { label: "Other Fun Projects", section: "personal-projects" },
-    { label: "Contact", section: "contact" },
+    { label: "Projects", section: "projects" },
+    { label: "Skills & Resume", section: "skills" },
   ];
 
   const onChangeSection = (section: string) => {
@@ -43,7 +42,7 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center md:pl-5 font-rubikMono">
+      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit">
         <Header />
         <NavLinks
           links={navLinks}
@@ -80,10 +79,10 @@ export const Navigation: React.FC<NavProps> = ({
 
 const Header = () => (
   <div className="select-none max-md:p-3">
-    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-blue-200 font-bold font-rubikMono">
+    <p className="max-md:text-2xl md:text-2xl lg:text-4xl text-blue-200 font-bold font-rubikMono">
       Michelle
     </p>
-    <p className="max-md:text-2xl md:text-3xl lg:text-4xl text-white font-bold font-rubikMono">
+    <p className="max-md:text-2xl md:text-2xl lg:text-4xl text-white font-bold font-rubikMono">
       Stermitz
     </p>
   </div>
@@ -94,22 +93,15 @@ const NavLinks: React.FC<{
   onClick: (section: string) => void;
   displaySection: string;
 }> = ({ links, onClick, displaySection }) => (
-  <div className="mt-4 cursor-pointer flex flex-col">
+  <div className="mt-4 cursor-pointer flex flex-row ">
     {links.map(({ label, section }) => (
-      // <p
-      //   key={section}
-      //   className="hover:text-[#00b4d8] transition-colors duration-300"
-      //   onClick={() => onClick(section)}
-      // >
-      //   {label}
-      // </p>
       <button
         key={section}
         onClick={() => onClick(section)}
         className={`${
           displaySection === section
             ? "text-white"
-            : "text-slate-200 hover:text-slate-200 hover:bg-slate-500"
+            : "text-slate-200 hover:text-slate-200"
         } text-lg transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
       >
         <span className="relative z-10">{label}</span>
@@ -117,7 +109,7 @@ const NavLinks: React.FC<{
           <motion.span
             layoutId="pill-tab"
             transition={{ type: "spring", duration: 0.5 }}
-            className="absolute inset-0 z-0 bg-gradient-to-r from-sky-400 to-sky-200 rounded-xl"
+            className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 to-sky-200 rounded-xl"
           ></motion.span>
         )}
       </button>
