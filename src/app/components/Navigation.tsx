@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavProps> = ({
     { label: "About", section: "about" },
     { label: "Experience", section: "experience" },
     { label: "Projects", section: "projects" },
-    { label: "Skills & Resume", section: "skills" },
+    { label: "Resume", section: "skills" },
   ];
 
   const onChangeSection = (section: string) => {

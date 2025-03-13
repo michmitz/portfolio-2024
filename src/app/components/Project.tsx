@@ -27,7 +27,7 @@ export const Project: React.FC<ProjectProps> = ({
 }) => {
   return (
     <motion.div
-      className="flex items-center justify-center w-full h-fit pt-6 pb-6 w-[90%]"
+      className="flex items-center justify-center w-full h-fit pt-6 pb-6 w-[85%]"
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
