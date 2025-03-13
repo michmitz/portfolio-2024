@@ -43,7 +43,7 @@ export default function Home() {
                     Welcome
                   </p>
                   <p className="text-white font-semibold font-nunito rounded-3xl">
-                    I'm a software developer based in the Pacific Northwest.
+                    I&apos;m a software developer based in the Pacific Northwest.
                   </p>
                 </div>
               </div>
