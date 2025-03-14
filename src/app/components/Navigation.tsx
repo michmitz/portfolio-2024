@@ -17,9 +17,8 @@ export const Navigation: React.FC<NavProps> = ({
   const navLinks = [
     { label: "About", section: "about" },
     { label: "Experience", section: "experience" },
-    { label: "Professional Projects", section: "professional-projects" },
-    { label: "Other Fun Projects", section: "personal-projects" },
-    { label: "Contact", section: "contact" },
+    { label: "Projects", section: "projects" },
+    { label: "Resume", section: "skills" },
   ];
 
   const onChangeSection = (section: string) => {
@@ -43,9 +42,13 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center md:pl-5 font-rubikMono">
+      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit">
         <Header />
-        <NavLinks links={navLinks} onClick={setDisplaySection} />
+        <NavLinks
+          links={navLinks}
+          onClick={onChangeSection}
+          displaySection={displaySection}
+        />
       </div>
 
       {/* Mobile */}
@@ -59,9 +62,13 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute right-5 mt-10 p-4 w-[250px] rounded-xl shadow-lg backdrop-blur-lg bg-white/70 border border-white/20 transition-opacity duration-300"
+              className="absolute mt-8 p-4 w-[250px] rounded-xl shadow-lg bg-blue-200/80 border border-white/20 transition-opacity duration-300"
             >
-              <NavLinks links={navLinks} onClick={onChangeSection} />
+              <NavLinks
+                links={navLinks}
+                onClick={onChangeSection}
+                displaySection={displaySection}
+              />
             </div>
           )}
         </nav>
@@ -84,16 +91,28 @@ const Header = () => (
 const NavLinks: React.FC<{
   links: { label: string; section: string }[];
   onClick: (section: string) => void;
-}> = ({ links, onClick }) => (
-  <div className="mt-3 text-xl text-white cursor-pointer flex flex-col max-md:text-[#616c84]">
+  displaySection: string;
+}> = ({ links, onClick, displaySection }) => (
+  <div className="mt-4 cursor-pointer flex max-md:flex-col flex-row">
     {links.map(({ label, section }) => (
-      <p
+      <button
         key={section}
-        className="hover:text-[#00b4d8] transition-colors duration-300"
         onClick={() => onClick(section)}
+        className={`${
+          displaySection === section
+            ? "text-white"
+            : "text-slate-200 hover:text-slate-200"
+        } text-lg transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
       >
-        {label}
-      </p>
+        <span className="relative z-10">{label}</span>
+        {displaySection === section && (
+          <motion.span
+            layoutId="pill-tab"
+            transition={{ type: "spring", duration: 0.5 }}
+            className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 to-sky-200 rounded-xl"
+          ></motion.span>
+        )}
+      </button>
     ))}
   </div>
 );
