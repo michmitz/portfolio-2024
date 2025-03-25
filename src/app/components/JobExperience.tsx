@@ -21,7 +21,7 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
 }) => {
   return (
     <div className="relative w-full max-w-xl cursor-pointer max-md:w-[90%]">
-      <div className="group relative w-full overflow-hidden rounded-3xl border-2 border-white p-4 shadow-lg transition-all duration-1000 ease-in-out shadow-lg backdrop-blur-lg">
+      <div className="group relative w-full overflow-hidden rounded-l p-4 shadow-lg transition-all duration-1000 ease-in-out shadow backdrop-blur-2xl rounded-lg">
         <div className="flex justify-between items-center cursor-pointer">
           <div>
             <p className="text-lg md:text-xl font-bold text-white">
