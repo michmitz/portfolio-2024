@@ -1,13 +1,11 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { appStrings } from "./appStrings";
 import { JobExperience } from "./components/JobExperience";
 import CloudBackground from "./CloudBackground";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
-import { About } from "./components/About";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
