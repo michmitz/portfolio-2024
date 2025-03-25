@@ -14,33 +14,89 @@ import {
 interface CloudBackgroundProps {
   loaded: boolean;
   setLoaded: (v: boolean) => void;
+  timeOfDay: number;
+  setTimeOfDay: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CloudBackground({
-  loaded,
-  setLoaded,
-}: CloudBackgroundProps) {
+export default function CloudBackground({ loaded, setLoaded, timeOfDay, setTimeOfDay }: CloudBackgroundProps) {
+  const transitionSpeed = 0.002; // Adjust for smoother transitions
+
+  const directionRef = useRef(1);
+  const lastSwitchTimeRef = useRef(Date.now());
+  useEffect(() => {
+    const delay = 10000; // 10-second delay before transition starts
+    const timeout = setTimeout(() => {
+      const animateTransition = () => {
+        setTimeOfDay((prev) => {
+          let newTime = prev + directionRef.current * transitionSpeed;
+  
+          if (newTime >= 1) {
+            newTime = 1;
+            if (Date.now() - lastSwitchTimeRef.current > 25000) {
+              directionRef.current = -1;
+              lastSwitchTimeRef.current = Date.now();
+            }
+          } else if (newTime <= 0) {
+            newTime = 0;
+            if (Date.now() - lastSwitchTimeRef.current > 25000) {
+              directionRef.current = 1;
+              lastSwitchTimeRef.current = Date.now();
+            }
+          }
+  
+          return Math.max(0, Math.min(1, newTime));
+        });
+  
+        requestAnimationFrame(animateTransition);
+      };
+  
+      const animationFrameId = requestAnimationFrame(animateTransition);
+  
+      return () => cancelAnimationFrame(animationFrameId);
+    }, delay);
+  
+    return () => clearTimeout(timeout);
+  }, [setTimeOfDay]);  
+  
+
   return (
     <>
-      <Canvas
-        className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`}
-        onCreated={() => setLoaded(true)}
-      >
-        <Sky />
-        <ambientLight intensity={9} color="#fef1f3" />
-        {/* <ambientLight intensity={4} color="#ffb6c1" /> */}
-        {/* <spotLight
-        color='white'
-          position={[0, 40, 0]}
-          decay={0}
-          distance={45}
-          penumbra={1}
-          intensity={100}
-        /> */}
-
+      <Canvas className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`} onCreated={(state) => !loaded && setLoaded(true)}>
+        <Lighting transition={timeOfDay} />
+        <Sky transition={timeOfDay} />
         <RotatingCamera />
       </Canvas>
       <Loader />
+    </>
+  );
+}
+
+function Lighting({ transition }: { transition: number }) {
+  const ambientColor = new THREE.Color().lerpColors(
+    new THREE.Color("#ffffff"), // White light for night
+    new THREE.Color("#ffb6c1"), // Soft pink for day
+    transition
+  );
+
+  const directionalColor = new THREE.Color().lerpColors(
+    new THREE.Color("#aaaaff"), // Cool blue moonlight
+    new THREE.Color("#ffcc99"), // Warm sunlight
+    transition
+  );
+
+  return (
+    <>
+      <ambientLight intensity={7} color={ambientColor} />
+      <directionalLight
+        position={[
+          THREE.MathUtils.lerp(-50, 50, transition), // Moves from left to right
+          THREE.MathUtils.lerp(30, 100, transition), // Moves higher for daytime
+          50,
+        ]}
+        intensity={1}
+        color={directionalColor}
+        castShadow
+      />
     </>
   );
 }

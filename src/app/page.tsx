@@ -4,16 +4,24 @@
 import { appStrings } from "./appStrings";
 import { JobExperience } from "./components/JobExperience";
 import CloudBackground from "./CloudBackground";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
+import { About } from "./components/About";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [displaySection, setDisplaySection] = useState<string>("about");
+  const [timeOfDay, setTimeOfDay] = useState(0);
+
   return (
     <main className="w-screen h-screen bg-[#576885]">
-      <CloudBackground loaded={loaded} setLoaded={setLoaded} />
+      <CloudBackground
+        loaded={loaded}
+        setLoaded={setLoaded}
+        timeOfDay={timeOfDay}
+        setTimeOfDay={setTimeOfDay}
+      />
       <div
         className={`${
           loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
@@ -26,9 +34,11 @@ export default function Home() {
               setDisplaySection={setDisplaySection}
             />
             <div
-              className="mt-3 max-md:w-full h-full w-4/5 overflow-y-auto will-change-scroll [&::-webkit-scrollbar]:w-2
-                      [&::-webkit-scrollbar-track]:bg-sky-100 [&::-webkit-scrollbar-track]:rounded-xl
-                      [&::-webkit-scrollbar-thumb]:bg-blue-200 [&::-webkit-scrollbar-thumb]:rounded-xl scroll"
+              className="md:w-[600px] mt-5 max-md:w-full h-full overflow-y-auto will-change-scroll 
+              [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5]
+                      [&::-webkit-scrollbar]:w-2.5
+                      [&::-webkit-scrollbar-track]:bg-sky-100/50 [&::-webkit-scrollbar-track]:rounded-3xl
+                      [&::-webkit-scrollbar-thumb]:bg-sky-200/70 [&::-webkit-scrollbar-thumb]:rounded-3xl scroll"
             >
               <div
                 id="about"
@@ -39,11 +49,12 @@ export default function Home() {
                 }`}
               >
                 <div>
-                  <p className="text-blue-200 text-3xl font-rubikMono">
+                  <p className="fade-in text-blue-200 text-3xl font-rubikMono">
                     Welcome
                   </p>
                   <p className="text-white font-semibold font-nunito rounded-3xl">
-                    I&apos;m a software developer based in the Pacific Northwest.
+                    I&apos;m a software developer based in the Pacific
+                    Northwest.
                   </p>
                 </div>
               </div>
@@ -113,13 +124,14 @@ export default function Home() {
                   displaySection === "projects" ? "visible" : "hidden"
                 }`}
               >
-                <div className="w-full flex flex-wrap max-md:justify-center mt-6">
+                <div className="flex flex-wrap gap-4">
                   <Project
                     projectName="Powells Next"
                     projectType="Powell's Books"
                     description={appStrings.powellsDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="Carbon Title"
@@ -127,6 +139,7 @@ export default function Home() {
                     description={appStrings.earplanesDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="EarPlanes"
@@ -134,6 +147,7 @@ export default function Home() {
                     description={appStrings.earplanesDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="Receipts"
@@ -141,6 +155,7 @@ export default function Home() {
                     description="Social media app"
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="ChromaMuse"
@@ -148,6 +163,7 @@ export default function Home() {
                     description="A color scheme app using AI"
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="Interview Prep"
@@ -155,6 +171,7 @@ export default function Home() {
                     description="AI powered interview questions"
                     tech={["React", "OpenAI", "Node", "Prisma", "Supabase"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
                   <Project
                     projectName="AMAzine"
@@ -162,7 +179,21 @@ export default function Home() {
                     description="This was built with a team of four"
                     tech={["React", "Python"]}
                     image=""
+                    timeOfDay={timeOfDay}
                   />
+                </div>
+              </div>
+
+              <div
+                id="resume"
+                className={`${
+                  displaySection === "resume"
+                    ? "visible flex h-full items-center"
+                    : "hidden"
+                }`}
+              >
+                <div className="p-3 border border-[3px] border-white/80 rounded-3xl text-sky-300 cursor-pointer tracking-widest font-bold">
+                  Click here for my resume
                 </div>
               </div>
             </div>
