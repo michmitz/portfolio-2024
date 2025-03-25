@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavProps> = ({
     { label: "About", section: "about" },
     { label: "Experience", section: "experience" },
     { label: "Projects", section: "projects" },
-    { label: "Resume", section: "skills" },
+    { label: "Resume", section: "resume" },
   ];
 
   const onChangeSection = (section: string) => {
@@ -43,7 +43,7 @@ export const Navigation: React.FC<NavProps> = ({
     <>
       {/* Desktop */}
       <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit">
-        <Header />
+        {/* <Header /> */}
         <NavLinks
           links={navLinks}
           onClick={onChangeSection}
@@ -52,7 +52,7 @@ export const Navigation: React.FC<NavProps> = ({
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden w-full border-b p-1 flex justify-between border border-white/20 rounded-t-2xl">
+      <div className="md:hidden w-full p-1 flex justify-between rounded-t-2xl">
         <Header />
         <nav className="z-20 relative flex flex-col items-end p-2">
           <AnimatedHamburgerButton
