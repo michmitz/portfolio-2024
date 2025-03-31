@@ -6,6 +6,10 @@ import CloudBackground from "./CloudBackground";
 import { useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
+import { Skills } from "./components/Skills";
+import { TiSocialLinkedinCircular } from "react-icons/ti";
+import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -186,12 +190,52 @@ export default function Home() {
                 id="resume"
                 className={`${
                   displaySection === "resume"
-                    ? "visible flex h-full items-center"
+                    ? "visible flex flex-col h-full"
                     : "hidden"
                 }`}
               >
-                <div className="p-3 border border-[3px] border-white/80 rounded-3xl text-sky-300 cursor-pointer tracking-widest font-bold">
+                <div className="p-3 border border-[3px] border-white/80 rounded-3xl text-sky-800 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30">
                   Click here for my resume
+                </div>
+
+                <div className="flex flex-row items-start">
+                  <p className="text-white text-2xl font-bold">Contact</p>
+                  <Link
+                    href="https://www.linkedin.com/in/michelle-stermitz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TiSocialLinkedinCircular size="50px" color="white" />
+                  </Link>
+                  <Link
+                    href="https://github.com/michmitz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub size="40px" color="white" />
+                  </Link>
+                </div>
+
+                <div className="float flex flex-wrap items-start gap-4 mt-6">
+                  <p></p>
+                  <Skills
+                    category="Frontend"
+                    skills={[
+                      "React",
+                      "Vue",
+                      "CSS",
+                      "Sass",
+                      "Tailwind",
+                      "Material UI",
+                      "Bootstrap",
+                      "ThreeJS",
+                      "GraphQL",
+                      "Framer Motion",
+                      "Next.js",
+                      "Nuxt",
+                    ]}
+                    background="url('/cloud1.png')"
+                  />
                 </div>
               </div>
             </div>
