@@ -10,6 +10,7 @@ module.exports = {
         nunito: ['Nunito', 'serif'],
         cinzel: ['Cinzel Decorative', 'serif'],
         rubikMono: ['Rubik Mono One', 'monospace'],
+        silkscreen: ['Silkscreen', 'sans-serif'],
       },
   },
   },
