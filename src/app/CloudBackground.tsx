@@ -1,6 +1,6 @@
 "use client";
 import * as THREE from "three";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Clouds,
@@ -115,89 +115,113 @@ function RotatingCamera() {
     }
   });
 
-  return (
-    <CameraControls
-      ref={cameraRef}
-      distance={80}
-      maxDistance={100}
-      azimuthAngle={130}
-      polarAngle={2.2}
-    />
-  );
+  return <CameraControls ref={cameraRef} distance={80} maxDistance={500} azimuthAngle={130} polarAngle={2.2} />;
 }
 
-function Sky() {
+const CloudsComp = () => {
+return (
+  <Clouds material={THREE.MeshStandardMaterial} frustumCulled={false} >
+     
+          <Cloud
+            // ref={addCloudRef}
+            position={[-50, -400, 70]}
+            concentrate="outside"
+            growth={30}
+            color="#ffffff"
+            opacity={.6}
+            seed={4}
+            bounds={200}
+            volume={300}
+          />
+           <Cloud
+            // ref={addCloudRef}
+            position={[400, -400, 250]}
+            concentrate="outside"
+            growth={30}
+            color="#ffffff"
+            opacity={1}
+            seed={8}
+            bounds={500}
+            volume={450}
+          />
+           <Cloud
+            // ref={addCloudRef}
+            position={[100, -500, 250]}
+            concentrate="outside"
+            growth={30}
+            color='#d2acac'
+            
+            opacity={.75}
+            seed={8}
+            bounds={500}
+            volume={500}
+          />
+          <Cloud
+            // ref={addCloudRef}
+            position={[0, -500, 400]}
+            concentrate="outside"
+            growth={10}
+            color="#ebeaea"
+            opacity={1}
+            seed={7}
+            bounds={500}
+            volume={600}
+            speed={0.05}
+          />
+          <Cloud
+            // ref={addCloudRef}
+            position={[-150, -450, 500]}
+            concentrate="outside"
+            growth={10}
+            color="#ebeaea"
+            opacity={1}
+            seed={10}
+            bounds={600}
+            volume={400}
+            speed={0.05}
+          />
+          <Cloud
+            // ref={addCloudRef}
+            position={[-150, -500, 0]}
+            concentrate="outside"
+            growth={10}
+            color="#ebeaea"
+            opacity={1}
+            seed={9}
+            bounds={500}
+            volume={300}
+            speed={0.1}
+          />
+    
+  </Clouds>
+);
+}
+
+
+function Sky({ transition }: { transition: number }) {
   const ref = useRef<THREE.Group>(null);
   const cloudRefs = useRef<THREE.Group[]>([]);
 
-  const addCloudRef = (cloud: THREE.Group | null) => {
-    if (cloud && !cloudRefs.current.includes(cloud)) {
-      cloudRefs.current.push(cloud);
-    }
-  };
-
-  useFrame((_, delta: number) => {
-    cloudRefs.current.forEach((cloud) => {
-      if (cloud) {
-        cloud.position.x += delta * 0.5;
-        if (cloud.position.x > 50) {
-          cloud.position.x = -50;
-        }
-      }
-    });
-  });
-
   return (
     <>
-      <Stars radius={100} depth={10} count={600} factor={6} fade />
+      <Stars radius={500}  count={2000} factor={15} fade />
       <group ref={ref}>
         <SkyImpl
-          sunPosition={[15, 30, 15]}
-          turbidity={1}
-          rayleigh={0.06}
-          mieCoefficient={0.01}
+          sunPosition={[
+            THREE.MathUtils.lerp(15, 30, transition),
+            50 + THREE.MathUtils.lerp(-20, 50, transition), // Keep a fixed baseline
+            THREE.MathUtils.lerp(15, 30, transition),
+          ]}
+          
+          turbidity={THREE.MathUtils.lerp(1, 0.8, transition)}
+          rayleigh={THREE.MathUtils.lerp(0.06, 0.2, transition)}
+          mieCoefficient={THREE.MathUtils.lerp(0.01, 0.009, transition)}
           mieDirectionalG={0.99}
-          azimuth={-50}
-          distance={800}
+          azimuth={-60}
+          distance={600}
         />
-        <Clouds material={THREE.MeshPhongMaterial} limit={300}>
-          <Cloud
-            ref={addCloudRef}
-            color="#ffffff"
-            seed={8}
-            position={[50, -80, 0]}
-            volume={100}
-          />
-          <Cloud
-            ref={addCloudRef}
-            color="#d0e0d0"
-            seed={3}
-            position={[-15, -40, 100]}
-          />
-          <Cloud
-            ref={addCloudRef}
-            color="#a0b0d0"
-            seed={4}
-            position={[0, -20, -12]}
-          />
-          <Cloud
-            ref={addCloudRef}
-            color="#c0c0dd"
-            seed={5}
-            position={[0, -50, 12]}
-          />
-          <Cloud
-            ref={addCloudRef}
-            concentrate="outside"
-            growth={40}
-            color="#ffffff"
-            opacity={1.25}
-            seed={0.3}
-            bounds={200}
-            volume={100}
-          />
-        </Clouds>
       </group>
+        <CloudsComp />
     </>
   );
 }
