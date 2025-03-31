@@ -148,7 +148,10 @@ export const Project: React.FC<ProjectProps> = ({
       >
         <motion.p
           className="mb-1.5 text-sm font-medium uppercase"
-          animate={{ color: hovered ? "#ffffff" : "#fff" }}
+          style={{
+            color: textColor,
+            transition: "color 1s ease",
+          }}
         >
           {projectType}
         </motion.p>
