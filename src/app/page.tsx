@@ -8,7 +8,6 @@ import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
 import { Contact } from "./components/Contact";
 import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
-import GlitterCursor from "./components/GlitterCursor";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
