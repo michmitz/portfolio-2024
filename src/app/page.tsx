@@ -6,10 +6,9 @@ import CloudBackground from "./CloudBackground";
 import { useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
-import { Skills } from "./components/Skills";
-import { TiSocialLinkedinCircular } from "react-icons/ti";
-import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
+import { Contact } from "./components/Contact";
+import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
+import GlitterCursor from "./components/GlitterCursor";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -24,12 +23,15 @@ export default function Home() {
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
       />
+      <div className="md:visible md:absolute md:top-10 md:right-10">
+        <Contact loaded={loaded} />
+      </div>
       <div
         className={`${
           loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
         }`}
       >
-        <div className="w-4/5 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%] min-w-[300px]">
+        <div className="w-3/4 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%] min-w-[300px]">
           <div className="w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation
               displaySection={displaySection}
@@ -51,10 +53,10 @@ export default function Home() {
                 }`}
               >
                 <div>
-                  <p className="fade-in text-blue-200 text-3xl font-rubikMono">
-                    Welcome
+                  <p className="fade-in text-blue-200 text-3xl font-silkscreen">
+                    Hi! I'm Michelle.
                   </p>
-                  <p className="text-white font-semibold font-nunito rounded-3xl">
+                  <p className="text-white font-semibold font-nunito rounded-3xl mb-3">
                     I&apos;m a software developer based in the Pacific
                     Northwest.
                   </p>
@@ -68,6 +70,10 @@ export default function Home() {
                 }`}
               >
                 <div className="w-full flex flex-wrap max-md:justify-center gap-4 mt-6">
+                  <div className="p-3 self-start rounded-3xl text-sky-100 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30 flex flex-row gap-2 items-center">
+                    <p className="text-md">My Resume</p>
+                    <LiaExternalLinkSquareAltSolid size="25px" />
+                  </div>
                   <JobExperience
                     startDate="Jan 2024"
                     endDate="Present"
@@ -128,6 +134,20 @@ export default function Home() {
               >
                 <div className="flex flex-wrap gap-4">
                   <Project
+                    projectName="This Website"
+                    projectType="Personal"
+                    description={appStrings.powellsDescription}
+                    tech={[
+                      "React",
+                      "Tailwind",
+                      "NextJS",
+                      "ThreeJS",
+                      "Framer Motion",
+                    ]}
+                    image=""
+                    timeOfDay={timeOfDay}
+                  />
+                  <Project
                     projectName="Powells Next"
                     projectType="Powell's Books"
                     description={appStrings.powellsDescription}
@@ -187,56 +207,14 @@ export default function Home() {
               </div>
 
               <div
-                id="resume"
+                id="contact"
                 className={`${
-                  displaySection === "resume"
-                    ? "visible flex flex-col h-full"
-                    : "hidden"
+                  displaySection === "contact"
+                    ? "md:hidden visible flex flex-col h-full"
+                    : "max-md:hidden hidden"
                 }`}
               >
-                <div className="p-3 border border-[3px] border-white/80 rounded-3xl text-sky-800 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30">
-                  Click here for my resume
-                </div>
-
-                <div className="flex flex-row items-start">
-                  <p className="text-white text-2xl font-bold">Contact</p>
-                  <Link
-                    href="https://www.linkedin.com/in/michelle-stermitz/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <TiSocialLinkedinCircular size="50px" color="white" />
-                  </Link>
-                  <Link
-                    href="https://github.com/michmitz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub size="40px" color="white" />
-                  </Link>
-                </div>
-
-                <div className="float flex flex-wrap items-start gap-4 mt-6">
-                  <p></p>
-                  <Skills
-                    category="Frontend"
-                    skills={[
-                      "React",
-                      "Vue",
-                      "CSS",
-                      "Sass",
-                      "Tailwind",
-                      "Material UI",
-                      "Bootstrap",
-                      "ThreeJS",
-                      "GraphQL",
-                      "Framer Motion",
-                      "Next.js",
-                      "Nuxt",
-                    ]}
-                    background="url('/cloud1.png')"
-                  />
-                </div>
+                <Contact loaded={loaded} />
               </div>
             </div>
           </div>
