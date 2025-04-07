@@ -46,7 +46,7 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit">
+      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit w-fit">
         {/* <Header /> */}
         <NavLinks
           links={navLinks}
@@ -97,14 +97,14 @@ const NavLinks: React.FC<{
   onClick: (section: string) => void;
   displaySection: string;
 }> = ({ links, onClick, displaySection }) => (
-  <div className="mt-4 cursor-pointer flex max-md:flex-col flex-row">
+  <div className="cursor-pointer flex max-md:flex-col flex-row">
     {links.map(({ label, section }) => (
       <button
         key={section}
         onClick={() => onClick(section)}
         className={`${
           displaySection === section
-            ? "text-sky-300"
+            ? "text-blue-300"
             : "text-gray-200 hover:text-slate-200"
         } text-lg transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
       >

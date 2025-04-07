@@ -12,16 +12,6 @@ interface ProjectProps {
   readonly timeOfDay: number;
 }
 
-interface CardProps {
-  readonly tag: string;
-  readonly projectType?: string;
-  readonly projectName: string;
-  readonly description?: string;
-  readonly tech: string[];
-  readonly link?: string;
-  readonly timeOfDay: number;
-}
-
 export const Project: React.FC<ProjectProps> = ({
   projectName,
   projectType,
@@ -103,12 +93,13 @@ export const Project: React.FC<ProjectProps> = ({
     pillAnimation.start({
       backgroundColor: pillColors.backgroundColor,
     });
-  }, [timeOfDay, backgroundAnimation]);
+  }, [timeOfDay, backgroundAnimation, pillAnimation]);
 
   const [contentVisible, setContentVisible] = useState(false);
   const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     hovered && contentVisible ? setOpacity(1) : setOpacity(0);
   }, [contentVisible, hovered]);
 
@@ -123,7 +114,7 @@ export const Project: React.FC<ProjectProps> = ({
     >
       <motion.div
         layout
-        className="flex-1 rounded-2xl p-4 cursor-pointer backdrop-blur-2xl backdrop-saturate-115 shadow"
+        className="flex-1 rounded-2xl p-4 cursor-pointer backdrop-blur-2xl backdrop-saturate-135 bg-gray-300/20 shadow"
         onMouseEnter={() => {
           setHovered(true);
           cardAnimation
