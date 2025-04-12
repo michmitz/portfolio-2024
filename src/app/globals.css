@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Corben:wght@400;700&family=Emblema+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+Mono+One&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,14 +21,6 @@
 body {
   color: var(--foreground);
   background: var(--background);
-}
-
-.glass {
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  background-color: rgba(218, 229, 250, 0.56);
-  border-radius: 12px;
-  border: 3px solid rgba(209, 213, 219, 0.3);
 }
 
 .canvas {
@@ -74,6 +68,10 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.fade-in {
+  animation: fadein 8s;
 }
 
 .scroll {

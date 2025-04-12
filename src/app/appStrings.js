@@ -7,7 +7,8 @@ export const appStrings = {
     "Engaged in in pair programming, pull request reviews, and ticket creation to ensure efficient, high-quality development.",
     "Led Storybook integration for responsive, atomic design, serving as primary owner to drive consistent component use across the platform.",
   ],
-  powellsDescription: 'Here is my description for Powells. Keep it to one succint paragraph. Here is my description for Powells. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph.',
+  powellsDescription:
+    "Here is my description for Powells. Keep it to one succint paragraph. Here is my description for Powells. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph.",
   olioResponsibilities: [
     "Independently completed the frontend for two React Native mobile apps, including the barometric pressure app designed for EarPlanes products",
     "Led three-person team for Solar Redline, the “Yelp of solar panel installation”, managing ticket creation and workflow",
@@ -15,8 +16,10 @@ export const appStrings = {
     "Specialized in atomic design and trained new team members in the concept of Storybook-driven development",
     "Worked closely with clients to perform manual and automated testing, fix bugs, and respond to feedback",
   ],
-  careerGapDescription: "Personal sabbatical in order to devote time to personal and professional goals, as well as further improve as a developer. Add info about AI app here",
-  olioDescription: 'Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph.',
+  careerGapDescription:
+    "Personal sabbatical in order to devote time to personal and professional goals, as well as further improve as a developer. Add info about AI app here",
+  olioDescription:
+    "Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph. Here is my description for Olio. Keep it to one succint paragraph.",
   graphicDesignDescription: "Here is my graphic designer description",
   carbonTitleDescription:
     "I built a large portion of the dashboard on this greenfield carbon reduction app.",
@@ -28,7 +31,19 @@ export const appStrings = {
   powellsNextDescription:
     "Powells Next is the new incarnation of Powell's ecommerce site. I'm proud to have played a key role in this project.",
   receiptsDescription: "I built the frontend for this fun social media app",
+  skillsList: [
+    "TypeScript",
+    "JavaScript",
+    "Vue",
+    "React",
+    "MaterialUI",
+    "Bootstrap",
+    "ThreeJS",
+    "Supabase",
+    "Prisma",
+    "PostgreSQL",
+    "Tailwind",
+    "CSS (of course)",
+    "Node",
+  ],
 };
-
-
-// Rewrite responsibilities into smaller paragraphs. Add resume to website which will have detailed job responsibilities

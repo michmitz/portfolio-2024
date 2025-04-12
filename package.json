@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.17.10",
     "@react-three/postprocessing": "^2.19.0",
@@ -16,6 +17,7 @@
     "framer-motion": "^12.4.5",
     "next": "^14.2.21",
     "react": "^18.0.0",
+    "react-icons": "^5.5.0",
     "three": "^0.171.0"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 interface ProjectProps {
   readonly projectName: string;
@@ -8,14 +9,7 @@ interface ProjectProps {
   readonly link?: string;
   readonly description?: string;
   readonly tech: string[];
-}
-
-interface CardProps {
-  readonly tag: string;
-  readonly projectName: string;
-  readonly description?: string;
-  readonly tech: string[];
-  readonly link?: string;
+  readonly timeOfDay: number;
 }
 
 export const Project: React.FC<ProjectProps> = ({
@@ -24,71 +18,207 @@ export const Project: React.FC<ProjectProps> = ({
   link,
   description,
   tech,
-}) => {
-  return (
-    <motion.div
-      className="flex items-center justify-center w-full h-fit pt-6 pb-6 w-[85%]"
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <Card
-        tag={`/ ${projectType}`}
-        tech={tech}
-        projectName={projectName}
-        description={description}
-        link={link}
-      />
-    </motion.div>
-  );
-};
-
-const Card: React.FC<CardProps> = ({
-  tag,
-  projectName,
-  description,
-  tech,
-  link,
+  timeOfDay,
 }) => {
   const [hovered, setHovered] = useState(false);
+  const backgroundAnimation = useAnimation();
+  const pillAnimation = useAnimation();
+  const cardAnimation = useAnimation();
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [cardInitialWidth, setCardInitialWidth] = useState(
+    isMobile ? "100%" : "200px"
+  );
+  const [cardHoverWidth, setCardHoverWidth] = useState(
+    isMobile ? "100%" : "355px"
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth < 768) {
+          setIsMobile(true);
+          setCardInitialWidth("100%");
+          setCardHoverWidth("100%");
+        } else {
+          setIsMobile(false);
+          setCardInitialWidth("200px");
+          setCardHoverWidth("355px");
+        }
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const getColorsByTime = (timeOfDay: number) => {
+    if (timeOfDay <= 1 && timeOfDay > 0.5) {
+      return {
+        backgroundColor: "transparent",
+        textColor: "#fdedbf",
+      };
+    }
+    return {
+      backgroundColor: "transparent",
+      textColor: "#ffffff",
+    };
+  };
+
+  const getPillColorsByTime = (timeOfDay: number) => {
+    if (timeOfDay <= 1 && timeOfDay > 0.5) {
+      return {
+        backgroundColor: "rgba(189, 249, 252, 0.96)",
+        textColor: "#25b1d0",
+      };
+    }
+    return {
+      backgroundColor: "rgba(158, 222, 252, 0.99)",
+      textColor: "#ffffff",
+    };
+  };
+
+  useEffect(() => {
+    const colors = getColorsByTime(timeOfDay);
+    const pillColors = getPillColorsByTime(timeOfDay);
+    backgroundAnimation.start({
+      backgroundColor: colors.backgroundColor,
+      color: colors.textColor,
+      transition: { duration: 4, ease: "easeInOut" },
+    });
+    pillAnimation.start({
+      backgroundColor: pillColors.backgroundColor,
+    });
+  }, [timeOfDay, backgroundAnimation, pillAnimation]);
+
+  const [contentVisible, setContentVisible] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    hovered && contentVisible ? setOpacity(1) : setOpacity(0);
+  }, [contentVisible, hovered]);
+
+  const { textColor } = getColorsByTime(timeOfDay);
+  const { backgroundColor: pillBgColor, textColor: pillTextColor } =
+    getPillColorsByTime(timeOfDay);
 
   return (
     <motion.div
-      className="rounded-2xl p-4 cursor-pointer bg-opacity-80 backdrop-blur-md border border-sky-300 w-full"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      whileHover={{ scale: 1.04 }}
-      transition={{ duration: 0.3 }}
+      className="flex items-center justify-center mb-5 max-md:w-full h-fit"
+      animate={backgroundAnimation}
     >
-      <motion.p
-        className="mb-1.5 text-sm font-medium uppercase"
-        animate={{ color: hovered ? "#38bdf8" : "#fff" }}
+      <motion.div
+        layout
+        className="flex-1 rounded-2xl p-4 cursor-pointer backdrop-blur-2xl backdrop-saturate-135 bg-gray-300/20 shadow"
+        onMouseEnter={() => {
+          setHovered(true);
+          cardAnimation
+            .start({
+              height: "300px",
+              width: cardHoverWidth,
+              transition: { duration: 0.5, ease: "easeInOut" },
+            })
+            .then(() => setContentVisible(true));
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+          setContentVisible(false);
+          cardAnimation.start({
+            height: "120px",
+            width: "200px",
+            transition: { duration: 0.5, ease: "easeInOut" },
+          });
+        }}
+        animate={cardAnimation}
+        initial={{ height: "120px", width: cardInitialWidth }}
       >
-        {tag}
-      </motion.p>
-      <hr className="border-sky-200" />
-      <p className="text-lg leading-relaxed font-bold mt-2 text-white">
-        {projectName}
-      </p>
-      <p className="text-sm leading-relaxed mb-2 text-white">{description}</p>
-      {link && (
-        <motion.button
-          className="rounded-full border border-sky-400 py-1 px-4 text-sm font-medium transition-colors hover:bg-sky-800 hover:text-white"
-          whileHover={{ scale: 1.1 }}
+        <motion.p
+          className="mb-1.5 text-sm font-medium uppercase"
+          style={{
+            color: textColor,
+            transition: "color 1s ease",
+          }}
         >
-          Link
-        </motion.button>
-      )}
-      <div className="mt-3 flex flex-wrap gap-2">
-        {tech.map((t) => (
-          <motion.span
-            key={t}
-            className="bg-sky-200 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
-            whileHover={{ scale: 1.1 }}
+          {projectType}
+        </motion.p>
+        <hr className="border-sky-200" />
+        <p
+          className="text-lg font-bold mt-2 font-nunito"
+          style={{
+            color: textColor,
+            transition: "color 1s ease",
+          }}
+        >
+          {projectName}
+        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{
+            opacity: opacity,
+            y: contentVisible ? 0 : 10,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <motion.p
+            className="text-sm leading-relaxed mb-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: opacity,
+              y: contentVisible ? 0 : 10,
+            }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
           >
-            {t}
-          </motion.span>
-        ))}
-      </div>
+            {description}
+          </motion.p>
+
+          {link && (
+            <motion.button
+              className="rounded-full border border-sky-400 py-1 px-4 text-sm font-medium hover:bg-sky-800 hover:text-white"
+              whileHover={{ scale: 1.1 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{
+                opacity: opacity,
+                y: contentVisible ? 0 : 10,
+              }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
+            >
+              Link
+            </motion.button>
+          )}
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tech.map((t, index) => (
+              <motion.span
+                key={t}
+                className="text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
+                whileHover={{ scale: 1.1 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{
+                  opacity: opacity,
+                  y: contentVisible ? 0 : 10,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.3 + index * 0.05,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  backgroundColor: pillBgColor,
+                  color: pillTextColor,
+                  transition: "background-color 1s ease, color 1s ease",
+                }}
+              >
+                {t}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };
