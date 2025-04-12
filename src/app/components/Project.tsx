@@ -148,7 +148,7 @@ export const Project: React.FC<ProjectProps> = ({
         </motion.p>
         <hr className="border-sky-200" />
         <p
-          className="text-lg font-bold mt-2"
+          className="text-lg font-bold mt-2 font-nunito"
           style={{
             color: textColor,
             transition: "color 1s ease",

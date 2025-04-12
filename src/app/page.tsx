@@ -8,6 +8,7 @@ import { Navigation } from "./components/Navigation";
 import { Project } from "./components/Project";
 import { Contact } from "./components/Contact";
 import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
+import { About } from "./components/About";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -21,8 +22,8 @@ export default function Home() {
         setLoaded={setLoaded}
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
-      />
-      <div className="md:visible md:absolute md:top-10 md:right-10">
+      /> */}
+      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-10">
         <Contact loaded={loaded} />
       </div>
       <div
@@ -51,15 +52,7 @@ export default function Home() {
                     : "hidden"
                 }`}
               >
-                <div>
-                  <p className="fade-in text-blue-200 text-3xl font-silkscreen">
-                    Hi! I'm Michelle.
-                  </p>
-                  <p className="text-white font-semibold font-nunito rounded-3xl mb-3">
-                    I&apos;m a software developer based in the Pacific
-                    Northwest.
-                  </p>
-                </div>
+                <About />
               </div>
 
               <div
@@ -147,7 +140,7 @@ export default function Home() {
                     timeOfDay={timeOfDay}
                   />
                   <Project
-                    projectName="Powells Next"
+                    projectName="Powell's Next"
                     projectType="Powell's Books"
                     description={appStrings.powellsDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
@@ -209,7 +202,7 @@ export default function Home() {
                 id="contact"
                 className={`${
                   displaySection === "contact"
-                    ? "md:hidden visible flex flex-col h-full"
+                    ? "float md:hidden visible flex flex-col h-full"
                     : "max-md:hidden hidden"
                 }`}
               >

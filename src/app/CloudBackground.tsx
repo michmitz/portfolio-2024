@@ -61,7 +61,7 @@ export default function CloudBackground({ loaded, setLoaded, timeOfDay, setTimeO
 
   return (
     <>
-      <Canvas className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`} onCreated={(state) => !loaded && setLoaded(true)}>
+      <Canvas className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`} onCreated={() => !loaded && setLoaded(true)}>
         <Lighting transition={timeOfDay} />
         <Sky transition={timeOfDay} />
         <RotatingCamera />
@@ -103,7 +103,7 @@ function Lighting({ transition }: { transition: number }) {
 
 function RotatingCamera() {
   const cameraRef = useRef<CameraControls>(null);
-  const rotationSpeed = 0.4;
+  const rotationSpeed = 0.3;
 
   useFrame((_, delta) => {
     if (cameraRef.current) {
@@ -154,7 +154,7 @@ return (
             opacity={.75}
             seed={8}
             bounds={500}
-            volume={500}
+            volume={450}
           />
           <Cloud
             // ref={addCloudRef}
@@ -204,7 +204,7 @@ function Sky({ transition }: { transition: number }) {
 
   return (
     <>
-      <Stars radius={500}  count={2000} factor={15} fade />
+      <Stars radius={200}  count={700} factor={15} fade />
       <group ref={ref}>
         <SkyImpl
           sunPosition={[
