@@ -192,15 +192,24 @@ return (
             volume={300}
             speed={0.1}
           />
-    
+          {/* <Cloud
+            // ref={addCloudRef}
+            position={[0, 0, 0]}
+            // concentrate="outside"
+            // growth={10}
+            color="#ebeaea"
+            opacity={1}
+            seed={6}
+            bounds={200}
+            volume={200}
+             /> */}
   </Clouds>
 );
 }
 
-
 function Sky({ transition }: { transition: number }) {
   const ref = useRef<THREE.Group>(null);
-  const cloudRefs = useRef<THREE.Group[]>([]);
+  // const cloudRefs = useRef<THREE.Group[]>([]);
 
   return (
     <>

@@ -22,7 +22,7 @@ export default function Home() {
         setLoaded={setLoaded}
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
-      /> */}
+      />
       <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-10">
         <Contact loaded={loaded} />
       </div>

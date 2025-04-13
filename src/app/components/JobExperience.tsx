@@ -5,7 +5,6 @@ interface JobExperienceProps {
   readonly endDate: string;
   readonly jobTitle: string;
   readonly company?: string;
-  readonly jobDuties?: ReadonlyArray<string>;
   readonly jobDescription?: string;
   readonly skills: ReadonlyArray<string>;
 }
@@ -15,7 +14,6 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
   endDate,
   jobTitle,
   company,
-  jobDuties,
   jobDescription,
   skills,
 }) => {
