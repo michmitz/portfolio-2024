@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 interface JobExperienceProps {
   readonly startDate: string;
@@ -18,31 +19,32 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
   skills,
 }) => {
   return (
-    <div className="relative w-4/5 max-w-xl cursor-pointer max-md:w-[90%] w-[85%] rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out backdrop-saturate-125 bg-blue-300/20 hover:shadow-blue-200/20 backdrop-blur-2xl hover:bg-white/20">
+    <div className="relative max-w-xl cursor-pointer max-md:w-[95%] w-[85%] rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out backdrop-saturate-125 bg-blue-300/20 hover:dropshadow-md backdrop-blur-2xl bg-sky/20">
       <div className="group relative w-full overflow-hidden rounded-l p-4 transition-all duration-1000 ease-in-out rounded-xl">
         <div className="flex justify-between items-center cursor-pointer">
           <div>
-            <p className="text-lg font-extrabold text-white drop-shadow-md font-nunito">
+            <p className="md:text-xl max-md:text-lg font-extrabold text-white drop-shadow-sm">
               {jobTitle}
             </p>
-            <p className="text-neutral-200 text-sm md:text-md font-semibold opacity-90">
+            <p className="md:text-lg max-md:text-md text-sky-200 font-semibold">
               {company}
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-white text-xs md:text-sm font-bold tracking-wide">
-              {startDate} -
-            </p>
-            <p className="text-white text-xs md:text-sm font-bold tracking-wide">
+          <div className="flex flex-col items-center justify-center p-2 cursor-pointer transition-all duration-700 text-neutral-200">
+            <p className="text-white text-xs font-bold tracking-widest mb-1">
               {endDate}
+            </p>
+            <FaArrowUp size="10px" color="white" />
+            <p className="text-white text-xs font-bold tracking-widest mt-1">
+              {startDate}
             </p>
           </div>
         </div>
 
         <div className="max-h-0 overflow-hidden transition-all duration-1000 ease-in-out group-hover:max-h-[500px] group-hover:pb-4 will-change-[max-height]">
           {jobDescription && (
-            <p className="mt-2 text-sm text-[#ffffff] leading-relaxed text-semibold">
+            <p className="mt-2 text-sm text-white leading-relaxed text-semibold">
               {jobDescription}
             </p>
           )}
@@ -51,9 +53,9 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
             {skills.map((s) => (
               <span
                 key={s}
-                className="bg-blue-400/20 border border-blue-300/50 text-sky-600 text-xs 
+                className="border border-blue-300/50 text-sky-100 text-xs 
              font-semibold px-3 py-1 rounded-full shadow-sm transition-transform 
-             hover:scale-105 hover:bg-blue-400/40"
+             hover:scale-105"
               >
                 {s}
               </span>
