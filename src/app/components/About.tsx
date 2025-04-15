@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 export const About = () => {
@@ -36,25 +36,27 @@ export const About = () => {
           )}
         </motion.button>
       </motion.div>
-
-      {showMore && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-          className="mt-2 text-white font-nunito"
-        >
-          <p>
-            Ut lobortis nisi scelerisque porta consectetur. Suspendisse potenti.
-            Etiam volutpat imperdiet leo in faucibus. Morbi pellentesque massa
-            vitae lorem vestibulum, eget porttitor dolor mattis. Morbi mattis
-            metus a pulvinar suscipit. Quisque ex turpis, gravida ut lectus sed,
-            facilisis vestibulum nisi. Morbi et mauris sed arcu sodales
-            imperdiet vitae non magna.
-          </p>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {showMore && (
+          <motion.div
+            key="about-details"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="overflow-hidden mt-2 text-white font-nunito"
+          >
+            <p>
+              Ut lobortis nisi scelerisque porta consectetur. Suspendisse
+              potenti. Etiam volutpat imperdiet leo in faucibus. Morbi
+              pellentesque massa vitae lorem vestibulum, eget porttitor dolor
+              mattis. Morbi mattis metus a pulvinar suscipit. Quisque ex turpis,
+              gravida ut lectus sed, facilisis vestibulum nisi. Morbi et mauris
+              sed arcu sodales imperdiet vitae non magna.
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
