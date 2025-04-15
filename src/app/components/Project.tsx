@@ -27,10 +27,10 @@ export const Project: React.FC<ProjectProps> = ({
 
   const [isMobile, setIsMobile] = useState(false);
   const [cardInitialWidth, setCardInitialWidth] = useState(
-    isMobile ? "100%" : "200px"
+    isMobile ? "95%" : "200px"
   );
   const [cardHoverWidth, setCardHoverWidth] = useState(
-    isMobile ? "100%" : "355px"
+    isMobile ? "95%" : "355px"
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Project: React.FC<ProjectProps> = ({
       if (typeof window !== "undefined") {
         if (window.innerWidth < 768) {
           setIsMobile(true);
-          setCardInitialWidth("100%");
+          setCardInitialWidth("95%");
           setCardHoverWidth("100%");
         } else {
           setIsMobile(false);
@@ -109,7 +109,7 @@ export const Project: React.FC<ProjectProps> = ({
 
   return (
     <motion.div
-      className="flex items-center justify-center mb-5 max-md:w-full h-fit"
+      className="flex items-center justify-center mb-5 h-fit max-md:w-[95%]"
       animate={backgroundAnimation}
     >
       <motion.div
