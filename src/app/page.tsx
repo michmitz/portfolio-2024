@@ -31,7 +31,7 @@ export default function Home() {
           loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
         }`}
       >
-        <div className="w-3/4 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-5 max-md:h-[90%] min-w-[300px]">
+        <div className="w-3/4 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-6 max-md:h-[90%] min-w-[300px]">
           <div className="w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation
               displaySection={displaySection}
@@ -62,13 +62,13 @@ export default function Home() {
                 }`}
               >
                 <div className="w-full flex flex-wrap max-md:justify-center gap-4 mt-6">
-                  <div className="p-3 self-start rounded-3xl text-sky-100 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30 flex flex-row gap-2 items-center">
+                  {/* <div className="p-3 self-start rounded-3xl text-sky-100 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30 flex flex-row gap-2 items-center">
                     <p className="text-md">My Resume</p>
                     <LiaExternalLinkSquareAltSolid size="25px" />
-                  </div>
+                  </div> */}
                   <JobExperience
-                    startDate="Jan 2024"
-                    endDate="Present"
+                    startDate="1/2024"
+                    endDate="Now"
                     jobTitle="Frontend Software Engineer"
                     company="Powell's Books"
                     jobDescription={appStrings.powellsDescription}
@@ -83,15 +83,15 @@ export default function Home() {
                     ]}
                   />
                   <JobExperience
-                    startDate="Mar 2023"
-                    endDate="Oct 2023"
+                    startDate="3/2023"
+                    endDate="10/2023"
                     jobTitle="Career Break"
                     jobDescription={appStrings.careerGapDescription}
                     skills={["TypeScript", "OpenAI", "Vue", "Tailwind"]}
                   />
                   <JobExperience
-                    startDate="May 2021"
-                    endDate="March 2023"
+                    startDate="5/2021"
+                    endDate="3/2023"
                     jobTitle="Software Engineer"
                     company="Olio Apps"
                     jobDescription={appStrings.olioDescription}
@@ -108,9 +108,9 @@ export default function Home() {
                     ]}
                   />
                   <JobExperience
-                    startDate="May"
-                    endDate="fill this out"
-                    jobTitle="Graphic Designer, Marketing"
+                    startDate="2015"
+                    endDate="2019"
+                    jobTitle="Graphic Design, Marketing"
                     company="Various Companies"
                     jobDescription={appStrings.graphicDesignDescription}
                     skills={["Adobe Photoshop", "Adobe Illustrator"]}
@@ -202,7 +202,7 @@ export default function Home() {
                 id="contact"
                 className={`${
                   displaySection === "contact"
-                    ? "float md:hidden visible flex flex-col h-full"
+                    ? "float md:hidden flex flex-col justify-center h-3/4"
                     : "max-md:hidden hidden"
                 }`}
               >
