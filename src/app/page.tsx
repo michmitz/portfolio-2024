@@ -62,10 +62,6 @@ export default function Home() {
                 }`}
               >
                 <div className="w-full flex flex-wrap max-md:justify-center gap-4 mt-6">
-                  {/* <div className="p-3 self-start rounded-3xl text-sky-100 cursor-pointer tracking-widest font-bold w-fit bg-blue-200/30 flex flex-row gap-2 items-center">
-                    <p className="text-md">My Resume</p>
-                    <LiaExternalLinkSquareAltSolid size="25px" />
-                  </div> */}
                   <JobExperience
                     startDate="1/2024"
                     endDate="Now"
@@ -127,7 +123,8 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4">
                   <Project
                     projectName="This Website"
-                    projectType="Personal"
+                    projectType="personal"
+                    company="Personal"
                     description={appStrings.powellsDescription}
                     tech={[
                       "React",
@@ -141,7 +138,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="Powell's Next"
-                    projectType="Powell's Books"
+                    projectType="work"
+                    company="Powell's Books"
                     description={appStrings.powellsDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
@@ -149,7 +147,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="Carbon Title"
-                    projectType="Olio Apps"
+                    company="Olio Apps"
+                    projectType="work"
                     description={appStrings.earplanesDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
@@ -157,7 +156,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="EarPlanes"
-                    projectType="Olio Apps"
+                    projectType="work"
+                    company="Olio Apps"
                     description={appStrings.earplanesDescription}
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
@@ -165,7 +165,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="Receipts"
-                    projectType="Olio Apps"
+                    projectType="work"
+                    company="Olio Apps"
                     description="Social media app"
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
@@ -173,7 +174,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="ChromaMuse"
-                    projectType="Personal"
+                    projectType="personal"
+                    company="Personal"
                     description="A color scheme app using AI"
                     tech={["React", "Tailwind", "OpenAI"]}
                     image=""
@@ -181,7 +183,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="Interview Prep"
-                    projectType="Personal"
+                    projectType="personal"
+                    company="Personal"
                     description="AI powered interview questions"
                     tech={["React", "OpenAI", "Node", "Prisma", "Supabase"]}
                     image=""
@@ -189,7 +192,8 @@ export default function Home() {
                   />
                   <Project
                     projectName="AMAzine"
-                    projectType="Alchemy Code Lab"
+                    company="Alchemy Code Lab"
+                    projectType="school"
                     description="This was built with a team of four"
                     tech={["React", "Python"]}
                     image=""
