@@ -19,7 +19,7 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
   skills,
 }) => {
   return (
-    <div className="relative max-w-xl cursor-pointer max-md:w-[95%] w-[85%] rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out backdrop-saturate-125 bg-blue-300/20 hover:dropshadow-md backdrop-blur-2xl bg-sky/20">
+    <div className="relative max-w-xl cursor-pointer max-md:w-[95%] w-[85%] rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out hover:backdrop-saturate-125 hover:bg-blue-300/20 hover:dropshadow-md hover:backdrop-blur-2xl">
       <div className="group relative w-full overflow-hidden rounded-l p-4 transition-all duration-1000 ease-in-out rounded-xl">
         <div className="flex justify-between items-center cursor-pointer">
           <div>

@@ -98,7 +98,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
             <span className="sparkle"></span>
             <span className="sparkle"></span>
             <p className="glitter-text max-md:text-2xl md:text-lg font-bold font-silkscreen text-white text-center tracking-wide z-50">
-              Contact
+              Contact Me!
             </p>
           </motion.div>
         ) : (

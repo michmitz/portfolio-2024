@@ -1,10 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { MdOutlineSchool } from "react-icons/md";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { BsBriefcase } from "react-icons/bs";
+
+type ProjectType = "personal" | "school" | "work";
 
 interface ProjectProps {
   readonly projectName: string;
-  readonly projectType: string;
+  readonly projectType: ProjectType;
+  readonly company?: string;
   readonly image?: string;
   readonly link?: string;
   readonly description?: string;
@@ -15,6 +21,7 @@ interface ProjectProps {
 export const Project: React.FC<ProjectProps> = ({
   projectName,
   projectType,
+  company,
   link,
   description,
   tech,
@@ -60,7 +67,8 @@ export const Project: React.FC<ProjectProps> = ({
     if (timeOfDay <= 1 && timeOfDay > 0.5) {
       return {
         backgroundColor: "transparent",
-        textColor: "#fdedbf",
+        textColor: "pink",
+        descriptionTextColor: "#7fe4f5",
       };
     }
     return {
@@ -103,7 +111,7 @@ export const Project: React.FC<ProjectProps> = ({
     hovered && contentVisible ? setOpacity(1) : setOpacity(0);
   }, [contentVisible, hovered]);
 
-  const { textColor } = getColorsByTime(timeOfDay);
+  const { textColor, descriptionTextColor } = getColorsByTime(timeOfDay);
   const { backgroundColor: pillBgColor, textColor: pillTextColor } =
     getPillColorsByTime(timeOfDay);
 
@@ -114,38 +122,50 @@ export const Project: React.FC<ProjectProps> = ({
     >
       <motion.div
         layout
-        className="flex-1 rounded-2xl p-4 cursor-pointer backdrop-blur-2xl backdrop-saturate-135 bg-gray-300/20 shadow"
+        className="flex-1 rounded-2xl p-4 cursor-pointer hover:backdrop-blur-2xl hover:backdrop-saturate-135 hover:shadow"
         onMouseEnter={() => {
           setHovered(true);
           cardAnimation
             .start({
               height: "300px",
               width: cardHoverWidth,
-              transition: { duration: 0.5, ease: "easeInOut" },
+              transition: { delay: 0.2, duration: 0.5, ease: "easeInOut" },
             })
             .then(() => setContentVisible(true));
         }}
-        onMouseLeave={() => {
+        onMouseLeave={async () => {
           setHovered(false);
-          setContentVisible(false);
-          cardAnimation.start({
+          setOpacity(0);
+
+          await cardAnimation.start({
             height: "120px",
             width: "200px",
-            transition: { duration: 0.5, ease: "easeInOut" },
+            transition: { delay: 0.2, duration: 0.5, ease: "easeInOut" },
           });
+
+          setContentVisible(false);
         }}
         animate={cardAnimation}
         initial={{ height: "120px", width: cardInitialWidth }}
       >
-        <motion.p
-          className="mb-1.5 text-sm font-medium uppercase"
-          style={{
-            color: textColor,
-            transition: "color 1s ease",
-          }}
-        >
-          {projectType}
-        </motion.p>
+        <div className="flex flex-row items-center">
+          {projectType === "school" ? (
+            <MdOutlineSchool className="mb-1.5 mr-2" />
+          ) : projectType === "work" ? (
+            <BsBriefcase className="mb-1.5 mr-2" />
+          ) : (
+            <HiOutlineLightBulb className="mb-1.5 mr-2" />
+          )}
+          <motion.p
+            className="mb-1.5 text-sm font-medium uppercase"
+            style={{
+              color: textColor,
+              transition: "color 1s ease",
+            }}
+          >
+            {company}
+          </motion.p>
+        </div>
         <hr className="border-sky-200" />
         <p
           className="text-lg font-bold mt-2 font-nunito"
@@ -162,7 +182,7 @@ export const Project: React.FC<ProjectProps> = ({
             opacity: opacity,
             y: contentVisible ? 0 : 10,
           }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
         >
           <motion.p
             className="text-sm leading-relaxed mb-2"
@@ -172,6 +192,7 @@ export const Project: React.FC<ProjectProps> = ({
               y: contentVisible ? 0 : 10,
             }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
+            style={{ color: descriptionTextColor, transition: "color 1s ease" }}
           >
             {description}
           </motion.p>
