@@ -107,8 +107,11 @@ export const Project: React.FC<ProjectProps> = ({
   const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    hovered && contentVisible ? setOpacity(1) : setOpacity(0);
+    if (hovered && contentVisible) {
+      setOpacity(1);
+    } else {
+      setOpacity(0);
+    }
   }, [contentVisible, hovered]);
 
   const { textColor, descriptionTextColor } = getColorsByTime(timeOfDay);
@@ -129,18 +132,18 @@ export const Project: React.FC<ProjectProps> = ({
             .start({
               height: "300px",
               width: cardHoverWidth,
-              transition: { delay: 0.2, duration: 0.5, ease: "easeInOut" },
+              transition: { duration: 0.3, ease: "easeInOut" },
             })
             .then(() => setContentVisible(true));
         }}
         onMouseLeave={async () => {
           setHovered(false);
           setOpacity(0);
-
+          
           await cardAnimation.start({
             height: "120px",
-            width: "200px",
-            transition: { delay: 0.2, duration: 0.5, ease: "easeInOut" },
+            width: cardInitialWidth,
+            transition: { duration: 0.3, ease: "easeInOut" },
           });
 
           setContentVisible(false);
@@ -191,7 +194,7 @@ export const Project: React.FC<ProjectProps> = ({
               opacity: opacity,
               y: contentVisible ? 0 : 10,
             }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
+            transition={{ duration: 0.3, delay: 0.1, ease: "easeInOut" }}
             style={{ color: descriptionTextColor, transition: "color 1s ease" }}
           >
             {description}
@@ -206,7 +209,7 @@ export const Project: React.FC<ProjectProps> = ({
                 opacity: opacity,
                 y: contentVisible ? 0 : 10,
               }}
-              transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
+              transition={{ duration: 0.3, delay: 0.2, ease: "easeInOut" }}
             >
               Link
             </motion.button>
@@ -224,7 +227,7 @@ export const Project: React.FC<ProjectProps> = ({
                   y: contentVisible ? 0 : 10,
                 }}
                 transition={{
-                  duration: 0.5,
+                  duration: 0.3,
                   delay: 0.3 + index * 0.05,
                   ease: "easeInOut",
                 }}
