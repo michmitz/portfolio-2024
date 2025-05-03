@@ -47,7 +47,7 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit w-fit">
+      <div className="max-md:hidden flex flex-col justify-center h-fit w-fit">
         {/* <div className="ml-2 mb-2"><Header /></div> */}
         <NavLinks
           links={navLinks}

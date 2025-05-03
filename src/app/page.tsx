@@ -9,6 +9,7 @@ import { Project } from "./components/Project";
 import { Contact } from "./components/Contact";
 import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
 import { About } from "./components/About";
+import { ProjectGrid } from "./components/ProjectGrid";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -38,11 +39,11 @@ export default function Home() {
               setDisplaySection={setDisplaySection}
             />
             <div
-              className="md:w-[600px] mt-5 max-md:w-full h-full overflow-y-auto will-change-scroll 
+              className="md:w-[700px] mt-5 max-md:w-full h-full overflow-y-auto will-change-scroll 
               [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5]
                       [&::-webkit-scrollbar]:w-2.5
-                      [&::-webkit-scrollbar-track]:bg-sky-100/50 [&::-webkit-scrollbar-track]:rounded-3xl
-                      [&::-webkit-scrollbar-thumb]:bg-sky-200/70 [&::-webkit-scrollbar-thumb]:rounded-3xl scroll"
+                      [&::-webkit-scrollbar-track]:bg-sky-100/20 [&::-webkit-scrollbar-track]:rounded-2xl
+                      [&::-webkit-scrollbar-thumb]:bg-sky-200/30 [&::-webkit-scrollbar-thumb]:rounded-2xl scroll"
             >
               <div
                 id="about"
@@ -120,86 +121,7 @@ export default function Home() {
                   displaySection === "projects" ? "visible" : "hidden"
                 }`}
               >
-                <div className="flex flex-wrap gap-4">
-                  <Project
-                    projectName="This Website"
-                    projectType="personal"
-                    company="Personal"
-                    description={appStrings.powellsDescription}
-                    tech={[
-                      "React",
-                      "Tailwind",
-                      "NextJS",
-                      "ThreeJS",
-                      "Framer Motion",
-                    ]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="Powell's Next"
-                    projectType="work"
-                    company="Powell's Books"
-                    description={appStrings.powellsDescription}
-                    tech={["React", "Tailwind", "OpenAI"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="Carbon Title"
-                    company="Olio Apps"
-                    projectType="work"
-                    description={appStrings.earplanesDescription}
-                    tech={["React", "Tailwind", "OpenAI"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="EarPlanes"
-                    projectType="work"
-                    company="Olio Apps"
-                    description={appStrings.earplanesDescription}
-                    tech={["React", "Tailwind", "OpenAI"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="Receipts"
-                    projectType="work"
-                    company="Olio Apps"
-                    description="Social media app"
-                    tech={["React", "Tailwind", "OpenAI"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="ChromaMuse"
-                    projectType="personal"
-                    company="Personal"
-                    description="A color scheme app using AI"
-                    tech={["React", "Tailwind", "OpenAI"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="Interview Prep"
-                    projectType="personal"
-                    company="Personal"
-                    description="AI powered interview questions"
-                    tech={["React", "OpenAI", "Node", "Prisma", "Supabase"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                  <Project
-                    projectName="AMAzine"
-                    company="Alchemy Code Lab"
-                    projectType="school"
-                    description="This was built with a team of four"
-                    tech={["React", "Python"]}
-                    image=""
-                    timeOfDay={timeOfDay}
-                  />
-                </div>
+                <ProjectGrid timeOfDay={timeOfDay} />
               </div>
 
               <div
