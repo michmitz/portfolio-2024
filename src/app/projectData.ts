@@ -14,7 +14,7 @@ type ProjectProps = {
 export const projects: ProjectProps[] = [
   {
     id: 1,
-    projectName: "This Website",
+    projectName: "This Website!",
     projectType: "personal",
     company: "Personal",
     description: appStrings.powellsDescription,
@@ -25,7 +25,7 @@ export const projects: ProjectProps[] = [
     id: 2,
     projectName: "Powell's Next",
     projectType: "work",
-    company: "Powell's Books",
+    company: "Powell's",
     description: appStrings.powellsDescription,
     tech: ["React", "Tailwind", "OpenAI"],
     image: "",
@@ -75,13 +75,13 @@ export const projects: ProjectProps[] = [
     tech: ["React", "OpenAI", "Node", "Prisma", "Supabase"],
     image: "",
   },
-  {
-    id: 8,
-    projectName: "AMAzine",
-    projectType: "school",
-    company: "Alchemy Code Lab",
-    description: "This was built with a team of four",
-    tech: ["React", "Python"],
-    image: "",
-  },
+  // {
+  //   id: 8,
+  //   projectName: "AMAzine",
+  //   projectType: "school",
+  //   company: "School",
+  //   description: "This was built with a team of four",
+  //   tech: ["React", "Python"],
+  //   image: "",
+  // },
 ];
