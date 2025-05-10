@@ -59,7 +59,7 @@ export const Navigation: React.FC<NavProps> = ({
       {/* Mobile */}
       <div className="md:hidden w-full flex justify-between rounded-t-2xl">
         <Header />
-        <nav className="z-20 relative flex flex-col items-end pt-2">
+        <nav className="z-50 relative flex flex-col items-end pt-2">
           <AnimatedHamburgerButton
             expanded={expanded}
             onClick={() => setExpanded(!expanded)}
@@ -67,7 +67,7 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-140 bg-sky-500/10"
+              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-150 bg-sky-500/10 z-50"
             >
               <p className="font-silkscreen text-2xl text-white ml-1 mb-2 select-none">
                 Menu
@@ -107,7 +107,7 @@ const NavLinks: React.FC<{
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="cursor-pointer flex max-md:flex-col flex-row gap-y-2"
+      className="cursor-pointer flex max-md:flex-col flex-row gap-y-2 md:gap-x-2"
     >
       {links.map(({ label, section }) => (
         <button
@@ -124,7 +124,7 @@ const NavLinks: React.FC<{
             <motion.span
               layoutId="pill-tab"
               transition={{ type: "spring", duration: 0.5 }}
-              className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-sky-400/40 rounded-xl backdrop-blur-sm shadow-md"
+              className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-blue-300/10 rounded-xl backdrop-blur-sm shadow-md"
             ></motion.span>
           )}
         </button>
