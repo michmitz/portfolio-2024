@@ -86,8 +86,8 @@ export const Project: React.FC<ProjectProps> = ({
     <motion.div
       className={`h-full w-full rounded-xl p-6 shadow-md cursor-pointer ${
         isSelected
-          ? "backdrop-saturate-150 bg-gradient-to-br from-sky-300/60 to-sky-400/60"
-          : "hover:bg-white/20 hover:border-white/20 hover:shadow-lg hover:scale-[1.02] backdrop-saturate-140 border border-white/10"
+          ? "bg-gradient-to-br from-sky-300/60 to-sky-400/60"
+          : "hover:shadow-lg hover:scale-[1.02]"
       }`}
       // animate={backgroundAnimation}
     >
@@ -105,14 +105,14 @@ export const Project: React.FC<ProjectProps> = ({
             />
           )}
           <span
-            className="text-sm font-medium uppercase tracking-widest"
+            className="text-xs font-medium uppercase tracking-widest"
             // style={{ color: textColor }}
           >
             {company}
           </span>
         </div>
 
-        <h3 className="text-xl font-bold mb-3">{projectName}</h3>
+        <h3 className="text-lg font-bold mb-3">{projectName}</h3>
       </div>
 
       {isSelected && (
