@@ -5,9 +5,8 @@ import { JobExperience } from "./components/JobExperience";
 import CloudBackground from "./CloudBackground";
 import { useState } from "react";
 import { Navigation } from "./components/Navigation";
-import { Project } from "./components/Project";
 import { Contact } from "./components/Contact";
-import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
+// import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
 import { About } from "./components/About";
 import { ProjectGrid } from "./components/ProjectGrid";
 
@@ -24,7 +23,15 @@ export default function Home() {
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
       />
-      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-10">
+      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-10 flex flex-col items-center">
+        <div className="select-none flex-col mb-5">
+          <p className="text-xl text-sky-200 font-bold font-silkscreen">
+            Michelle
+          </p>
+          <p className="text-xl text-white font-bold font-silkscreen">
+            Stermitz
+          </p>
+        </div>
         <Contact loaded={loaded} />
       </div>
       <div
@@ -59,7 +66,7 @@ export default function Home() {
               <div
                 id="experience"
                 className={`${
-                  displaySection === "experience" ? "visible" : "hidden"
+                  displaySection === "experience" ? "visible fade-in" : "hidden"
                 }`}
               >
                 <div className="w-full flex flex-wrap max-md:justify-center gap-4 mt-6">

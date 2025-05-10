@@ -1,26 +1,39 @@
 import React from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
-interface JobExperienceProps {
+export interface ExperienceProps {
   readonly startDate: string;
   readonly endDate: string;
   readonly jobTitle: string;
   readonly company?: string;
   readonly jobDescription?: string;
   readonly skills: ReadonlyArray<string>;
+  readonly isExpanded?: boolean;
+  readonly onToggle?: () => void;
 }
 
-export const JobExperience: React.FC<JobExperienceProps> = ({
+export const Experience: React.FC<ExperienceProps> = ({
   startDate,
   endDate,
   jobTitle,
   company,
   jobDescription,
   skills,
+  isExpanded,
+  onToggle,
 }) => {
   return (
-    <div className="relative w-[95%] cursor-pointer rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out hover:backdrop-saturate-125 hover:bg-blue-300/20 hover:dropshadow-md hover:backdrop-blur-2xl">
-      <div className="group relative w-full overflow-hidden rounded-l p-4 transition-all duration-1000 ease-in-out rounded-xl">
+    <div
+      className={`relative w-[95%] cursor-pointer rounded-xl hover:shadow-lg transition-transform duration-1000 ease-in-out hover:backdrop-saturate-125 hover:dropshadow-md hover:backdrop-blur-2xl ${
+        isExpanded
+          ? "dropshadow-md backdrop-blur-2xl backdrop-saturate-150 shadow-lg"
+          : ""
+      }`}
+    >
+      <div
+        className="group relative w-full overflow-hidden rounded-l p-4 transition-all duration-1000 ease-in-out rounded-xl"
+        onClick={onToggle}
+      >
         <div className="flex justify-between items-center cursor-pointer">
           <div>
             <p className="md:text-xl max-md:text-lg font-extrabold text-white drop-shadow-sm">
@@ -31,18 +44,22 @@ export const JobExperience: React.FC<JobExperienceProps> = ({
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center p-2 cursor-pointer transition-all duration-700 text-neutral-200">
-            <p className="text-white text-xs font-bold tracking-widest mb-1">
-              {endDate}
-            </p>
-            <FaArrowUp size="10px" color="white" />
-            <p className="text-white text-xs font-bold tracking-widest mt-1">
+          <div className="flex items-center justify-center cursor-pointer transition-all duration-700 text-neutral-200 bg-blue-300/50 rounded-xl p-2 gap-2">
+            <p className="text-white text-xs font-bold tracking-widest">
               {startDate}
+            </p>
+            <FaArrowRight size="10px" color="white" />
+            <p className="text-white text-xs font-bold tracking-widest">
+              {endDate}
             </p>
           </div>
         </div>
 
-        <div className="max-h-0 overflow-hidden transition-all duration-1000 ease-in-out group-hover:max-h-[500px] group-hover:pb-4 will-change-[max-height]">
+        <div
+          className={`transition-all duration-1000 ease-in-out ${
+            isExpanded ? "max-h-[500px] pb-4" : "max-h-0 overflow-hidden"
+          }`}
+        >
           {jobDescription && (
             <p className="mt-2 text-sm text-white leading-relaxed text-semibold">
               {jobDescription}

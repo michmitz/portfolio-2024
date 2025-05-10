@@ -71,7 +71,7 @@ body {
 }
 
 .fade-in {
-  animation: fadein 8s;
+  animation: fadein 1s;
 }
 
 .scroll {
