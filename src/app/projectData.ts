@@ -59,7 +59,7 @@ export const projects: ProjectProps[] = [
   },
   {
     id: 6,
-    projectName: "ChromaMuse",
+    projectName: "ColorMuse",
     projectType: "personal",
     company: "Personal",
     description: "A color scheme app using AI",

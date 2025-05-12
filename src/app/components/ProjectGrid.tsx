@@ -33,13 +33,13 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
   return (
     <>
       <AnimatePresence>
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-md:px-5">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-md:px-5 max-md:pb-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}
               className={`${
                 selectedId === null
-                  ? "backdrop-blur-lg hover:backdrop-saturate-150"
+                  ? "hover:backdrop-saturate-150 backdrop-blur-xl"
                   : ""
               } rounded-xl`}
               animate={{

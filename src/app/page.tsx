@@ -4,11 +4,10 @@ import CloudBackground from "./CloudBackground";
 import { useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Contact } from "./components/Contact";
-// import { LiaExternalLinkSquareAltSolid } from "react-icons/lia";
 import { About } from "./components/About";
 import { ProjectGrid } from "./components/ProjectGrid";
 import { Resume } from "./components/Resume";
-import { ExperienceList } from "./components/ExperienceList";
+import Timeline from "./components/Timeline";
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -32,15 +31,13 @@ export default function Home() {
             Stermitz
           </p>
         </div>
+      </div>
+      <div className="absolute max-md:hidden md:visible bottom-0 right-10">
         <Contact loaded={loaded} />
       </div>
-      <div
-        className={`${
-          loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
-        }`}
-      >
-        <div className="w-3/4 h-4/5 absolute flex justify-center top-20 rounded-2xl max-md:top-6 max-md:h-[90%] min-w-[300px]">
-          <div className="w-full flex flex-col max-md:flex-col cursor-auto float rounded">
+      <div className={`${"flex items-center justify-center bg-[#576885]"}`}>
+        <div className="w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
+          <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation
               displaySection={displaySection}
               setDisplaySection={setDisplaySection}
@@ -73,7 +70,9 @@ export default function Home() {
               <div
                 id="projects"
                 className={`${
-                  displaySection === "projects" ? "visible mt-10" : "hidden"
+                  displaySection === "projects"
+                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-sky-100/20 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-thumb]:bg-sky-200/40 [&::-webkit-scrollbar-thumb]:rounded-xl scroll max-md:pb-10"
+                    : "hidden"
                 }`}
               >
                 <ProjectGrid timeOfDay={timeOfDay} />

@@ -3,6 +3,7 @@ import { ExperienceProps } from "./components/Experience";
 
 export const experiences: ExperienceProps[] = [
   {
+    id: "1",
     startDate: "1/2024",
     endDate: "Now",
     jobTitle: "Frontend Software Engineer",
@@ -19,6 +20,7 @@ export const experiences: ExperienceProps[] = [
     ],
   },
   {
+    id: "2",
     startDate: "3/2023",
     endDate: "10/2023",
     jobTitle: "Career Break",
@@ -26,6 +28,7 @@ export const experiences: ExperienceProps[] = [
     skills: ["TypeScript", "OpenAI", "Vue", "Tailwind"],
   },
   {
+    id: "3",
     startDate: "5/2021",
     endDate: "3/2023",
     jobTitle: "Software Engineer",
@@ -44,11 +47,12 @@ export const experiences: ExperienceProps[] = [
     ],
   },
   {
+    id: "4",
     startDate: "2015",
     endDate: "2019",
     jobTitle: "Graphic Design, Marketing",
     company: "Various Companies",
-    jobDescription: appStrings.graphicDesignDescription,
+    jobDescription: appStrings.olioDescription,
     skills: ["Adobe Photoshop", "Adobe Illustrator"],
   },
 ];
