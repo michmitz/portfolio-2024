@@ -45,7 +45,7 @@ export default function Home() {
               displaySection={displaySection}
               setDisplaySection={setDisplaySection}
             />
-            <div className="md:w-[600px] mt-5 max-md:w-full h-full  overflow-y-auto will-change-scroll [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-sky-100/20 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-thumb]:bg-sky-200/40 [&::-webkit-scrollbar-thumb]:rounded-xl scroll">
+            <div className="md:w-[600px] h-full">
               <div
                 id="about"
                 className={`${
@@ -60,17 +60,20 @@ export default function Home() {
               <div
                 id="experience"
                 className={`${
-                  displaySection === "experience" ? "visible fade-in" : "hidden"
+                  displaySection === "experience"
+                    ? "visible mt-8 max-md:h-full md:h-4/5"
+                    : "hidden"
                 } `}
               >
                 {/* <Resume loaded={loaded} /> */}
 
-                <ExperienceList />
+                {/* <ExperienceList /> */}
+                <Timeline />
               </div>
               <div
                 id="projects"
                 className={`${
-                  displaySection === "projects" ? "visible" : "hidden"
+                  displaySection === "projects" ? "visible mt-10" : "hidden"
                 }`}
               >
                 <ProjectGrid timeOfDay={timeOfDay} />
