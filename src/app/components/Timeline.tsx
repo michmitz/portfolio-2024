@@ -1,61 +1,41 @@
 import React, { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useInView } from "framer-motion";
 import { experiences } from "../experienceData";
 
 const TimelineCard = ({ item, isActive }: any) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <motion.div
+    <div
       onClick={() => setExpanded(!expanded)}
-      initial={{ scale: 0.95, opacity: 0.6 }}
-      animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.6 }}
-      transition={{ duration: 0.4 }}
-      className="relative w-[80%] p-4 md:p-6 my-3 rounded-2xl backdrop-blur-md bg-white/10 hover:bg-sky-200/10 border border-white/20 shadow-lg text-white cursor-pointer max-md:w-full"
+      className={`relative w-[80%] p-4 md:p-6 my-3 rounded-2xl backdrop-blur-md bg-white/10 hover:bg-sky-200/10 border border-white/20 shadow-lg text-white cursor-pointer max-md:w-full transition-transform duration-300 ${
+        isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"
+      } ${expanded ? "backdrop-saturate-150" : ""}`}
     >
       <div className="text-sm font-semibold text-sky-200">
         {item.startDate} - {item.endDate}
       </div>
-
-      {/* <motion.div
-        className="w-10 h-8 bg-center bg-cover"
-        style={{
-          backgroundImage: "url(/cloud2.png)",
-          imageRendering: "pixelated",
-          WebkitMaskImage: "url(/cloud2.png)",
-          WebkitMaskSize: "cover",
-          WebkitMaskPosition: "center",
-        }}
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.4 }}
-      /> */}
       <h3 className="text-xl font-semibold">{item.jobTitle}</h3>
       <h4 className="text-md font-medium opacity-80">{item.company}</h4>
 
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <p className="mt-2 text-sm text-sky-200">{item.jobDescription}</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {item.skills.map((tag: string) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-full border border-sky-300/50 text-sky-100 text-xs font-semibold bg-white/5 backdrop-blur-sm hover:scale-105 transition-transform"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+        className={`overflow-hidden transition-all duration-500 ${
+          expanded ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p className="text-sm text-sky-200">{item.jobDescription}</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {item.skills.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-3 py-1 rounded-full border border-sky-300/50 text-sky-100 text-xs font-semibold bg-white/5 backdrop-blur-sm hover:scale-105 transition-transform"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
