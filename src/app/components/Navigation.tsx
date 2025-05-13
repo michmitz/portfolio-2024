@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
+import { CiLink } from "react-icons/ci";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface NavProps {
   displaySection: string;
@@ -23,7 +25,6 @@ export const Navigation: React.FC<NavProps> = ({
   const mobileNavLinks = [
     ...navLinks,
     { label: "Contact", section: "contact" },
-    { label: "Resume", section: "resume" },
   ];
 
   const onChangeSection = (section: string) => {
@@ -102,6 +103,13 @@ const NavLinks: React.FC<{
   onClick: (section: string) => void;
   displaySection: string;
 }> = ({ links, onClick, displaySection }) => {
+  // const [resumeClicked, setResumeClicked] = useState<boolean>(false);
+
+  const handleNonResumeClick = (section: string) => {
+    // setResumeClicked(false)
+    onClick(section);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -112,7 +120,7 @@ const NavLinks: React.FC<{
       {links.map(({ label, section }) => (
         <button
           key={section}
-          onClick={() => onClick(section)}
+          onClick={() => handleNonResumeClick(section)}
           className={`${
             displaySection === section
               ? "text-white"
@@ -129,6 +137,27 @@ const NavLinks: React.FC<{
           )}
         </button>
       ))}
+      <button
+        key="resume"
+        onClick={() => {
+          // setResumeClicked(true);
+          // setTimeout(() => setResumeClicked(false), 400);
+          window.open("/Your_Resume.pdf", "_blank");
+        }}
+        className="text-blue-200 hover:text-sky-100 text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left"
+      >
+        <div className="flex items-center relative z-10">
+          <span className="relative z-10 mr-2">Resume</span>
+          <FaExternalLinkAlt className="text-sky-100" size="13" />
+        </div>
+        {/* {resumeClicked && (
+        <motion.span
+          layoutId="pill-tab"
+          transition={{ type: "spring", duration: 0.5 }}
+          className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-blue-300/10 rounded-xl backdrop-blur-sm shadow-md"
+        />
+      )} */}
+      </button>
     </motion.div>
   );
 };
