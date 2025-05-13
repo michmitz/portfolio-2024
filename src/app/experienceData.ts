@@ -1,7 +1,7 @@
 import { appStrings } from "./appStrings";
-import { ExperienceProps } from "./components/Experience";
+import { Experience } from "./components/Timeline";
 
-export const experiences: ExperienceProps[] = [
+export const experiences: Experience[] = [
   {
     id: "1",
     startDate: "1/2024",

@@ -3,7 +3,8 @@ import React, { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { experiences } from "../experienceData";
 
-interface Experience {
+export interface Experience {
+  id: string;
   startDate: string;
   endDate: string;
   jobTitle: string;
