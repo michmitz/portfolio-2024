@@ -21,7 +21,13 @@ export default function Home() {
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
       />
-      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[240px]">
+      <div
+        className={`${
+          loaded
+            ? "fade-in float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[240px]"
+            : "hidden"
+        }`}
+      >
         <div className="select-none flex-col mb-5">
           <p className="text-xl text-sky-200 font-bold font-silkscreen">
             Michelle
