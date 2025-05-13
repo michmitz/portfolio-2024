@@ -6,7 +6,6 @@ import { Navigation } from "./components/Navigation";
 import { Contact } from "./components/Contact";
 import { About } from "./components/About";
 import { ProjectGrid } from "./components/ProjectGrid";
-import { Resume } from "./components/Resume";
 import Timeline from "./components/Timeline";
 
 export default function Home() {

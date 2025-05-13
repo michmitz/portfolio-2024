@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Experience } from "./Experience";
 import { experiences } from "../experienceData";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  BsFillArrowDownCircleFill,
-  BsFillArrowUpCircleFill,
-} from "react-icons/bs";
 
 export const ExperienceList = () => {
   const [expandedIndex, setExpandedIndex] = useState<number>(0);
