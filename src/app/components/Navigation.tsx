@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion, MotionConfig } from "framer-motion";
-import { CiLink } from "react-icons/ci";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { VscLinkExternal } from "react-icons/vsc";
 
 interface NavProps {
   displaySection: string;
@@ -148,7 +147,7 @@ const NavLinks: React.FC<{
       >
         <div className="flex items-center relative z-10">
           <span className="relative z-10 mr-2">Resume</span>
-          <FaExternalLinkAlt className="text-sky-100" size="13" />
+          <VscLinkExternal className="text-sky-200" size="14" />
         </div>
         {/* {resumeClicked && (
         <motion.span

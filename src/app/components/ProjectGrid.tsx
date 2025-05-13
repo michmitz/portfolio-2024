@@ -39,11 +39,11 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
               key={project.id}
               className={`${
                 selectedId === null
-                  ? "hover:backdrop-saturate-150 backdrop-blur-xl"
+                  ? "bg-blue-300/10 hover:backdrop-saturate-150 backdrop-blur-xl"
                   : ""
               } rounded-xl`}
               animate={{
-                filter: selectedId !== null ? "blur(6px)" : "blur(0px)",
+                filter: selectedId !== null ? "blur(8px)" : "blur(0px)",
                 transition: { duration: 0.4, ease: "easeInOut" },
               }}
               onClick={() => setSelectedId(project.id)}
