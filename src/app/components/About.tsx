@@ -6,7 +6,7 @@ export const About = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div>
+    <div className="max-md:px-2 md:pl-2">
       <motion.div className="flex flex-row">
         <motion.div
           id="hi"

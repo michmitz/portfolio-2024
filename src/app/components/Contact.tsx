@@ -29,9 +29,10 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
 
   const handleCloseSkills = () => {
     setShowContact(false);
+    // Wait for exit animation to finish before showing the cloud
     setTimeout(() => {
       setShowCloud(true);
-    }, 300);
+    }, 500); // match this to the exit animation duration
   };
 
   return (
@@ -49,7 +50,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
           <div className="relative flex flex-col items-center justify-center h-12 w-10">
             {/* Cloud image */}
             <motion.div
-              className="w-10 h-8 bg-center bg-cover"
+              className="w-8 h-8 bg-center bg-cover"
               style={{
                 backgroundImage: "url(/cloud2.png)",
                 imageRendering: "pixelated",
@@ -76,7 +77,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, repeat: 2 }}
                 >
-                  <FaBoltLightning />
+                  <FaBoltLightning size="10" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -84,7 +85,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
 
           {/* Contact text with sparkles */}
           <div className="relative">
-            <p className="font-silkscreen text-white text-base group-hover:text-sky-200 transition relative z-10">
+            <p className="font-silkscreen text-white max-md:text-lg text-base group-hover:text-sky-200 transition relative z-10">
               Contact
             </p>
 
@@ -103,39 +104,41 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
       {/* Contact panel when open */}
       <AnimatePresence>
         {showContact && (
-          <motion.div
-            className="p-4 border-4 border-white shadow-lg pixelated flex flex-col items-start bg-blue-100/40 backdrop-blur-lg cursor-pointer max-md:w-[220px] h-[150px] md:w-[150px] z-50"
-            initial={{ scale: 0, opacity: 0, y: -50 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0, opacity: 0 }}
-            onClick={handleCloseSkills}
-          >
-            <motion.p
-              className="text-blue-500 font-silkscreen text-sm pixelated mb-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+          <div className="relative">
+            <motion.div
+              className="top-full mt-2 p-4 border-4 border-white shadow-lg pixelated flex flex-col items-start bg-blue-100/40 backdrop-blur-lg cursor-pointer max-md:w-[220px] h-[150px] md:w-[150px] z-50"
+              initial={{ scale: 0, opacity: 0, y: -20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0, opacity: 0 }}
+              onClick={handleCloseSkills}
             >
-              Feel free to reach out!
-            </motion.p>
+              <motion.p
+                className="text-blue-500 font-silkscreen text-sm pixelated mb-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                Feel free to reach out!
+              </motion.p>
 
-            <div className="flex flex-row items-center gap-2">
-              <Link
-                href="https://www.linkedin.com/in/michelle-stermitz/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TiSocialLinkedinCircular size="40px" color="white" />
-              </Link>
-              <Link
-                href="https://github.com/michmitz"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub size="30px" color="white" />
-              </Link>
-            </div>
-          </motion.div>
+              <div className="flex flex-row items-center gap-2">
+                <Link
+                  href="https://www.linkedin.com/in/michelle-stermitz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TiSocialLinkedinCircular size="40px" color="white" />
+                </Link>
+                <Link
+                  href="https://github.com/michmitz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGithub size="30px" color="white" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>

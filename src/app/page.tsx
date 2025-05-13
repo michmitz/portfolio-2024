@@ -22,7 +22,7 @@ export default function Home() {
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
       />
-      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-10 flex flex-col items-center">
+      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[240px]">
         <div className="select-none flex-col mb-5">
           <p className="text-xl text-sky-200 font-bold font-silkscreen">
             Michelle
@@ -31,10 +31,9 @@ export default function Home() {
             Stermitz
           </p>
         </div>
-      </div>
-      <div className="absolute max-md:hidden md:visible bottom-0 right-10">
         <Contact loaded={loaded} />
       </div>
+
       <div className={`${"flex items-center justify-center bg-[#576885]"}`}>
         <div className="w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
           <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
@@ -82,7 +81,7 @@ export default function Home() {
                 id="contact"
                 className={`${
                   displaySection === "contact"
-                    ? "float md:hidden flex flex-col justify-center h-3/4"
+                    ? "float md:hidden flex flex-col justify-center h-3/4 ml-2"
                     : "max-md:hidden hidden"
                 }`}
               >
