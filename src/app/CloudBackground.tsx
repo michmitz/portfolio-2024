@@ -18,7 +18,12 @@ interface CloudBackgroundProps {
   setTimeOfDay: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CloudBackground({ loaded, setLoaded, timeOfDay, setTimeOfDay }: CloudBackgroundProps) {
+export default function CloudBackground({
+  loaded,
+  setLoaded,
+  timeOfDay,
+  setTimeOfDay,
+}: CloudBackgroundProps) {
   const transitionSpeed = 0.002; // Adjust for smoother transitions
 
   const directionRef = useRef(1);
@@ -29,7 +34,7 @@ export default function CloudBackground({ loaded, setLoaded, timeOfDay, setTimeO
       const animateTransition = () => {
         setTimeOfDay((prev) => {
           let newTime = prev + directionRef.current * transitionSpeed;
-  
+
           if (newTime >= 1) {
             newTime = 1;
             if (Date.now() - lastSwitchTimeRef.current > 25000) {
@@ -43,25 +48,34 @@ export default function CloudBackground({ loaded, setLoaded, timeOfDay, setTimeO
               lastSwitchTimeRef.current = Date.now();
             }
           }
-  
+
           return Math.max(0, Math.min(1, newTime));
         });
-  
+
         requestAnimationFrame(animateTransition);
       };
-  
+
       const animationFrameId = requestAnimationFrame(animateTransition);
-  
+
       return () => cancelAnimationFrame(animationFrameId);
     }, delay);
-  
+
     return () => clearTimeout(timeout);
-  }, [setTimeOfDay]);  
-  
+  }, [setTimeOfDay]);
 
   return (
     <>
-      <Canvas className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`} onCreated={() => !loaded && setLoaded(true)}>
+      <Canvas
+        className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`}
+        onCreated={() => !loaded && setLoaded(true)}
+        dpr={[1, 2]} // <— important for Chrome
+        gl={{
+          antialias: true,
+          preserveDrawingBuffer: true,
+          powerPreference: "high-performance", // <— hint to Chrome to prefer hardware
+          failIfMajorPerformanceCaveat: false, // <— don't crash if GPU is slow
+        }}
+      >
         <Lighting transition={timeOfDay} />
         <Sky transition={timeOfDay} />
         <RotatingCamera />
@@ -103,7 +117,7 @@ function Lighting({ transition }: { transition: number }) {
 
 function RotatingCamera() {
   const cameraRef = useRef<CameraControls>(null);
-  const rotationSpeed = 0.3;
+  const rotationSpeed = 0.25;
 
   useFrame((_, delta) => {
     if (cameraRef.current) {
@@ -115,60 +129,71 @@ function RotatingCamera() {
     }
   });
 
-  return <CameraControls ref={cameraRef} distance={80} maxDistance={500} azimuthAngle={130} polarAngle={2.2} />;
+  return (
+    <CameraControls
+      ref={cameraRef}
+      distance={60}
+      maxDistance={100}
+      azimuthAngle={130}
+      polarAngle={2.2}
+    />
+  );
 }
 
 const CloudsComp = () => {
-return (
-  <Clouds material={THREE.MeshStandardMaterial} frustumCulled={false} >
-     
-          <Cloud
-            // ref={addCloudRef}
-            position={[-50, -400, 70]}
-            concentrate="outside"
-            growth={30}
-            color="#ffffff"
-            opacity={.6}
-            seed={4}
-            bounds={200}
-            volume={300}
-          />
-           <Cloud
-            // ref={addCloudRef}
-            position={[400, -400, 250]}
-            concentrate="outside"
-            growth={30}
-            color="#ffffff"
-            opacity={1}
-            seed={8}
-            bounds={500}
-            volume={450}
-          />
-           <Cloud
-            // ref={addCloudRef}
-            position={[100, -500, 250]}
-            concentrate="outside"
-            growth={30}
-            color='#d2acac'
-            
-            opacity={.75}
-            seed={8}
-            bounds={500}
-            volume={450}
-          />
-          <Cloud
-            // ref={addCloudRef}
-            position={[0, -500, 400]}
-            concentrate="outside"
-            growth={10}
-            color="#ebeaea"
-            opacity={1}
-            seed={7}
-            bounds={500}
-            volume={600}
-            speed={0.05}
-          />
-          <Cloud
+  return (
+    <Clouds material={THREE.MeshStandardMaterial}>
+      <Cloud
+        position={[-50, -400, 70]}
+        concentrate="outside"
+        growth={30}
+        color="#ffffff"
+        opacity={0.6}
+        seed={4}
+        bounds={200}
+        volume={300}
+      />
+      <Cloud
+        position={[400, -400, 250]}
+        concentrate="outside"
+        growth={30}
+        color="#ffffff"
+        opacity={1}
+        seed={5}
+        bounds={500}
+        volume={450}
+      />
+      <Cloud
+        position={[100, -500, 250]}
+        concentrate="outside"
+        growth={30}
+        color="#d2acac"
+        opacity={0.75}
+        seed={8}
+        bounds={500}
+        volume={450}
+      />
+      <Cloud
+        position={[-300, -200, -250]}
+        concentrate="outside"
+        growth={30}
+        color="#d2acac"
+        opacity={0.75}
+        seed={9}
+        bounds={300}
+        volume={450}
+      />
+      <Cloud
+        position={[0, -500, 400]}
+        concentrate="outside"
+        growth={10}
+        color="#ebeaea"
+        opacity={1}
+        seed={7}
+        bounds={500}
+        volume={600}
+      />
+      {/* <Cloud
             // ref={addCloudRef}
             position={[-150, -450, 500]}
             concentrate="outside"
@@ -191,8 +216,8 @@ return (
             bounds={500}
             volume={300}
             speed={0.1}
-          />
-          {/* <Cloud
+          /> */}
+      {/* <Cloud
             // ref={addCloudRef}
             position={[0, 0, 0]}
             // concentrate="outside"
@@ -203,17 +228,16 @@ return (
             bounds={200}
             volume={200}
              /> */}
-  </Clouds>
-);
-}
+    </Clouds>
+  );
+};
 
 function Sky({ transition }: { transition: number }) {
   const ref = useRef<THREE.Group>(null);
-  // const cloudRefs = useRef<THREE.Group[]>([]);
 
   return (
     <>
-      <Stars radius={200}  count={700} factor={15} fade />
+      <Stars radius={200} count={700} factor={15} fade />
       <group ref={ref}>
         <SkyImpl
           sunPosition={[
@@ -221,7 +245,6 @@ function Sky({ transition }: { transition: number }) {
             50 + THREE.MathUtils.lerp(-20, 50, transition), // Keep a fixed baseline
             THREE.MathUtils.lerp(15, 30, transition),
           ]}
-          
           turbidity={THREE.MathUtils.lerp(1, 0.8, transition)}
           rayleigh={THREE.MathUtils.lerp(0.06, 0.2, transition)}
           mieCoefficient={THREE.MathUtils.lerp(0.01, 0.009, transition)}
@@ -230,7 +253,7 @@ function Sky({ transition }: { transition: number }) {
           distance={600}
         />
       </group>
-        <CloudsComp />
+      <CloudsComp />
     </>
   );
 }
