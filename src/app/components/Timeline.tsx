@@ -2,7 +2,21 @@ import React, { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { experiences } from "../experienceData";
 
-const TimelineCard = ({ item, isActive }: any) => {
+interface Experience {
+  startDate: string;
+  endDate: string;
+  jobTitle: string;
+  company?: string;
+  jobDescription?: string;
+  skills: readonly string[];
+}
+
+interface TimelineCardProps {
+  item: Experience;
+  isActive: boolean;
+}
+
+const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -12,7 +26,7 @@ const TimelineCard = ({ item, isActive }: any) => {
         isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"
       } ${expanded ? "backdrop-saturate-150" : ""}`}
     >
-      <div className="text-sm font-semibold text-sky-200">
+      <div className="text-sm font-semibold text-sky-200 tracking-widest">
         {item.startDate} - {item.endDate}
       </div>
       <h3 className="text-xl font-semibold">{item.jobTitle}</h3>
@@ -23,8 +37,10 @@ const TimelineCard = ({ item, isActive }: any) => {
           expanded ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-sm text-sky-200">{item.jobDescription}</p>
-        <div className="mt-2 flex flex-wrap gap-2">
+        <p className="my-2 pl-1 text-sm text-neutral-100 font-semibold">
+          {item.jobDescription}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
           {item.skills.map((tag: string) => (
             <span
               key={tag}
