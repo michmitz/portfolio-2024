@@ -67,7 +67,7 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-150 bg-sky-500/10 z-50"
+              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-150 bg-sky-700/10 z-50"
             >
               <p className="font-silkscreen text-2xl text-white ml-1 mb-2 select-none">
                 Menu
