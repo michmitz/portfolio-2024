@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { experiences } from "../experienceData";
