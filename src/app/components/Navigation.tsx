@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion, MotionConfig } from "framer-motion";
+import { VscLinkExternal } from "react-icons/vsc";
 
 interface NavProps {
   displaySection: string;
@@ -46,8 +47,8 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center font-rubikMono h-fit w-fit">
-        {/* <Header /> */}
+      <div className="max-md:hidden flex flex-col justify-center h-fit w-fit">
+        {/* <div className="ml-2 mb-2"><Header /></div> */}
         <NavLinks
           links={navLinks}
           onClick={onChangeSection}
@@ -56,9 +57,9 @@ export const Navigation: React.FC<NavProps> = ({
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden w-full p-1 flex justify-between rounded-t-2xl">
+      <div className="md:hidden w-full flex justify-between rounded-t-2xl">
         <Header />
-        <nav className="z-20 relative flex flex-col items-end p-2">
+        <nav className="z-50 relative flex flex-col items-end pt-2">
           <AnimatedHamburgerButton
             expanded={expanded}
             onClick={() => setExpanded(!expanded)}
@@ -66,8 +67,12 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute mt-8 p-4 w-[250px] rounded-xl shadow-lg bg-blue-200/80 border border-white/20 transition-opacity duration-300"
+              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-150 bg-sky-700/10 z-50"
             >
+              <p className="font-silkscreen text-2xl text-white ml-1 mb-2 select-none">
+                Menu
+              </p>
+
               <NavLinks
                 links={mobileNavLinks}
                 onClick={onChangeSection}
@@ -82,7 +87,7 @@ export const Navigation: React.FC<NavProps> = ({
 };
 
 const Header = () => (
-  <div className="select-none max-md:p-3 md:flex md:flex-row md:gap-2">
+  <div className="select-none max-md:pt-3 md:flex md:flex-row md:gap-2">
     <p className="max-md:text-2xl md:text-3xl text-sky-200 font-bold font-silkscreen">
       Michelle
     </p>
@@ -96,30 +101,65 @@ const NavLinks: React.FC<{
   links: { label: string; section: string }[];
   onClick: (section: string) => void;
   displaySection: string;
-}> = ({ links, onClick, displaySection }) => (
-  <div className="cursor-pointer flex max-md:flex-col flex-row">
-    {links.map(({ label, section }) => (
+}> = ({ links, onClick, displaySection }) => {
+  // const [resumeClicked, setResumeClicked] = useState<boolean>(false);
+
+  const handleNonResumeClick = (section: string) => {
+    // setResumeClicked(false)
+    onClick(section);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="cursor-pointer flex max-md:flex-col flex-row gap-y-2 md:gap-x-2"
+    >
+      {links.map(({ label, section }) => (
+        <button
+          key={section}
+          onClick={() => handleNonResumeClick(section)}
+          className={`${
+            displaySection === section
+              ? "text-white"
+              : "text-blue-200 hover:text-sky-100"
+          } text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
+        >
+          <span className="relative z-10">{label}</span>
+          {displaySection === section && (
+            <motion.span
+              layoutId="pill-tab"
+              transition={{ type: "spring", duration: 0.5 }}
+              className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-blue-300/10 rounded-xl backdrop-blur-sm shadow-md"
+            ></motion.span>
+          )}
+        </button>
+      ))}
       <button
-        key={section}
-        onClick={() => onClick(section)}
-        className={`${
-          displaySection === section
-            ? "text-blue-300"
-            : "text-gray-200 hover:text-slate-200"
-        } text-lg transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
+        key="resume"
+        onClick={() => {
+          // setResumeClicked(true);
+          // setTimeout(() => setResumeClicked(false), 400);
+          window.open("/Your_Resume.pdf", "_blank");
+        }}
+        className="text-blue-200 hover:text-sky-100 text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left"
       >
-        <span className="relative z-10">{label}</span>
-        {displaySection === section && (
-          <motion.span
-            layoutId="pill-tab"
-            transition={{ type: "spring", duration: 0.5 }}
-            className="absolute inset-0 z-0 bg-gradient-to-r from-blue-100 to-sky-200 rounded-xl"
-          ></motion.span>
-        )}
+        <div className="flex items-center relative z-10">
+          <span className="relative z-10 mr-2">Resume</span>
+          <VscLinkExternal className="text-sky-200" size="14" />
+        </div>
+        {/* {resumeClicked && (
+        <motion.span
+          layoutId="pill-tab"
+          transition={{ type: "spring", duration: 0.5 }}
+          className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-blue-300/10 rounded-xl backdrop-blur-sm shadow-md"
+        />
+      )} */}
       </button>
-    ))}
-  </div>
-);
+    </motion.div>
+  );
+};
 
 const AnimatedHamburgerButton: React.FC<{
   expanded: boolean;
