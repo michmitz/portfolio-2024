@@ -48,11 +48,16 @@ export const experiences: Experience[] = [
   },
   {
     id: "4",
-    startDate: "2015",
+    startDate: "2014",
     endDate: "2019",
     jobTitle: "Graphic Design, Marketing",
     company: "Various Companies",
-    jobDescription: appStrings.olioDescription,
-    skills: ["Adobe Photoshop", "Adobe Illustrator"],
+    jobDescription: appStrings.graphicDesignDescription,
+    skills: [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Wordpress",
+      "Social Media",
+    ],
   },
 ];

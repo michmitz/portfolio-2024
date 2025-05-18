@@ -44,7 +44,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
         <p className="my-2 pl-1 text-sm text-neutral-100 font-semibold">
           {item.jobDescription}
         </p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        {/* <div className="mt-4 flex flex-wrap gap-2">
           {item.skills.map((tag: string) => (
             <span
               key={tag}
@@ -53,7 +53,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
               {tag}
             </span>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
