@@ -28,11 +28,11 @@ export default function Home() {
             : "hidden"
         }`}
       >
-        <div className="select-none flex-col mb-5">
-          <p className="text-xl text-sky-200 font-bold font-silkscreen">
+        <div className="select-none flex-col mb-2">
+          <p className="text-2xl text-sky-200/80 font-bold font-silkscreen">
             Michelle
           </p>
-          <p className="text-xl text-white font-bold font-silkscreen">
+          <p className="text-2xl text-white/80 font-bold font-silkscreen">
             Stermitz
           </p>
         </div>
