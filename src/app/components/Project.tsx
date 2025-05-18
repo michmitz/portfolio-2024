@@ -97,19 +97,27 @@ export const Project: React.FC<ProjectProps> = ({
           {projectType === "school" ? (
             <MdOutlineSchool className="text-xl text-blue-300" />
           ) : projectType === "work" ? (
-            <BsBriefcase className="text-xl text-neutral-300" />
+            <BsBriefcase className="text-xl text-white" />
           ) : (
-            <HiOutlineLightBulb className="text-xl text-sky-200" />
+            <HiOutlineLightBulb className="text-xl text-sky-100" />
           )}
           <span
-            className="text-xs font-medium uppercase tracking-widest"
+            className={`${
+              projectType === "personal" ? "text-sky-100" : "text-white"
+            } text-xs font-medium uppercase tracking-widest`}
             // style={{ color: textColor }}
           >
             {company}
           </span>
         </div>
 
-        <h3 className="text-lg font-bold mb-3">{projectName}</h3>
+        <h3
+          className={`${
+            projectType === "personal" ? "text-sky-100" : "text-white"
+          } text-lg font-bold mb-3`}
+        >
+          {projectName}
+        </h3>
       </div>
 
       {isSelected && (
