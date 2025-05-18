@@ -84,22 +84,22 @@ export const Project: React.FC<ProjectProps> = ({
 
   return (
     <motion.div
-      className={`w-full h-full rounded-xl p-6 shadow-md cursor-pointer ${
+      className={`w-full rounded-xl p-6 shadow-md cursor-pointer ${
         isSelected
           ? "bg-gradient-to-br from-blue-200/50 to-blue-400/70"
-          : "hover:shadow-lg hover:scale-[1.02]"
+          : "h-[130px] hover:shadow-lg hover:scale-[1.02]"
       }`}
       // animate={backgroundAnimation}
     >
       {/* Top Part (icon, company, project name) */}
-      <div>
-        <div className="flex items-center gap-3 mb-4 border-b border-white/20 pb-3">
+      <div className={!isSelected ? "h-full flex flex-col justify-between" : ""}>
+        <div className="flex items-center gap-3 mb-4 border-b border-white/20 pb-2">
           {projectType === "school" ? (
-            <MdOutlineSchool className="text-xl text-blue-300" />
+            <MdOutlineSchool className="text-lg text-blue-300" />
           ) : projectType === "work" ? (
-            <BsBriefcase className="text-xl text-white" />
+            <BsBriefcase className="text-lg text-white" />
           ) : (
-            <HiOutlineLightBulb className="text-xl text-sky-100" />
+            <HiOutlineLightBulb className="text-lg text-sky-100" />
           )}
           <span
             className={`${
@@ -114,7 +114,7 @@ export const Project: React.FC<ProjectProps> = ({
         <h3
           className={`${
             projectType === "personal" ? "text-sky-100" : "text-white"
-          } text-lg font-bold mb-3`}
+          }  font-bold mb-3`}
         >
           {projectName}
         </h3>
