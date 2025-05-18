@@ -24,8 +24,10 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
   return (
     <div
       onClick={() => setExpanded(!expanded)}
-      className={`relative w-[80%] p-4 md:p-6 my-3 rounded-2xl backdrop-blur-md bg-white/10 hover:bg-sky-200/10 border border-white/20 shadow-lg text-white cursor-pointer max-md:w-full transition-transform duration-300 ${
-        isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"
+      className={`relative w-[80%] p-4 md:p-6 my-3 rounded-2xl backdrop-blur-md bg-white/10 hover:bg-sky-200/10 border border-white/20 shadow-lg text-white cursor-pointer max-md:w-full transition-all duration-300 ${
+        isActive
+          ? "scale-100 opacity-100 bg-white/10"
+          : "scale-95 opacity-60 bg-neutral-100/30"
       } ${expanded ? "backdrop-saturate-150" : ""}`}
     >
       <div className="text-sm font-semibold text-sky-200 tracking-widest">
@@ -35,7 +37,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
       <h4 className="text-md font-medium opacity-80">{item.company}</h4>
 
       <div
-        className={`overflow-hidden transition-all duration-500 ${
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
           expanded ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
@@ -59,15 +61,11 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
 
 const Timeline = () => {
   return (
-    <div className="min-h-[400px] pl-2 max-md:px-4 cursor-grab h-full overflow-y-scroll flex flex-col w-full py-2 items-start will-change-scroll [&::-webkit-scrollbar]:w-0 scroll">
-      {/* Vertical Line */}
-      {/* <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 bg-white/20 h-full md:left-[calc(50%-150px)] md:translate-x-0" /> */}
-
+    <div className="h-full overflow-y-auto pl-2 max-md:px-4 flex flex-col w-full items-start pb-4 max-md:[&::-webkit-scrollbar-thumb]:opacity-[0.5] max-md:[&::-webkit-scrollbar-track]:opacity-[0.5] max-md:[&::-webkit-scrollbar]:w-2 max-md:[&::-webkit-scrollbar-track]:bg-sky-100/20 max-md:[&::-webkit-scrollbar-track]:rounded-xl max-md:[&::-webkit-scrollbar-thumb]:bg-sky-200/40 max-md:[&::-webkit-scrollbar-thumb]:rounded-xl md:[&::-webkit-scrollbar]:hidden scroll max-md:pb-10">
       <div className="flex flex-col max-md:items-center w-full">
         {experiences.map((item, i) => {
           const ref = useRef(null);
           const isInView = useInView(ref, {
-            // margin: "-40% 0px -40% 0px",
             amount: 0.5,
           });
 

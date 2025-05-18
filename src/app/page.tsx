@@ -62,13 +62,10 @@ export default function Home() {
                 id="experience"
                 className={`${
                   displaySection === "experience"
-                    ? "visible mt-8 max-md:h-full md:h-4/5"
+                    ? "visible mt-8 md:h-4/5 max-md:h-[90%] relative w-full overflow-hidden"
                     : "hidden"
                 } `}
               >
-                {/* <Resume loaded={loaded} /> */}
-
-                {/* <ExperienceList /> */}
                 <Timeline />
               </div>
               <div
