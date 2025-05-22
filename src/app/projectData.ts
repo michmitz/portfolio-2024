@@ -26,7 +26,7 @@ export const projects: ProjectProps[] = [
     projectName: "Powell's Next",
     projectType: "work",
     company: "Powell's",
-    description: appStrings.powellsDescription,
+    description: appStrings.powellsNextDescription,
     tech: ["Vue", "Tailwind", "Nuxt", "Storybook", "Vuetify"],
     image: "",
   },

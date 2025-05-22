@@ -47,7 +47,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
           transition={{ duration: 0.5 }}
         >
           {/* Cloud and lightning container */}
-          <div className="relative flex flex-col items-center justify-center h-10 w-10">
+          <div className="relative flex flex-col items-center justify-center h-10 w-6">
             {/* Cloud image */}
             <motion.div
               className="w-8 h-8 bg-center bg-cover"
@@ -85,7 +85,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
 
           {/* Contact text with sparkles */}
           <div className="relative">
-            <p className="font-silkscreen text-white/90 max-md:text-lg text-base font-bold tracking-wide group-hover:text-sky-200 transition relative z-10">
+            <p className="font-silkscreen text-white/70 max-md:text-lg text-base font-bold group-hover:text-sky-200 transition relative z-10">
               Contact
             </p>
 
