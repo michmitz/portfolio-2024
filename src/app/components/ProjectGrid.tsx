@@ -33,7 +33,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
   return (
     <>
       <AnimatePresence>
-        <motion.div className="flex flex-wrap gap-4 w-full max-md:px-5 max-md:pb-8 md:px-2">
+        <motion.div className="flex flex-wrap gap-4 w-full max-md:px-5 pb-6 max-md:pb-10 md:px-2">
           {projects.map((project) => (
             <motion.div
               key={project.id}

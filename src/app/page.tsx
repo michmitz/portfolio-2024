@@ -39,7 +39,11 @@ export default function Home() {
         <Contact loaded={loaded} />
       </div>
 
-      <div className={`${"flex items-center justify-center bg-[#576885]"}`}>
+      <div
+        className={`${
+          loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
+        }`}
+      >
         <div className="max-md:w-[85%] md:w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
           <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation
