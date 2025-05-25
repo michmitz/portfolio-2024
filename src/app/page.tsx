@@ -28,15 +28,17 @@ export default function Home() {
             : "hidden"
         }`}
       >
-        <div className="select-none flex-col mb-2">
+        {/* <div className="select-none flex-col mb-2">
           <p className="text-xl text-sky-200/60 font-bold font-silkscreen">
             Michelle
           </p>
           <p className="text-xl text-white/70 font-bold font-silkscreen">
             Stermitz
           </p>
+        </div> */}
+        <div className="opacity-75 hover:opacity-100">
+          <Contact loaded={loaded} />
         </div>
-        <Contact loaded={loaded} />
       </div>
 
       <div

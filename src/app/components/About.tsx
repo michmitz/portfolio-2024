@@ -15,7 +15,7 @@ export const About = () => {
           transition={{ duration: 1, ease: "easeInOut" }}
           className="flex flex-col mr-4"
         >
-          <p className="fade-in text-blue-200 text-3xl font-silkscreen">
+          <p className="fade-in text-blue-200 text-3xl">
             Hi! I&apos;m Michelle.
           </p>
           <p className="text-white font-semibold font-nunito rounded-3xl mb-3">

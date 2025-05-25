@@ -164,7 +164,7 @@ const CloudsComp = () => {
         opacity={1}
         seed={5}
         bounds={500}
-        volume={450}
+        volume={600}
       />
       <Cloud
         position={[100, -500, 250]}
@@ -180,7 +180,7 @@ const CloudsComp = () => {
         position={[-300, -200, -250]}
         concentrate="outside"
         growth={35}
-        color="#d2acac"
+        color="#f4ebeb"
         opacity={0.75}
         seed={9}
         bounds={300}
