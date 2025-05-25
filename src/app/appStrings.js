@@ -27,7 +27,7 @@ export const appStrings = {
   solarRedlineDescription:
     "I led a three person team for this quote platform for solar panel companies. I built a large portion of the frontend, worked on cloud functions and helped thoroughly test the quote calculator.",
   earplanesDescription:
-    "EarPlanes is a special type of earplug that helps reduce migraines on flights. I built about 90% of the UI on the mobile app, which uses barometric pressure detection in your phone to tell you when to put the earplugs in and take them out.",
+    "EarPlanes is a special type of earplug that helps reduce migraines on flights. I built most of the UI on the mobile app, which uses barometric pressure detection in your phone to tell you when to put the earplugs in and take them out.",
   giThriveDescription: "Helped maintain this app",
   portfolioDescription:
     "Here's a secret! You can grab the bottom right of the screen to drag the camera around.",
