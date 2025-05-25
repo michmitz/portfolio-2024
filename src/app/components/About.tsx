@@ -6,7 +6,7 @@ export const About = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="max-md:px-2 md:pl-2">
+    <div className="max-md:px-2 md:pl-3">
       <motion.div className="flex flex-row">
         <motion.div
           id="hi"
@@ -15,7 +15,7 @@ export const About = () => {
           transition={{ duration: 1, ease: "easeInOut" }}
           className="flex flex-col mr-4"
         >
-          <p className="fade-in text-blue-200 text-3xl">
+          <p className="fade-in text-blue-200 text-3xl font-bold">
             Hi! I&apos;m Michelle.
           </p>
           <p className="text-white font-semibold font-nunito rounded-3xl mb-3">
