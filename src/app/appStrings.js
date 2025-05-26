@@ -1,6 +1,6 @@
 export const appStrings = {
   about:
-    "I’m a passionate, design-oriented frontend developer dedicated to creating thoughtful user experiences and visually appealing, responsive applications. Drawing from my consulting, graphic design, and full stack experience, I bring designs to life while prioritizing optimal performance and accessibility for all users.",
+    "I’m all about thoughtful design that puts users first, dreamy visuals and creative side projects. When I’m not coding, you’ll probably find me at pop pilates, lost in a horror novel, or playing a classic video game.",
   powellsJobResponsbilities: [
     "Owned UX, UI, and accessibility improvements for Powell’s new e-commerce site",
     "Collaborated with a newly-formed engineering team to establish development guidelines and define design/UX standards for MVP.",
