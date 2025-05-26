@@ -68,12 +68,15 @@ export default function CloudBackground({
       <Canvas
         className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`}
         onCreated={() => !loaded && setLoaded(true)}
-        dpr={[1, 2]} // <— important for Chrome
+        dpr={[1, 1.5]} // Reduced from [1, 2] for better performance
         gl={{
           antialias: true,
           preserveDrawingBuffer: true,
-          powerPreference: "high-performance", // <— hint to Chrome to prefer hardware
-          failIfMajorPerformanceCaveat: false, // <— don't crash if GPU is slow
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false,
+          alpha: false, // Disable alpha for better performance
+          stencil: false, // Disable stencil buffer if not needed
+          depth: true,
         }}
       >
         <Lighting transition={timeOfDay} />
@@ -146,7 +149,7 @@ const CloudsComp = () => {
       <Cloud
         position={[-50, -400, 70]}
         concentrate="outside"
-        growth={30}
+        growth={35}
         color="#ffffff"
         opacity={0.6}
         seed={4}
@@ -156,17 +159,17 @@ const CloudsComp = () => {
       <Cloud
         position={[400, -400, 250]}
         concentrate="outside"
-        growth={30}
+        growth={35}
         color="#ffffff"
         opacity={1}
         seed={5}
         bounds={500}
-        volume={450}
+        volume={600}
       />
       <Cloud
         position={[100, -500, 250]}
         concentrate="outside"
-        growth={30}
+        growth={35}
         color="#d2acac"
         opacity={0.75}
         seed={8}
@@ -176,8 +179,8 @@ const CloudsComp = () => {
       <Cloud
         position={[-300, -200, -250]}
         concentrate="outside"
-        growth={30}
-        color="#d2acac"
+        growth={35}
+        color="#f4ebeb"
         opacity={0.75}
         seed={9}
         bounds={300}
@@ -186,7 +189,7 @@ const CloudsComp = () => {
       <Cloud
         position={[0, -500, 400]}
         concentrate="outside"
-        growth={10}
+        growth={30}
         color="#ebeaea"
         opacity={1}
         seed={7}
@@ -237,7 +240,7 @@ function Sky({ transition }: { transition: number }) {
 
   return (
     <>
-      <Stars radius={200} count={700} factor={15} fade />
+      <Stars radius={200} count={700} factor={12} fade />
       <group ref={ref}>
         <SkyImpl
           sunPosition={[

@@ -33,7 +33,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
   return (
     <>
       <AnimatePresence>
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-md:px-5 max-md:pb-8">
+        <motion.div className="flex flex-wrap gap-4 w-full max-md:px-5 pb-6 max-md:pb-10 md:px-2">
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -41,7 +41,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
                 selectedId === null
                   ? "bg-blue-300/10 hover:backdrop-saturate-150 backdrop-blur-xl"
                   : ""
-              } rounded-xl`}
+              } rounded-xl w-[calc(33.333%-1rem)] max-lg:w-[calc(50%-0.5rem)] max-md:w-full`}
               animate={{
                 filter: selectedId !== null ? "blur(8px)" : "blur(0px)",
                 transition: { duration: 0.4, ease: "easeInOut" },
@@ -56,7 +56,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="md:w-[600px] max-md:w-full fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
+          <div className="md:w-[600px] max-md:w-full md:px-2 fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
             <motion.div
               ref={modalRef}
               layoutId={`project-${selectedProject.id}`}

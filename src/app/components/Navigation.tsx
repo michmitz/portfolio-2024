@@ -141,7 +141,7 @@ const NavLinks: React.FC<{
         onClick={() => {
           // setResumeClicked(true);
           // setTimeout(() => setResumeClicked(false), 400);
-          window.open("/Your_Resume.pdf", "_blank");
+          window.open("/michelle-stermitz-resume.pdf", "_blank");
         }}
         className="text-blue-200 hover:text-sky-100 text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left"
       >

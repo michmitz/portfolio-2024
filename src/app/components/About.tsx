@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
+import { appStrings } from "../appStrings";
 
 export const About = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="max-md:px-2 md:pl-2">
+    <div className="max-md:px-2 md:pl-3">
       <motion.div className="flex flex-row">
         <motion.div
           id="hi"
@@ -15,11 +16,11 @@ export const About = () => {
           transition={{ duration: 1, ease: "easeInOut" }}
           className="flex flex-col mr-4"
         >
-          <p className="fade-in text-blue-200 text-3xl font-silkscreen">
+          <p className="fade-in text-blue-200 text-3xl font-bold">
             Hi! I&apos;m Michelle.
           </p>
           <p className="text-white font-semibold font-nunito rounded-3xl mb-3">
-            I&apos;m a software developer based in the Pacific Northwest.
+            I&apos;m a frontend developer based in the Pacific Northwest.
           </p>
         </motion.div>
 
@@ -47,12 +48,7 @@ export const About = () => {
             className="overflow-hidden mt-2 text-white font-nunito"
           >
             <p>
-              Ut lobortis nisi scelerisque porta consectetur. Suspendisse
-              potenti. Etiam volutpat imperdiet leo in faucibus. Morbi
-              pellentesque massa vitae lorem vestibulum, eget porttitor dolor
-              mattis. Morbi mattis metus a pulvinar suscipit. Quisque ex turpis,
-              gravida ut lectus sed, facilisis vestibulum nisi. Morbi et mauris
-              sed arcu sodales imperdiet vitae non magna.
+             {appStrings.about}
             </p>
           </motion.div>
         )}

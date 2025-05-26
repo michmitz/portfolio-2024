@@ -24,23 +24,29 @@ export default function Home() {
       <div
         className={`${
           loaded
-            ? "fade-in float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[240px]"
+            ? "fade-in float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]"
             : "hidden"
         }`}
       >
-        <div className="select-none flex-col mb-5">
-          <p className="text-xl text-sky-200 font-bold font-silkscreen">
+        {/* <div className="select-none flex-col mb-2">
+          <p className="text-xl text-sky-200/60 font-bold font-silkscreen">
             Michelle
           </p>
-          <p className="text-xl text-white font-bold font-silkscreen">
+          <p className="text-xl text-white/70 font-bold font-silkscreen">
             Stermitz
           </p>
+        </div> */}
+        <div className="opacity-75 hover:opacity-100">
+          <Contact loaded={loaded} />
         </div>
-        <Contact loaded={loaded} />
       </div>
 
-      <div className={`${"flex items-center justify-center bg-[#576885]"}`}>
-        <div className="w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
+      <div
+        className={`${
+          loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
+        }`}
+      >
+        <div className="max-md:w-[85%] md:w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
           <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation
               displaySection={displaySection}
@@ -62,13 +68,10 @@ export default function Home() {
                 id="experience"
                 className={`${
                   displaySection === "experience"
-                    ? "visible mt-8 max-md:h-full md:h-4/5"
+                    ? "visible mt-8 md:h-4/5 max-md:h-[90%] relative w-full overflow-hidden"
                     : "hidden"
                 } `}
               >
-                {/* <Resume loaded={loaded} /> */}
-
-                {/* <ExperienceList /> */}
                 <Timeline />
               </div>
               <div
