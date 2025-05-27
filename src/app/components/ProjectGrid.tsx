@@ -120,7 +120,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="md:w-[600px] max-md:w-full md:px-2 fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
+          <div className="md:w-[550px] max-md:w-full fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
             <motion.div
               ref={modalRef}
               layoutId={`project-${selectedProject.id}`}
