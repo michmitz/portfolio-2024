@@ -31,9 +31,17 @@ export const About = () => {
           onClick={() => setShowMore(!showMore)}
         >
           {showMore ? (
-            <BiUpArrow className="text-blue-300" size="30px" />
+            <BiUpArrow
+              className="text-blue-300"
+              size="30px"
+              aria-label="show-less"
+            />
           ) : (
-            <BiDownArrow className="text-blue-300" size="30px" />
+            <BiDownArrow
+              className="text-blue-300"
+              size="30px"
+              aria-label="show-more"
+            />
           )}
         </motion.button>
       </motion.div>
@@ -47,9 +55,7 @@ export const About = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="overflow-hidden mt-2 text-white font-nunito"
           >
-            <p>
-             {appStrings.about}
-            </p>
+            <p>{appStrings.about}</p>
           </motion.div>
         )}
       </AnimatePresence>

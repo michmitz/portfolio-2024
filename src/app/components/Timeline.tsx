@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { experiences } from "../experienceData";
+import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 export interface Experience {
   id: string;
@@ -60,25 +61,66 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
 };
 
 const Timeline = () => {
-  return (
-    <div className="h-full overflow-y-auto pl-2 max-md:px-4 flex flex-col w-full items-start pb-4 max-md:[&::-webkit-scrollbar-thumb]:opacity-[0.5] max-md:[&::-webkit-scrollbar-track]:opacity-[0.5] max-md:[&::-webkit-scrollbar]:w-2 max-md:[&::-webkit-scrollbar-track]:bg-sky-100/20 max-md:[&::-webkit-scrollbar-track]:rounded-xl max-md:[&::-webkit-scrollbar-thumb]:bg-sky-200/40 max-md:[&::-webkit-scrollbar-thumb]:rounded-xl md:[&::-webkit-scrollbar]:hidden scroll max-md:pb-10">
-      <div className="flex flex-col max-md:items-center w-full">
-        {experiences.map((item, i) => {
-          const ref = useRef(null);
-          const isInView = useInView(ref, {
-            amount: 0.5,
-          });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-          return (
-            <div
-              key={i}
-              ref={ref}
-              className="flex flex-col md:flex-row w-full justify-start items-center rounded"
-            >
-              <TimelineCard item={item} isActive={isInView} />
-            </div>
-          );
-        })}
+  const scrollUp = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: -300,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollDown = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: 300,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative h-full w-full">
+      <div
+        ref={scrollContainerRef}
+        className="h-full overflow-y-auto pl-2 max-md:px-4 flex flex-row w-full items-start pb-4 max-md:[&::-webkit-scrollbar-thumb]:opacity-[0.5] max-md:[&::-webkit-scrollbar-track]:opacity-[0.5] max-md:[&::-webkit-scrollbar]:w-2 max-md:[&::-webkit-scrollbar-track]:bg-sky-100/20 max-md:[&::-webkit-scrollbar-track]:rounded-xl max-md:[&::-webkit-scrollbar-thumb]:bg-sky-200/40 max-md:[&::-webkit-scrollbar-thumb]:rounded-xl md:[&::-webkit-scrollbar]:hidden scroll max-md:pb-10"
+      >
+        <div className="flex flex-col max-md:items-center w-full">
+          {experiences.map((item, i) => {
+            const ref = useRef(null);
+            const isInView = useInView(ref, {
+              amount: 0.5,
+            });
+
+            return (
+              <div
+                key={i}
+                ref={ref}
+                className="flex flex-col md:flex-row w-full justify-start items-center rounded"
+              >
+                <TimelineCard item={item} isActive={isInView} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="absolute right-[20px] top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-2 rounded-lg hidden md:flex">
+        <button
+          onClick={scrollUp}
+          className="hover:scale-110 transition-transform"
+          aria-label="scroll-up"
+        >
+          <BiUpArrow className="text-blue-300" size="30px" />
+        </button>
+        <button
+          onClick={scrollDown}
+          className="hover:scale-110 transition-transform"
+          aria-label="scroll-down"
+        >
+          <BiDownArrow className="text-blue-300" size="30px" />
+        </button>
       </div>
     </div>
   );
