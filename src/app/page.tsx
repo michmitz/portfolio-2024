@@ -78,7 +78,7 @@ export default function Home() {
                 id="projects"
                 className={`${
                   displaySection === "projects"
-                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-sky-100/20 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-thumb]:bg-sky-200/40 [&::-webkit-scrollbar-thumb]:rounded-xl scroll max-md:pb-10"
+                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll max-md:pb-10"
                     : "hidden"
                 }`}
               >
