@@ -81,7 +81,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
                   selectedId === null
                     ? "bg-blue-300/10 hover:backdrop-saturate-150 backdrop-blur-xl"
                     : ""
-                } rounded-xl w-[calc(33.333%-1rem)] max-lg:w-[calc(50%-0.5rem)] max-md:w-full`}
+                } rounded-xl w-[calc(33.333%-1rem)] max-lg:w-[calc(50%-0.5rem)] max-md:w-full h-[130px]`}
                 animate={{
                   filter: selectedId !== null ? "blur(8px)" : "blur(0px)",
                   transition: { duration: 0.4, ease: "easeInOut" },
