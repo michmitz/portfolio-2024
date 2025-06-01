@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Project } from "./Project";
 import { projects } from "../projectData";
 import { motion, AnimatePresence } from "framer-motion";
+import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 type ProjectGridProps = {
   timeOfDay: number;
@@ -10,9 +11,44 @@ type ProjectGridProps = {
 
 export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const selectedProject = projects.find((p) => p.id === selectedId);
+
+  const checkOverflow = () => {
+    if (scrollContainerRef.current) {
+      const hasVerticalOverflow =
+        scrollContainerRef.current.scrollHeight >
+        scrollContainerRef.current.clientHeight;
+      setHasOverflow(hasVerticalOverflow);
+    }
+  };
+
+  useEffect(() => {
+    checkOverflow();
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
+  }, []);
+
+  const scrollUp = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: -300,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollDown = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: 300,
+        behavior: "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,31 +68,59 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
 
   return (
     <>
-      <AnimatePresence>
-        <motion.div className="flex flex-wrap gap-4 w-full max-md:px-5 pb-6 max-md:pb-10 md:px-2">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              className={`${
-                selectedId === null
-                  ? "bg-blue-300/10 hover:backdrop-saturate-150 backdrop-blur-xl"
-                  : ""
-              } rounded-xl w-[calc(33.333%-1rem)] max-lg:w-[calc(50%-0.5rem)] max-md:w-full`}
-              animate={{
-                filter: selectedId !== null ? "blur(8px)" : "blur(0px)",
-                transition: { duration: 0.4, ease: "easeInOut" },
-              }}
-              onClick={() => setSelectedId(project.id)}
+      <div className="relative h-full">
+        <AnimatePresence>
+          <motion.div
+            ref={scrollContainerRef}
+            className="flex flex-wrap gap-4 w-[calc(100%-60px)] max-md:w-full max-md:px-5 max-md:pb-10 md:px-2 h-full overflow-y-auto max-md:[&::-webkit-scrollbar-thumb]:opacity-[0.5] max-md:[&::-webkit-scrollbar-track]:opacity-[0.5] max-md:[&::-webkit-scrollbar]:w-2 max-md:[&::-webkit-scrollbar-track]:bg-sky-100/20 max-md:[&::-webkit-scrollbar-track]:rounded-xl max-md:[&::-webkit-scrollbar-thumb]:bg-sky-200/40 max-md:[&::-webkit-scrollbar-thumb]:rounded-xl md:[&::-webkit-scrollbar]:hidden max-md:justify-center"
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                className={`${
+                  selectedId === null
+                    ? "bg-blue-300/10 hover:backdrop-saturate-150 backdrop-blur-xl"
+                    : ""
+                } rounded-xl w-[calc(33.333%-1rem)] max-lg:w-[calc(50%-0.5rem)] max-md:w-full h-[130px]`}
+                animate={{
+                  filter: selectedId !== null ? "blur(8px)" : "blur(0px)",
+                  transition: { duration: 0.4, ease: "easeInOut" },
+                }}
+                onClick={() => setSelectedId(project.id)}
+              >
+                <Project
+                  {...project}
+                  timeOfDay={timeOfDay}
+                  isSelected={false}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {hasOverflow && (
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-2 rounded-lg hidden md:flex">
+            <button
+              onClick={scrollUp}
+              className="hover:scale-110 transition-transform"
+              aria-label="scroll-up"
             >
-              <Project {...project} timeOfDay={timeOfDay} isSelected={false} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+              <BiUpArrow className="text-blue-300" size="30px" />
+            </button>
+            <button
+              onClick={scrollDown}
+              className="hover:scale-110 transition-transform"
+              aria-label="scroll-down"
+            >
+              <BiDownArrow className="text-blue-300" size="30px" />
+            </button>
+          </div>
+        )}
+      </div>
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="md:w-[600px] max-md:w-full md:px-2 fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
+          <div className="md:w-[550px] max-md:w-full fixed top-20 left-0 right-0 bottom-0 z-20 flex justify-center items-center">
             <motion.div
               ref={modalRef}
               layoutId={`project-${selectedProject.id}`}
@@ -71,14 +135,6 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
                 transition: { duration: 0.3, ease: "easeInOut" },
               }}
             >
-              {/* <motion.div
-                layoutId={`project-${selectedProject.id}`}
-                className=""
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              > */}
               <Project
                 {...selectedProject}
                 timeOfDay={timeOfDay}
@@ -92,7 +148,6 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
                   Close
                 </button>
               </div>
-              {/* </motion.div> */}
             </motion.div>
           </div>
         )}

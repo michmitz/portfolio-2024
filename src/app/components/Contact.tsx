@@ -5,11 +5,9 @@ import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { FaGithub } from "react-icons/fa";
 import { FaBoltLightning } from "react-icons/fa6";
 
-interface ContactProps {
-  loaded: boolean;
-}
 
-export const Contact: React.FC<ContactProps> = ({ loaded }) => {
+
+export const Contact: React.FC = () => {
   const [showContact, setShowContact] = useState(false);
   const [showCloud, setShowCloud] = useState(true);
   const [showLightning, setShowLightning] = useState(false);
@@ -36,7 +34,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
   };
 
   return (
-    <div className={`${loaded ? "flex items-center gap-3 md:z-50" : "hidden"}`}>
+    <div className="flex items-center gap-3 md:z-50">
       {/* Cloud + Text trigger */}
       {!showContact && showCloud && (
         <motion.div
@@ -113,7 +111,7 @@ export const Contact: React.FC<ContactProps> = ({ loaded }) => {
               onClick={handleCloseSkills}
             >
               <motion.p
-                className="text-blue-500 font-silkscreen text-sm pixelated mb-2"
+                className="text-[#7a94b7] font-silkscreen text-sm pixelated mb-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}

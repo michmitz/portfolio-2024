@@ -22,11 +22,8 @@ export default function Home() {
         setTimeOfDay={setTimeOfDay}
       />
       <div
-        className={`${
-          loaded
-            ? "fade-in float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]"
-            : "hidden"
-        }`}
+        className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]"
+           
       >
         {/* <div className="select-none flex-col mb-2">
           <p className="text-xl text-sky-200/60 font-bold font-silkscreen">
@@ -37,14 +34,12 @@ export default function Home() {
           </p>
         </div> */}
         <div className="opacity-75 hover:opacity-100">
-          <Contact loaded={loaded} />
+          <Contact />
         </div>
       </div>
 
       <div
-        className={`${
-          loaded ? "flex items-center justify-center bg-[#576885]" : "hidden"
-        }`}
+        className="flex items-center justify-center bg-[#576885]"
       >
         <div className="max-md:w-[85%] md:w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
           <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
@@ -78,7 +73,7 @@ export default function Home() {
                 id="projects"
                 className={`${
                   displaySection === "projects"
-                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll [&::-webkit-scrollbar-thumb]:opacity-[0.5] [&::-webkit-scrollbar-track]:opacity-[0.5] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-sky-100/20 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-thumb]:bg-sky-200/40 [&::-webkit-scrollbar-thumb]:rounded-xl scroll max-md:pb-10"
+                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll max-md:pb-10"
                     : "hidden"
                 }`}
               >
@@ -93,7 +88,7 @@ export default function Home() {
                     : "max-md:hidden hidden"
                 }`}
               >
-                <Contact loaded={loaded} />
+                <Contact />
               </div>
             </div>
           </div>
