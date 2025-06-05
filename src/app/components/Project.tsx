@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MdOutlineSchool } from "react-icons/md";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { BsBriefcase } from "react-icons/bs";
+import { VscLinkExternal } from "react-icons/vsc";
 // import { useEffect } from "react";
 
 export type ProjectType = "personal" | "school" | "work";
@@ -92,32 +93,45 @@ export const Project: React.FC<ProjectProps> = ({
       // animate={backgroundAnimation}
     >
       {/* Top Part (icon, company, project name) */}
-      <div className={!isSelected ? "h-full flex flex-col justify-between" : ""}>
-        <div className="flex items-center gap-3 mb-4 border-b border-white/20 pb-2">
+      <div
+        className={!isSelected ? "h-full flex flex-col justify-between" : ""}
+      >
+        <div className="flex items-center gap-3 mb-3 border-b border-white/20 pb-2">
           {projectType === "school" ? (
             <MdOutlineSchool className="text-lg text-blue-300" />
           ) : projectType === "work" ? (
             <BsBriefcase className="text-lg text-white" />
           ) : (
-            <HiOutlineLightBulb className="text-lg text-sky-100" />
+            <HiOutlineLightBulb className="text-lg text-white" />
           )}
-          <span
-            className={`${
-              projectType === "personal" ? "text-sky-100" : "text-white"
-            } text-xs font-medium uppercase tracking-widest`}
-            // style={{ color: textColor }}
-          >
+          <span className="text-white text-xs font-medium uppercase tracking-widest">
             {company}
           </span>
         </div>
 
-        <h3
-          className={`${
-            projectType === "personal" ? "text-sky-100" : "text-white"
-          }  font-bold mb-3`}
-        >
-          {projectName}
-        </h3>
+        <div className="flex flex-row justify-between items-center">
+          <h3
+            className={`
+            text-white
+           ${!isSelected ? "mb-3" : ""} font-bold`}
+          >
+            {projectName}
+          </h3>
+
+          {isSelected && link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=""
+            >
+              <VscLinkExternal
+                className="text-white hover:text-sky-700"
+                size="18"
+              />
+            </a>
+          )}
+        </div>
       </div>
 
       {isSelected && (
@@ -128,17 +142,6 @@ export const Project: React.FC<ProjectProps> = ({
           >
             {description}
           </p>
-
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mb-4 px-4 py-2 rounded-full border border-sky-400 text-sm font-medium hover:bg-sky-800 hover:text-white transition-colors"
-            >
-              View Project
-            </a>
-          )}
 
           <div className="flex flex-wrap gap-2">
             {tech.map((t) => (
