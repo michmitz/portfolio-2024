@@ -21,10 +21,7 @@ export default function Home() {
         timeOfDay={timeOfDay}
         setTimeOfDay={setTimeOfDay}
       />
-      <div
-        className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]"
-           
-      >
+      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]">
         {/* <div className="select-none flex-col mb-2">
           <p className="text-xl text-sky-200/60 font-bold font-silkscreen">
             Michelle
@@ -38,9 +35,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div
-        className="flex items-center justify-center bg-[#576885]"
-      >
+      <div className="flex items-center justify-center">
         <div className="max-md:w-[85%] md:w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
           <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
             <Navigation

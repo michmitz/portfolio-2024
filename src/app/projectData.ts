@@ -9,6 +9,7 @@ type ProjectProps = {
   description: string;
   tech: string[];
   image: string;
+  link?: string;
 };
 
 export const projects: ProjectProps[] = [
@@ -29,6 +30,7 @@ export const projects: ProjectProps[] = [
     description: appStrings.powellsNextDescription,
     tech: ["Vue", "Tailwind", "Nuxt", "Storybook", "Vuetify"],
     image: "",
+    link: "https://www.powells.com",
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ export const projects: ProjectProps[] = [
     description: appStrings.colorMuseDescription,
     tech: ["React", "Tailwind", "OpenAI"],
     image: "",
+    link: "https://colormuse.netlify.app",
   },
   {
     id: 4,
@@ -83,14 +86,6 @@ export const projects: ProjectProps[] = [
     description: appStrings.interviewPrepDescription,
     tech: ["React", "Next", "OpenAI", "Node", "Prisma", "Supabase"],
     image: "",
+    link: "https://ai-interview-questions.netlify.app",
   },
-  // {
-  //   id: 8,
-  //   projectName: "AMAzine",
-  //   projectType: "school",
-  //   company: "School",
-  //   description: "This was built with a team of four",
-  //   tech: ["React", "Python"],
-  //   image: "",
-  // },
 ];

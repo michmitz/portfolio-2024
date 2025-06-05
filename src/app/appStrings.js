@@ -1,25 +1,12 @@
 export const appStrings = {
   about:
     "I’m all about thoughtful design that puts users first, dreamy visuals and creative side projects. When I’m not coding, you’ll probably find me at pop pilates, lost in a horror novel, or playing a classic video game.",
-  powellsJobResponsbilities: [
-    "Owned UX, UI, and accessibility improvements for Powell’s new e-commerce site",
-    "Collaborated with a newly-formed engineering team to establish development guidelines and define design/UX standards for MVP.",
-    "Engaged in in pair programming, pull request reviews, and ticket creation to ensure efficient, high-quality development.",
-    "Led Storybook integration for responsive, atomic design, serving as primary owner to drive consistent component use across the platform.",
-  ],
   powellsDescription:
     "I joined a brand-new engineering team to help launch Powell’s new e-commerce site. It’s been a fast-paced, intense and rewarding experience working on such a big project. Along the way, I pushed for better responsive design, a smoother user experience, and cleaner frontend practices, like integrating Storybook and Tailwind.",
-  olioResponsibilities: [
-    "Independently completed the frontend for two React Native mobile apps, including the barometric pressure app designed for EarPlanes products",
-    "Led three-person team for Solar Redline, the “Yelp of solar panel installation”, managing ticket creation and workflow",
-    "Played a key role in the frontend development of a carbon reduction software platform, Carbon Title, via technical design, sprint planning, ticket creation, and project board management",
-    "Specialized in atomic design and trained new team members in the concept of Storybook-driven development",
-    "Worked closely with clients to perform manual and automated testing, fix bugs, and respond to feedback",
-  ],
   careerGapDescription:
     "I took a personal sabbatical to focus on both personal and professional growth, and to level up as a developer. During that time, I built a full stack interview prep app using the OpenAI API, started dreaming up my color scheme app, and picked up several new technical skills.",
   olioDescription:
-    "At Olio, I worked on a mix of web and mobile projects, including two React Native apps, a solar panel installation quote app, and a carbon reduction platform. I worked on different small teams, helped plan sprints, built clean UIs using atomic and technical design, and trained others in Storybook-driven development. I also worked directly with clients to test, squash bugs, and keep things running smoothly.",
+    "At Olio, I worked on a mix of web and mobile projects, including two React Native apps, a solar panel installation quote app, and a carbon reduction platform. I worked on different small teams, built clean UIs using atomic and technical design, and tackled complex forms. I also worked directly with clients to test, squash bugs, and keep things running smoothly.",
   graphicDesignDescription:
     "I co-founded an event venue in 2014 and discovered my love for design while creating ads, managing the website and social media. That experience sparked an ongoing interest in visual storytelling and branding, and I’ve continued doing graphic design work for various companies throughout the years.",
   carbonTitleDescription:
@@ -34,11 +21,11 @@ export const appStrings = {
   powellsNextDescription:
     "I helped launch Powell’s new e-commerce site as part of a new engineering team. I’ve owned UX, UI, and accessibility improvements, set design standards for the MVP, integrated Storybook for global, responsive components, and monitor errors and performance.",
   colorMuseDescription:
-    "ColorMuse is my color scheme app! You can generate a palette based on a selected color - a feature I haven’t seen in many other generators - or create one from an image. OpenAI helps out by naming your colors based on a theme of choice.",
+    "My color scheme app! You can generate a palette based on a selected color - a feature I haven’t seen in many other generators - or create one from an image. OpenAI helps out by naming your colors based on a theme of choice. It is still a work in progress.",
   receiptsDescription:
     "This mobile social app was the first project I worked on at Olio. I built the entire frontend in React Native and established my foundation in responsive design and mobile UI best practices.",
   interviewPrepDescription:
-    "I built a fullstack interview prep app with OpenAI-assisted soft skill and technical questions. Users can save and edit their answers, with optional help from AI along the way.",
+    "I built a fullstack interview prep app with OpenAI-assisted soft skill and technical questions. Users can save and edit their answers, with optional help from AI.",
   skillsList: [
     "TypeScript",
     "JavaScript",
@@ -53,5 +40,6 @@ export const appStrings = {
     "Tailwind",
     "CSS (of course)",
     "Node",
+    "Nuxt",
   ],
 };

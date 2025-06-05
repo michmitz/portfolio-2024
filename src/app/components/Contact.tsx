@@ -111,7 +111,7 @@ export const Contact: React.FC = () => {
               onClick={handleCloseSkills}
             >
               <motion.p
-                className="text-[#7a94b7] font-silkscreen text-sm pixelated mb-2"
+                className="text-[#455d7d] font-silkscreen text-sm pixelated mb-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
