@@ -14,10 +14,16 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Michelle Stermitz",
-  description: "Michelle's Cool Website",
+  title: "michellestermitz.com",
+  description: "Frontend software engineer based in the Pacific Northwest.",
+  metadataBase: new URL("https://michellestermitz.com"),
+  openGraph: {
+    title: "michellestermitz.com",
+    description: "Frontend software engineer based in the Pacific Northwest.",
+    type: "website",
+  },
   icons: {
-    icon: '/favicon.png',
+    icon: "/favicon.png",
   },
 };
 
