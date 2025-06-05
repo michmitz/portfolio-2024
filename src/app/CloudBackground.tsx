@@ -66,7 +66,7 @@ export default function CloudBackground({
   return (
     <>
       <Canvas
-        className={`canvas ${loaded ? "fade-in bg-[#20639d]" : ""}`}
+        className={`canvas ${loaded ? "fade-in" : "bg-[#20639d]"}`}
         onCreated={() => !loaded && setLoaded(true)}
         dpr={[1, 1.5]} // Reduced from [1, 2] for better performance
         gl={{
