@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     title: "michellestermitz.com",
     description: "Frontend software engineer based in the Pacific Northwest.",
     type: "website",
+    url: "https://michellestermitz.com",
+    siteName: "Michelle Stermitz",
     images: [
       {
         url: "/og-preview.png",
@@ -32,7 +34,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.png",
+    apple: "/favicon.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
