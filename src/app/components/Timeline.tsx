@@ -31,9 +31,9 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, isActive }) => {
           : "scale-95 opacity-60 bg-neutral-100/30"
       } ${expanded ? "backdrop-saturate-150" : ""}`}
     >
-      <div className="text-sm font-semibold text-sky-200 tracking-widest">
+      <p className="text-sm font-extrabold rounded-full text-[#b2d9f5] tracking-widest">
         {item.startDate} - {item.endDate}
-      </div>
+      </p>
       <h3 className="text-xl font-semibold">{item.jobTitle}</h3>
       <h4 className="text-md font-medium opacity-80">{item.company}</h4>
 
