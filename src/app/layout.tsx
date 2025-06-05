@@ -21,6 +21,14 @@ export const metadata: Metadata = {
     title: "michellestermitz.com",
     description: "Frontend software engineer based in the Pacific Northwest.",
     type: "website",
+    images: [
+      {
+        url: "/og-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Michelle Stermitz - Frontend Software Engineer",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.png",
