@@ -11,6 +11,11 @@ import {
   Stars,
 } from "@react-three/drei";
 
+/** When false, time of day stays at night (0). Set to true to re-enable day/night transition. */
+const ENABLE_TIME_OF_DAY_TRANSITION = false;
+
+const NIGHT = 0;
+
 interface CloudBackgroundProps {
   loaded: boolean;
   setLoaded: (v: boolean) => void;
@@ -24,11 +29,15 @@ export default function CloudBackground({
   timeOfDay,
   setTimeOfDay,
 }: CloudBackgroundProps) {
-  const transitionSpeed = 0.002; // Adjust for smoother transitions
+  const effectiveTransition = ENABLE_TIME_OF_DAY_TRANSITION ? timeOfDay : NIGHT;
 
+  const transitionSpeed = 0.002; // Adjust for smoother transitions
   const directionRef = useRef(1);
   const lastSwitchTimeRef = useRef(Date.now());
+
   useEffect(() => {
+    if (!ENABLE_TIME_OF_DAY_TRANSITION) return;
+
     const delay = 10000; // 10-second delay before transition starts
     const timeout = setTimeout(() => {
       const animateTransition = () => {
@@ -79,8 +88,8 @@ export default function CloudBackground({
           depth: true,
         }}
       >
-        <Lighting transition={timeOfDay} />
-        <Sky transition={timeOfDay} />
+        <Lighting transition={effectiveTransition} />
+        <Sky transition={effectiveTransition} />
         <RotatingCamera />
       </Canvas>
       <Loader />
