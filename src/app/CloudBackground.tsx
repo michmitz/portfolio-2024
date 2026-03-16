@@ -129,7 +129,7 @@ function Lighting({ transition }: { transition: number }) {
 
 function RotatingCamera() {
   const cameraRef = useRef<CameraControls>(null);
-  const rotationSpeed = 0.25;
+  const rotationSpeed = 0.35;
 
   useFrame((_, delta) => {
     if (cameraRef.current) {
