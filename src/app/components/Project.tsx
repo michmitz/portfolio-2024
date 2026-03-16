@@ -1,18 +1,13 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import { MdOutlineSchool } from "react-icons/md";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { BsBriefcase } from "react-icons/bs";
-import { VscLinkExternal } from "react-icons/vsc";
-// import { useEffect } from "react";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
 
-export type ProjectType = "personal" | "school" | "work";
+export type ProjectType = "personal" | "work" | "collaboration"
 
 export interface ProjectProps {
   readonly id: number;
   readonly projectName: string;
-  readonly projectType: ProjectType;
+  readonly projectType: string;
   readonly company?: string;
   readonly image?: string;
   readonly link?: string;
@@ -24,138 +19,72 @@ export interface ProjectProps {
 
 export const Project: React.FC<ProjectProps> = ({
   projectName,
-  projectType,
   company,
   link,
   description,
   tech,
-  // timeOfDay,
-  isSelected,
 }) => {
-  // const pillAnimation = useAnimation();
-  // const backgroundAnimation = useAnimation();
-
-  // const getColorsByTime = (timeOfDay: number) => {
-  //   if (timeOfDay <= 1 && timeOfDay > 0.5) {
-  //     return {
-  //       backgroundColor: "rgba(189, 249, 252, 0.10)",
-  //       textColor: "#25b1d0",
-  //       descriptionTextColor: "#7fe4f5",
-  //     };
-  //   }
-  //   return {
-  //     backgroundColor: "rgba(252, 230, 158, 0.10)",
-  //     backdropFilter: "blur(10px)",
-  //     textColor: "#ffffff",
-  //     descriptionTextColor: "#cccccc",
-  //   };
-  // };
-
-  // const getPillColorsByTime = (timeOfDay: number) => {
-  //   if (timeOfDay <= 1 && timeOfDay > 0.5) {
-  //     return {
-  //       backgroundColor: "rgba(252, 250, 189, 0.96)",
-  //       textColor: "#25b1d0",
-  //     };
-  //   }
-  //   return {
-  //     backgroundColor: "rgba(158, 222, 252, 0.99)",
-  //     textColor: "#ffffff",
-  //   };
-  // };
-
-  // const { textColor, descriptionTextColor } = getColorsByTime(timeOfDay);
-  // const { backgroundColor, textColor: pillTextColor } =
-  //   getPillColorsByTime(timeOfDay);
-
-  // useEffect(() => {
-  //   const colors = getColorsByTime(timeOfDay);
-  //   const pillColors = getPillColorsByTime(timeOfDay);
-  //   backgroundAnimation.start({
-  //     backgroundColor: colors.backgroundColor,
-  //     color: colors.textColor,
-  //     transition: { duration: 4, ease: "easeInOut" },
-  //   });
-  //   pillAnimation.start({
-  //     backgroundColor: backgroundColor,
-  //     color: pillColors.textColor,
-  //     transition: { duration: 4, ease: "easeInOut" },
-  //   });
-  // }, [timeOfDay, backgroundAnimation, pillAnimation, backgroundColor]);
-
   return (
-    <motion.div
-      className={`w-full rounded-xl p-6 shadow-md cursor-pointer ${
-        isSelected
-          ? "bg-gradient-to-br from-blue-200/50 to-blue-400/70"
-          : "h-[130px] hover:shadow-lg hover:scale-[1.02]"
-      }`}
-      // animate={backgroundAnimation}
+    <div
+      className="
+        p-4
+        transition-all duration-300
+        hover:bg-[#7d91b3]/50
+        hover:shadow-xl
+        rounded-2xl
+        max-md:w-full
+        md:w-[320px]
+        
+        hover:backdrop-blur-md
+        h-fit
+        cursor-pointer
+      "
     >
-      {/* Top Part (icon, company, project name) */}
-      <div
-        className={!isSelected ? "h-full flex flex-col justify-between" : ""}
-      >
-        <div className="flex items-center gap-3 mb-3 border-b border-white/20 pb-2">
-          {projectType === "school" ? (
-            <MdOutlineSchool className="text-lg text-blue-300" />
-          ) : projectType === "work" ? (
-            <BsBriefcase className="text-lg text-white" />
-          ) : (
-            <HiOutlineLightBulb className="text-lg text-white" />
-          )}
-          <span className="text-white text-xs font-medium uppercase tracking-widest">
+      <div className="flex flex-col rounded-full">
+        {company && <div className="flex items-center gap-3">
+          <span className="text-md font-bold uppercase tracking-wider text-white/70">
             {company}
           </span>
-        </div>
+        </div>}
 
-        <div className="flex flex-row justify-between items-center">
-          <h3
-            className={`
-            text-white
-           ${!isSelected ? "mb-3" : ""} font-bold`}
-          >
+        <div className="flex flex-col">
+          <h3 className="text-3xl font-semibold text-cyan-200/70 mb-2">
             {projectName}
           </h3>
-
-          {isSelected && link && (
+          {link && (
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className=""
+              className="flex items-center gap-1"
             >
-              <VscLinkExternal
-                className="text-white hover:text-sky-700"
-                size="18"
-              />
+              <span className="font-semibold text-white text-lg">Visit</span>
+              <FaExternalLinkSquareAlt size="18" color="#FFFFFF" />
             </a>
           )}
         </div>
+
       </div>
 
-      {isSelected && (
-        <motion.div initial={false} animate={{ opacity: 1 }} className="mt-4">
-          <p
-            className="text-sm leading-relaxed mb-4 text-sky-800/70 font-semibold"
-            // style={{ color: descriptionTextColor }}
-          >
+      <div className="mt-3">
+
+        {description && (
+          <p className="text-sm leading-relaxed text-white mb-2 font-semibold">
             {description}
           </p>
+        )}
 
-          <div className="flex flex-wrap gap-2">
-            {tech.map((t) => (
-              <motion.span
-                key={t}
-                className="bg-blue-200 text-blue-900 text-xs font-medium px-3 py-1 rounded-full"
-                // animate={pillAnimation}
-              >
-                {t}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </motion.div>
+        <div className="flex flex-wrap gap-2 mt-2">
+          {tech.map((t) => (
+            <span
+              key={t}
+              className="text-xs px-2 py-1 rounded-md border border-white/20 text-cyan-200 bg-sky-200/50 font-bold"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+        </div>
+    </div>
   );
 };
