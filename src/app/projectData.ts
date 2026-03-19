@@ -87,12 +87,12 @@ export const projects: ProjectProps[] = [
   },
   {
     id: 9,
-    projectName: "Testing",
-    projectType: "collaboration",
-    description: appStrings.interviewPrepDescription,
-    tech: ["React", "Next", "OpenAI", "Node", "Prisma", "Supabase"],
+    projectName: "Tarot NPM Package",
+    projectType: "personal",
+    description: appStrings.tarotDescription,
+    tech: ["Node"],
     image: "",
-    link: "https://ai-interview-questions.netlify.app",
+    link: "https://www.npmjs.com/package/terminal-tarot",
   },
 ];
 
