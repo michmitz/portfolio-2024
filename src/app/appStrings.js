@@ -26,6 +26,8 @@ export const appStrings = {
     "This mobile social app was the first project I worked on at Olio. I built the entire frontend in React Native and established my foundation in responsive design and mobile UI best practices.",
   interviewPrepDescription:
     "I built a fullstack interview prep app with OpenAI-assisted soft skill and technical questions. Users can save and edit their answers, with optional help from AI.",
+  tarotDescription:
+    "An NPM package to do tarot spreads, with images, from the command line.",
   skillsList: [
     "TypeScript",
     "JavaScript",

@@ -7,7 +7,7 @@ export type ProjectType = "personal" | "work" | "collaboration"
 export interface ProjectProps {
   readonly id: number;
   readonly projectName: string;
-  readonly projectType: string;
+  readonly projectType: ProjectType;
   readonly company?: string;
   readonly image?: string;
   readonly link?: string;
@@ -29,7 +29,7 @@ export const Project: React.FC<ProjectProps> = ({
       className="
         p-4
         transition-all duration-300
-        hover:bg-[#7d91b3]/50
+        hover:bg-[#7d91b3]/60
         hover:shadow-xl
         rounded-2xl
         max-md:w-full
@@ -58,7 +58,7 @@ export const Project: React.FC<ProjectProps> = ({
               rel="noopener noreferrer"
               className="flex items-center gap-1"
             >
-              <span className="font-semibold text-white text-lg">Visit</span>
+              <span className="font-semibold text-neutral-100 text-lg">Visit</span>
               <FaExternalLinkSquareAlt size="18" color="#FFFFFF" />
             </a>
           )}
@@ -69,16 +69,16 @@ export const Project: React.FC<ProjectProps> = ({
       <div className="mt-3">
 
         {description && (
-          <p className="text-sm leading-relaxed text-white mb-2 font-semibold">
+          <p className="text-sm leading-relaxed text-white mb-3 font-semibold">
             {description}
           </p>
         )}
 
-        <div className="flex flex-wrap gap-2 mt-2">
+        <div className="flex flex-wrap gap-2">
           {tech.map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-1 rounded-md border border-white/20 text-cyan-200 bg-sky-200/50 font-bold"
+              className="text-xs px-2 py-1 rounded-lg text-cyan-600 bg-sky-200/60 font-bold shadow-xl"
             >
               {t}
             </span>
