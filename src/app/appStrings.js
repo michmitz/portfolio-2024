@@ -3,8 +3,8 @@ export const appStrings = {
     "I’m all about thoughtful design that puts users first, dreamy visuals and creative side projects. When I’m not coding, you’ll probably find me at pop pilates, lost in a horror novel, or playing a classic video game.",
   powellsDescription:
     "I joined a brand-new engineering team to help launch Powell’s new e-commerce site. It’s been a fast-paced, intense and rewarding experience working on such a big project. Along the way, I pushed for better responsive design, a smoother user experience, and cleaner frontend practices, like integrating Storybook and Tailwind.",
-  careerGapDescription:
-    "I took a personal sabbatical to focus on both personal and professional growth, and to level up as a developer. During that time, I built a full stack interview prep app using the OpenAI API, started dreaming up my color scheme app, and picked up several new technical skills.",
+  freelanceDescription:
+    "I design, build and ship self-directed web and mobile projects, and collaborate with other developers on side projects, workflow and design. When needed, I integrate fullstack features with custom APIs and databases, and my passion is in interactive animations and visuals.",
   olioDescription:
     "At Olio, I worked on a mix of web and mobile projects, including two React Native apps, a solar panel installation quote app, and a carbon reduction platform. I worked on different small teams, built clean UIs using atomic and technical design, and tackled complex forms. I also worked directly with clients to test, squash bugs, and keep things running smoothly.",
   graphicDesignDescription:

@@ -14,78 +14,69 @@ export default function Home() {
   const [timeOfDay, setTimeOfDay] = useState(0);
 
   return (
-    <main className="w-screen h-screen bg-[#576885]">
-      <CloudBackground
-        loaded={loaded}
-        setLoaded={setLoaded}
-        timeOfDay={timeOfDay}
-        setTimeOfDay={setTimeOfDay}
-      />
-      <div className="float max-md:hidden md:visible md:absolute md:top-10 md:right-3 flex flex-col items-center w-[180px]">
-        {/* <div className="select-none flex-col mb-2">
-          <p className="text-xl text-sky-200/60 font-bold font-silkscreen">
-            Michelle
-          </p>
-          <p className="text-xl text-white/70 font-bold font-silkscreen">
-            Stermitz
-          </p>
-        </div> */}
-        <div className="opacity-75 hover:opacity-100">
-          <Contact />
-        </div>
+    <main className="relative min-h-screen w-full bg-[#576885]">
+      <div className="fixed inset-0 z-0 w-full h-full">
+        <CloudBackground
+          loaded={loaded}
+          setLoaded={setLoaded}
+          timeOfDay={timeOfDay}
+          setTimeOfDay={setTimeOfDay}
+        />
       </div>
-
-      <div className="flex items-center justify-center">
-        <div className="max-md:w-[85%] md:w-3/4 md:h-4/5 absolute flex justify-center top-20 max-md:top-6 max-md:h-[90%] min-w-[300px] overflow-hidden">
-          <div className="relative w-full flex flex-col max-md:flex-col cursor-auto float rounded">
-            <Navigation
-              displaySection={displaySection}
-              setDisplaySection={setDisplaySection}
-            />
-            <div className="md:w-[600px] h-full">
-              <div
-                id="about"
-                className={`${
-                  displaySection === "about"
-                    ? "visible flex h-full items-center"
-                    : "hidden"
-                }`}
-              >
-                <About />
-              </div>
-
-              <div
-                id="experience"
-                className={`${
-                  displaySection === "experience"
-                    ? "visible mt-8 md:h-4/5 max-md:h-[90%] relative w-full overflow-hidden"
-                    : "hidden"
-                } `}
-              >
-                <Timeline />
-              </div>
-              <div
-                id="projects"
-                className={`${
-                  displaySection === "projects"
-                    ? "visible max-md:h-[90%] mt-8 md:h-4/5 relative w-full overflow-y-auto will-change-scroll max-md:pb-10"
-                    : "hidden"
-                }`}
-              >
-                <ProjectGrid timeOfDay={timeOfDay} />
-              </div>
-
-              <div
-                id="contact"
-                className={`${
-                  displaySection === "contact"
-                    ? "float md:hidden flex flex-col justify-center h-3/4 ml-2"
-                    : "max-md:hidden hidden"
-                }`}
-              >
-                <Contact />
-              </div>
+      <div className="relative z-10 flex flex-col min-h-screen w-full">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between w-full px-6 pt-6 md:pt-10 pb-4 gap-4">
+          <Navigation
+            displaySection={displaySection}
+            setDisplaySection={setDisplaySection}
+          />
+          <div className="max-md:hidden fixed top-5 right-5 flex items-center">
+            <Contact />
+          </div>
+        </header>
+        <div className="relative z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1 min-h-0">
+          <div className="max-w-5xl w-full mx-auto">
+            <div
+              id="about"
+              className={
+                displaySection === "about"
+                  ? "visible pt-12 md:pt-[200px] w-full"
+                  : "hidden"
+              }
+            >
+              <About />
             </div>
+
+          <div
+            id="experience"
+            className={`${
+              displaySection === "experience"
+                ? "visible py-4 w-full"
+                : "hidden"
+            }`}
+          >
+            <Timeline />
+          </div>
+          <div
+            id="projects"
+            className={`${
+              displaySection === "projects"
+                ? "visible py-4"
+                : "hidden"
+            }`}
+          >
+            <ProjectGrid timeOfDay={timeOfDay} />
+          </div>
+
+          <div
+            id="contact"
+            className={`${
+              displaySection === "contact"
+                ? "md:hidden flex flex-col justify-center py-4"
+                : "hidden"
+            }`}
+          >
+            <Contact />
+          </div>
           </div>
         </div>
       </div>
