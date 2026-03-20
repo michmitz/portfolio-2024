@@ -47,8 +47,8 @@ export const Navigation: React.FC<NavProps> = ({
   return (
     <>
       {/* Desktop */}
-      <div className="max-md:hidden flex flex-col justify-center h-fit w-fit">
-        {/* <div className="ml-2 mb-2"><Header /></div> */}
+      <div className="max-md:hidden flex flex-row items-center gap-6">
+        <Header />
         <NavLinks
           links={navLinks}
           onClick={onChangeSection}
@@ -67,9 +67,9 @@ export const Navigation: React.FC<NavProps> = ({
           {expanded && (
             <div
               ref={menuRef}
-              className="absolute mt-5 p-6 w-[250px] rounded-lg shadow-lg border border-white/20 duration-300 backdrop-blur backdrop-saturate-150 bg-sky-700/10 z-50"
+              className="absolute mt-5 p-6 w-[250px] rounded-lg border border-white/10 bg-[#0f172a]/90 z-50"
             >
-              <p className="font-silkscreen text-2xl text-white ml-1 mb-2 select-none">
+              <p className="font-semibold text-lg text-white ml-1 mb-2 select-none tracking-wide">
                 Menu
               </p>
 
@@ -88,10 +88,10 @@ export const Navigation: React.FC<NavProps> = ({
 
 const Header = () => (
   <div className="select-none max-md:pt-3 md:flex md:flex-row md:gap-2">
-    <p className="max-md:text-2xl md:text-3xl text-sky-200 font-bold font-silkscreen">
+    <p className="max-md:text-2xl md:text-3xl text-white/80 font-semibold">
       Michelle
     </p>
-    <p className="max-md:text-2xl md:text-3xl text-white font-bold font-silkscreen">
+    <p className="max-md:text-2xl md:text-3xl text-white font-semibold">
       Stermitz
     </p>
   </div>
@@ -123,17 +123,12 @@ const NavLinks: React.FC<{
           className={`${
             displaySection === section
               ? "text-white"
-              : "text-blue-200 hover:text-sky-100"
-          } text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left`}
+              : "text-white/70 hover:text-white"
+          } text-lg font-semibold transition-colors duration-200 px-2.5 py-1 relative self-start text-left ${
+            displaySection === section ? "after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-white" : ""
+          }`}
         >
           <span className="relative z-10">{label}</span>
-          {displaySection === section && (
-            <motion.span
-              layoutId="pill-tab"
-              transition={{ type: "spring", duration: 0.5 }}
-              className="absolute inset-0 z-0 bg-gradient-to-r from-blue-600/40 to-blue-300/10 rounded-xl backdrop-blur-sm shadow-md"
-            ></motion.span>
-          )}
         </button>
       ))}
       <button
@@ -143,11 +138,11 @@ const NavLinks: React.FC<{
           // setTimeout(() => setResumeClicked(false), 400);
           window.open("/michelle-stermitz-resume.pdf", "_blank");
         }}
-        className="text-blue-200 hover:text-sky-100 text-xl font-bold transition-colors px-2.5 py-0.5 rounded-xl relative mt-1 self-start text-left"
+        className="text-white/70 hover:text-white text-lg font-semibold transition-colors duration-200 px-2.5 py-1 relative self-start text-left"
       >
         <div className="flex items-center relative z-10">
           <span className="relative z-10 mr-2">Resume</span>
-          <VscLinkExternal className="text-sky-200" size="14" />
+          <VscLinkExternal className="text-white/70" size="14" />
         </div>
         {/* {resumeClicked && (
         <motion.span

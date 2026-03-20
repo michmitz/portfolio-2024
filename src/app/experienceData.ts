@@ -5,7 +5,7 @@ export const experiences: Experience[] = [
   {
     id: "1",
     startDate: "1/2024",
-    endDate: "Now",
+    endDate: "8/2025",
     jobTitle: "Frontend Software Engineer",
     company: "Powell's Books",
     jobDescription: appStrings.powellsDescription,
@@ -21,10 +21,10 @@ export const experiences: Experience[] = [
   },
   {
     id: "2",
-    startDate: "3/2023",
-    endDate: "10/2023",
-    jobTitle: "Career Break",
-    jobDescription: appStrings.careerGapDescription,
+    startDate: "12/2020",
+    endDate: "Present",
+    jobTitle: "Independent Software Engineer",
+    jobDescription: appStrings.freelanceDescription,
     skills: ["TypeScript", "OpenAI", "Vue", "Tailwind"],
   },
   {
