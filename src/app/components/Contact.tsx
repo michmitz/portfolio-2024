@@ -1,144 +1,107 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { TiSocialLinkedinCircular } from "react-icons/ti";
-import { FaGithub } from "react-icons/fa";
-import { FaBoltLightning } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
+type ContactProps = {
+  variant?: "toggle" | "inline";
+};
 
+const ContactLinks = () => (
+  <div className="flex max-md:flex-col md:flex-row md:items-center gap-3">
+    <Link
+      href="https://www.linkedin.com/in/michellestermitz/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-slate-300 hover:text-sky-200 transition-colors duration-200 max-md:flex max-md:items-end"
+      aria-label="LinkedIn"
+    >
+      <FaLinkedin size="24" /><p className="max-md:visible max-md:ml-1 md:hidden text-white text-semibold tracking-wide hover:text-sky-200">LinkedIn</p>
+    </Link>
+    <Link
+      href="https://github.com/michmitz"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-slate-300 hover:text-sky-200 transition-colors duration-200 max-md:flex max-md:items-end text-semibold tracking-wide"
+      aria-label="GitHub"
+    >
+      <FaGithub size="24" /><p className="max-md:visible md:hidden text-white max-md:ml-1 hover:text-sky-200">Github</p>
+    </Link>
+  </div>
+);
 
-export const Contact: React.FC = () => {
+export const Contact: React.FC<ContactProps> = ({ variant = "toggle" }) => {
   const [showContact, setShowContact] = useState(false);
-  const [showCloud, setShowCloud] = useState(true);
-  const [showLightning, setShowLightning] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = () => {
-    if (showContact) {
-      setShowContact(false);
-      return;
-    }
-    setShowLightning(true);
-    setTimeout(() => {
-      setShowCloud(false);
-      setShowContact(true);
-      setShowLightning(false);
-    }, 500);
-  };
+  useEffect(() => {
+    if (variant !== "toggle" || !showContact) return;
 
-  const handleCloseSkills = () => {
-    setShowContact(false);
-    // Wait for exit animation to finish before showing the cloud
-    setTimeout(() => {
-      setShowCloud(true);
-    }, 500); // match this to the exit animation duration
-  };
+    const handlePointerDown = (event: PointerEvent) => {
+      const el = containerRef.current;
+      if (el && !el.contains(event.target as Node)) {
+        setShowContact(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [variant, showContact]);
+
+  if (variant === "inline") {
+    return (
+      <div
+        className="p-4 flex flex-col items-start gap-3 w-full max-w-md"
+        role="region"
+        aria-label="Contact links"
+      >
+        <p className="text-white/90 text-lg font-medium">
+          Feel free to reach out!
+        </p>
+        <ContactLinks />
+      </div>
+    );
+  }
 
   return (
-    <div className="flex items-center gap-3 md:z-50">
-      {/* Cloud + Text trigger */}
-      {!showContact && showCloud && (
-        <motion.div
-          className="relative flex items-center gap-2 cursor-pointer group"
-          onClick={handleClick}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+    <div
+      ref={containerRef}
+      className="relative z-[200] flex items-center gap-3"
+    >
+      {!showContact ? (
+        <button
+          type="button"
+          onClick={() => setShowContact(true)}
+          className="text-white/80 hover:text-white font-semibold text-base transition-colors duration-200 focus:outline-none"
         >
-          {/* Cloud and lightning container */}
-          <div className="relative flex flex-col items-center justify-center h-10 w-6">
-            {/* Cloud image */}
-            <motion.div
-              className="w-8 h-8 bg-center bg-cover"
-              style={{
-                backgroundImage: "url(/cloud2.png)",
-                imageRendering: "pixelated",
-                WebkitMaskImage: "url(/cloud2.png)",
-                WebkitMaskSize: "cover",
-                WebkitMaskPosition: "center",
-              }}
-              whileHover={{ scale: 1.05 }}
-              animate={
-                showLightning
-                  ? { opacity: [1, 0.6, 1, 0.6, 1] }
-                  : { opacity: 1 }
-              }
-              transition={{ duration: 0.4 }}
-            />
-
-            {/* Lightning absolutely positioned under cloud */}
-            <AnimatePresence>
-              {showLightning && (
-                <motion.div
-                  className="absolute top-10 bottom-0 text-yellow-400/80 text-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0, 1, 0] }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, repeat: 2 }}
-                >
-                  <FaBoltLightning size="10" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Contact text with sparkles */}
-          <div className="relative">
-            <p className="font-silkscreen text-white/70 max-md:text-lg text-base font-bold group-hover:text-sky-200 transition relative z-10">
-              Contact
-            </p>
-
-            {/* Sparkles (absolute) */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-              <span className="sparkle"></span>
-              <span className="sparkle"></span>
-              <span className="sparkle"></span>
-              <span className="sparkle"></span>
-              <span className="sparkle"></span>
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Contact panel when open */}
-      <AnimatePresence>
-        {showContact && (
-          <div className="relative">
-            <motion.div
-              className="top-full mt-2 p-4 border-4 border-white shadow-lg pixelated flex flex-col items-start bg-blue-100/40 backdrop-blur-lg cursor-pointer max-md:w-[220px] h-[150px] md:w-[150px] z-50"
-              initial={{ scale: 0, opacity: 0, y: -20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0, opacity: 0 }}
-              onClick={handleCloseSkills}
-            >
-              <motion.p
-                className="text-[#455d7d] font-silkscreen text-sm pixelated mb-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
+          Contact
+        </button>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key="contact-panel"
+            className="rounded-2xl border border-white/10 bg-slate-400/90 backdrop-blur-md shadow-lg shadow-black/30 p-4 flex flex-col items-start gap-3 min-w-[180px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+          >
+            <div className="flex justify-between items-center w-full gap-2">
+              <p className="text-white/90 md:text-sm max-md:text-lg font-medium">
                 Feel free to reach out!
-              </motion.p>
-
-              <div className="flex flex-row items-center gap-2">
-                <Link
-                  href="https://www.linkedin.com/in/michelle-stermitz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <TiSocialLinkedinCircular size="40px" color="white" />
-                </Link>
-                <Link
-                  href="https://github.com/michmitz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaGithub size="30px" color="white" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              </p>
+              <button
+                type="button"
+                onClick={() => setShowContact(false)}
+                className="text-neutral-800 text-xs font-medium transition-colors duration-200 bg-neutral-200 rounded px-2 py-1 shrink-0"
+              >
+                Close
+              </button>
+            </div>
+            <ContactLinks />
+          </motion.div>
+        </AnimatePresence>
+      )}
     </div>
   );
 };

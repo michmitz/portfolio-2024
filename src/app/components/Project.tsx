@@ -33,9 +33,10 @@ export const Project: React.FC<ProjectProps> = ({
         hover:shadow-xl
         rounded-2xl
         max-md:w-full
-        md:w-[320px]
-        
+        md:max-w-[320px]
+        max-md:max-w-[95%]
         hover:backdrop-blur-md
+        hover:scale-[1.02]
         h-fit
         cursor-pointer
       "
@@ -48,7 +49,7 @@ export const Project: React.FC<ProjectProps> = ({
         </div>}
 
         <div className="flex flex-col">
-          <h3 className="text-3xl font-semibold text-cyan-200/70 mb-2">
+          <h3 className="text-3xl font-semibold text-[#b2d9f5] mb-2">
             {projectName}
           </h3>
           {link && (
@@ -58,8 +59,8 @@ export const Project: React.FC<ProjectProps> = ({
               rel="noopener noreferrer"
               className="flex items-center gap-1"
             >
-              <span className="font-semibold text-neutral-100 text-lg">Visit</span>
-              <FaExternalLinkSquareAlt size="18" color="#FFFFFF" />
+              <span className="font-semibold text-neutral-100 text-lg underline">Visit</span>
+              <FaExternalLinkSquareAlt size="17" color="#FFFFFF" />
             </a>
           )}
         </div>
@@ -69,7 +70,7 @@ export const Project: React.FC<ProjectProps> = ({
       <div className="mt-3">
 
         {description && (
-          <p className="text-sm leading-relaxed text-white mb-3 font-semibold">
+          <p className="text-sm leading-relaxed text-white mb-3 font-semibold leading-relaxed">
             {description}
           </p>
         )}
@@ -78,7 +79,7 @@ export const Project: React.FC<ProjectProps> = ({
           {tech.map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-1 rounded-lg text-cyan-600 bg-sky-200/60 font-bold shadow-xl"
+              className="text-xs px-2 py-1 rounded-lg text-white bg-sky-200/80 font-bold shadow-xl"
             >
               {t}
             </span>
