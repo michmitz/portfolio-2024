@@ -24,15 +24,34 @@ export default function Home() {
         />
       </div>
       <div className="relative z-10 flex flex-col min-h-screen w-full">
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between w-full px-6 pt-6 md:pt-10 pb-4 gap-4">
+        <header className="relative z-[110] flex flex-col md:flex-row md:items-center md:justify-between w-full px-6 pt-6 md:pt-10 pb-4 gap-4">
           <Navigation
             displaySection={displaySection}
             setDisplaySection={setDisplaySection}
           />
-          <div className="max-md:hidden fixed top-5 right-5 flex items-center">
+          <div className="max-md:hidden fixed top-5 right-5 z-[200] flex items-center">
             <Contact />
           </div>
         </header>
+
+        <div
+          id="contact"
+          className={
+            displaySection === "contact"
+              ? "md:hidden fixed left-0 right-0 z-[100] top-[calc(7rem+env(safe-area-inset-top,0px))] px-6 pointer-events-none"
+              : "hidden"
+          }
+        >
+          <div className="pointer-events-auto max-w-5xl mx-auto w-full flex flex-col items-center pt-12">
+            <h1 className="text-white font-bold text-2xl tracking-wider">
+              CONTACT
+            </h1>
+            <div className="mt-8 w-full">
+              <Contact variant="inline" />
+            </div>
+          </div>
+        </div>
+
         <div className="relative z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1 min-h-0">
           <div className="max-w-5xl w-full mx-auto">
             <div
@@ -65,17 +84,6 @@ export default function Home() {
             }`}
           >
             <ProjectGrid timeOfDay={timeOfDay} />
-          </div>
-
-          <div
-            id="contact"
-            className={`${
-              displaySection === "contact"
-                ? "md:hidden flex flex-col justify-center py-4"
-                : "hidden"
-            }`}
-          >
-            <Contact />
           </div>
           </div>
         </div>
