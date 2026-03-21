@@ -2,17 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html {
+html {
   height: 100%;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-} */
+}
 
 body {
   color: var(--foreground);
   background: var(--background);
   overflow-x: hidden;
+  height: 100%;
 }
 
 .canvas {
