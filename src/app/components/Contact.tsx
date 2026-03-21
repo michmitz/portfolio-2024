@@ -8,7 +8,7 @@ type ContactProps = {
 };
 
 const ContactLinks = () => (
-  <div className="flex max-md:flex-col md:flex-row md:items-center gap-3">
+  <div className="flex max-md:flex-col md:flex-row items-center justify-center gap-3 w-full">
     <Link
       href="https://www.linkedin.com/in/michellestermitz/"
       target="_blank"
@@ -51,7 +51,7 @@ export const Contact: React.FC<ContactProps> = ({ variant = "toggle" }) => {
   if (variant === "inline") {
     return (
       <div
-        className="p-4 flex flex-col items-start gap-3 w-full max-w-md"
+        className="flex flex-col items-center gap-3 w-full max-w-md text-center px-4"
         role="region"
         aria-label="Contact links"
       >

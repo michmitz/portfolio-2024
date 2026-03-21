@@ -79,7 +79,7 @@ export const Project: React.FC<ProjectProps> = ({
           {tech.map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-1 rounded-lg text-white bg-sky-200/80 font-bold shadow-xl"
+              className="text-xs px-2 py-1 rounded-lg bg-[#516b94]/70 text-sky-200 border border-sky-300/20 font-bold shadow-xl"
             >
               {t}
             </span>

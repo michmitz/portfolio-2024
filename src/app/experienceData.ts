@@ -25,7 +25,6 @@ export const experiences: Experience[] = [
     endDate: "Present",
     jobTitle: "Independent Software Engineer",
     jobDescription: appStrings.freelanceDescription,
-    skills: ["TypeScript", "OpenAI", "Vue", "Tailwind"],
   },
   {
     id: "3",

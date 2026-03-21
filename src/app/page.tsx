@@ -42,13 +42,11 @@ export default function Home() {
               : "hidden"
           }
         >
-          <div className="pointer-events-auto max-w-5xl mx-auto w-full flex flex-col items-center pt-12">
-            <h1 className="text-white font-bold text-2xl tracking-wider">
+          <div className="pointer-events-auto max-w-5xl mx-auto w-full flex flex-col items-center pt-4 md:pt-6">
+            <h1 className="mb-6 w-full text-center text-white font-bold text-2xl tracking-wider">
               CONTACT
             </h1>
-            <div className="mt-8 w-full">
-              <Contact variant="inline" />
-            </div>
+            <Contact variant="inline" />
           </div>
         </div>
 
@@ -67,23 +65,33 @@ export default function Home() {
 
           <div
             id="experience"
-            className={`${
+            className={
               displaySection === "experience"
-                ? "visible py-4 w-full"
+                ? "visible flex w-full flex-col items-center pt-4 md:pt-10"
                 : "hidden"
-            }`}
+            }
           >
-            <Timeline />
+            <h1 className="mb-6 w-full text-center text-white font-bold text-2xl tracking-wider">
+              EXPERIENCE
+            </h1>
+            <div className="flex w-full flex-col items-center">
+              <Timeline displaySection={displaySection} />
+            </div>
           </div>
           <div
             id="projects"
-            className={`${
+            className={
               displaySection === "projects"
-                ? "visible py-4"
+                ? "visible flex w-full flex-col items-center pt-4 md:pt-10"
                 : "hidden"
-            }`}
+            }
           >
-            <ProjectGrid timeOfDay={timeOfDay} />
+            <h1 className="mb-6 w-full text-center text-white font-bold text-2xl tracking-wider">
+              PROJECTS
+            </h1>
+            <div className="w-full">
+              <ProjectGrid timeOfDay={timeOfDay} />
+            </div>
           </div>
           </div>
         </div>
