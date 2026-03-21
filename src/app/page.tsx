@@ -14,8 +14,8 @@ export default function Home() {
   const [timeOfDay, setTimeOfDay] = useState(0);
 
   return (
-    <main className="relative min-h-screen w-full bg-[#576885]">
-      <div className="fixed inset-0 z-0 w-full h-full">
+    <main className="relative min-h-screen min-h-dvh w-full bg-[#576885]">
+      <div className="fixed inset-0 z-0 w-full min-h-dvh">
         <CloudBackground
           loaded={loaded}
           setLoaded={setLoaded}
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1 min-h-0">
+        <div className="relative z-10 w-full px-6 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-16 flex flex-col items-center justify-start flex-1 min-h-0">
           <div className="max-w-5xl w-full mx-auto">
             <div
               id="about"
