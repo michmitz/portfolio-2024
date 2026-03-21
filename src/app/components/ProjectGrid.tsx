@@ -5,7 +5,10 @@ import { MdOutlineSchool } from "react-icons/md";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { BsBriefcase } from "react-icons/bs";
 
-const SECTION_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+const SECTION_ICONS: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   work: BsBriefcase,
   personal: HiOutlineLightBulb,
   collab: MdOutlineSchool,
@@ -17,8 +20,7 @@ type ProjectGridProps = {
 
 export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
   return (
-    <div className="flex flex-col gap-10 mt-8 items-center">
-      <h1 className="text-white font-bold text-2xl tracking-wider">PROJECTS</h1>
+    <div className="flex flex-col gap-10 w-full items-center">
       {projectSections.map(({ key, title, projects }) => {
         if (!projects.length) return null;
         const Icon = SECTION_ICONS[key];
