@@ -71,7 +71,7 @@ export default function Home() {
                 : "hidden"
             }
           >
-            <h1 className="mb-6 w-full text-center text-white font-bold text-2xl tracking-wider">
+            <h1 className="mb-10 w-full text-center text-white font-bold text-2xl tracking-wider">
               EXPERIENCE
             </h1>
             <div className="flex w-full flex-col items-center">
