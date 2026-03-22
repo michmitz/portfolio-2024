@@ -14,23 +14,21 @@ export default function Home() {
   const [timeOfDay, setTimeOfDay] = useState(0);
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-[#576885]">
-      <div className="fixed inset-0 z-0 w-full h-full">
+    <main className="w-screen h-screen bg-[#576885]">
         <CloudBackground
           loaded={loaded}
           setLoaded={setLoaded}
           timeOfDay={timeOfDay}
           setTimeOfDay={setTimeOfDay}
         />
-      </div>
 
-      <div className="relative z-10 flex flex-col h-screen w-full overflow-y-auto overflow-x-hidden">
+      <div className="fixed h-full w-full top-0 left-0 overflow-y-auto overflow-x-hidden">
         <header className="relative z-[110] flex flex-col md:flex-row md:items-center md:justify-between w-full px-6 pt-6 md:pt-10 pb-4 gap-4 shrink-0">
           <Navigation
             displaySection={displaySection}
             setDisplaySection={setDisplaySection}
           />
-          <div className="max-md:hidden fixed top-5 right-5 z-[200] flex items-center">
+          <div className="max-md:hidden fixed top-5 right-10 z-[200] flex items-center">
             <Contact />
           </div>
         </header>
@@ -51,7 +49,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1">
+        <div className="absolute z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1">
           <div className="max-w-5xl w-full mx-auto">
             <div
               id="about"
