@@ -50,7 +50,7 @@ export default function Home() {
         </div>
 
         <div className="absolute z-10 w-full px-6 pb-12 md:pb-16 flex flex-col items-center justify-start flex-1">
-          <div className="max-w-5xl w-full mx-auto">
+          <div className="max-w-5xl w-full mx-auto min-h-screen">
             <div
               id="about"
               className={
