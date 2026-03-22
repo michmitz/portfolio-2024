@@ -43,8 +43,8 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
           rounded-2xl
           cursor-pointer
           transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]
-          hover:bg-[#7d91b3]/60
-          hover:backdrop-blur-md
+          md:hover:bg-[#7d91b3]/60
+          md:hover:backdrop-blur-md
           hover:scale-[1.01]
 
           ${isExpanded ? "bg-[#7d91b3]/50 shadow-xl" : "bg-transparent"}
@@ -56,23 +56,24 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
 
         <h3 className="text-xl font-semibold text-[white]">{item.jobTitle}</h3>
 
-        <h4 className="text-sm font-semibold text-white/70 mb-2">{item.company}</h4>
+        <h4 className="text-sm font-semibold text-white/70 mb-2">
+          {item.company}
+        </h4>
 
         {/* Always mounted so height can animate when switching between cards */}
         <motion.div
           initial={false}
           animate={{
-            height: isExpanded ? "auto" : 0,
-            opacity: isExpanded ? 1 : 0,
             marginTop: isExpanded ? 8 : 0,
           }}
           transition={{
-            height: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
-            opacity: { duration: 0.35, ease: "easeOut" },
             marginTop: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
           }}
-          className="overflow-hidden"
-          style={{ pointerEvents: isExpanded ? "auto" : "none" }}
+          className="overflow-hidden transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+          style={{
+            maxHeight: isExpanded ? "500px" : "0px",
+            pointerEvents: isExpanded ? "auto" : "none",
+          }}
         >
           <div>
             <p className="text-sm text-white/90 font-medium leading-relaxed">

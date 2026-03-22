@@ -32,7 +32,7 @@ export const Project: React.FC<ProjectProps> = ({
         hover:bg-[#7d91b3]/60
         hover:shadow-xl
         rounded-2xl
-        max-md:w-full
+     
         md:max-w-[320px]
         max-md:max-w-[95%]
         hover:backdrop-blur-md

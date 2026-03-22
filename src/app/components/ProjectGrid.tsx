@@ -30,7 +30,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ timeOfDay }) => {
               {Icon && <Icon className="w-5 h-5" />}
               {title}
             </h2>
-            <div className="grid lg:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5">
+            <div className="grid lg:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 justify-items-center">
               {projects.map((project) => (
                 <Project
                   key={project.id}
