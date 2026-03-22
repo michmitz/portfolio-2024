@@ -43,8 +43,8 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
           rounded-2xl
           cursor-pointer
           transition-all duration-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]
-          hover:bg-[#7d91b3]/60
-          hover:backdrop-blur-md
+          md:hover:bg-[#7d91b3]/60
+          md:hover:backdrop-blur-md
           hover:scale-[1.01]
 
           ${isExpanded ? "bg-[#7d91b3]/50 shadow-xl" : "bg-transparent"}
