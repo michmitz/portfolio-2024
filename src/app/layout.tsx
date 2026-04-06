@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "michellestermitz.com",
   description: "Frontend software engineer based in the Pacific Northwest.",
   metadataBase: new URL("https://michellestermitz.com"),
+  alternates: {
+    canonical: 'https://michellestermitz.com',
+  },
   openGraph: {
     title: "michellestermitz.com",
     description: "Frontend software engineer based in the Pacific Northwest.",
