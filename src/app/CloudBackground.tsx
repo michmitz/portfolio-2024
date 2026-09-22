@@ -1,271 +1,149 @@
 "use client";
+
 import * as THREE from "three";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  Clouds,
-  Cloud,
-  CameraControls,
-  Sky as SkyImpl,
-  Loader,
-  Stars,
-} from "@react-three/drei";
+import { CameraControls, Cloud, Clouds, Sky, Stars } from "@react-three/drei";
 
-/** When false, time of day stays at night (0). Set to true to re-enable day/night transition. */
-const ENABLE_TIME_OF_DAY_TRANSITION = false;
-
-const NIGHT = 0;
-
-interface CloudBackgroundProps {
-  loaded: boolean;
-  setLoaded: (v: boolean) => void;
-  timeOfDay: number;
-  setTimeOfDay: React.Dispatch<React.SetStateAction<number>>;
+export interface CloudBackgroundProps {
+  rotationSpeed?: number;
+  starCount?: number;
+  interactive?: boolean;
+  reducedMotion?: boolean;
+  fallbackColor?: string;
+  className?: string;
+  style?: CSSProperties;
+  onReady?: () => void;
 }
+
+const INITIAL_AZIMUTH = THREE.MathUtils.degToRad(248);
+const INITIAL_POLAR = 2.2;
+
+const SUN_POSITION: [number, number, number] = [15, 30, 15];
+const KEY_LIGHT_POSITION: [number, number, number] = [-50, 30, 50];
+
+type CloudSpec = {
+  seed: number;
+  position: [number, number, number];
+  color: string;
+  opacity: number;
+  bounds: number;
+  volume: number;
+  growth: number;
+};
+
+const CLOUDS: CloudSpec[] = [
+  { seed: 4, position: [-50, -400, 70], color: "#ffffff", opacity: 0.6, bounds: 200, volume: 300, growth: 35 },
+  { seed: 5, position: [400, -400, 250], color: "#ffffff", opacity: 1, bounds: 500, volume: 600, growth: 35 },
+  { seed: 8, position: [100, -500, 250], color: "#d2acac", opacity: 0.75, bounds: 500, volume: 450, growth: 35 },
+  { seed: 9, position: [-300, -200, -250], color: "#f4ebeb", opacity: 0.75, bounds: 300, volume: 450, growth: 35 },
+  { seed: 7, position: [0, -500, 400], color: "#ebeaea", opacity: 1, bounds: 500, volume: 600, growth: 30 },
+];
 
 export default function CloudBackground({
-  loaded,
-  setLoaded,
-  timeOfDay,
-  setTimeOfDay,
+  rotationSpeed = 0.007,
+  starCount = 700,
+  interactive = false,
+  reducedMotion,
+  fallbackColor = "#8ab2d5",
+  className,
+  style,
+  onReady,
 }: CloudBackgroundProps) {
-  const effectiveTransition = ENABLE_TIME_OF_DAY_TRANSITION ? timeOfDay : NIGHT;
-
-  const transitionSpeed = 0.002; // Adjust for smoother transitions
-  const directionRef = useRef(1);
-  const lastSwitchTimeRef = useRef(Date.now());
-
-  useEffect(() => {
-    if (!ENABLE_TIME_OF_DAY_TRANSITION) return;
-
-    const delay = 10000; // 10-second delay before transition starts
-    const timeout = setTimeout(() => {
-      const animateTransition = () => {
-        setTimeOfDay((prev) => {
-          let newTime = prev + directionRef.current * transitionSpeed;
-
-          if (newTime >= 1) {
-            newTime = 1;
-            if (Date.now() - lastSwitchTimeRef.current > 25000) {
-              directionRef.current = -1;
-              lastSwitchTimeRef.current = Date.now();
-            }
-          } else if (newTime <= 0) {
-            newTime = 0;
-            if (Date.now() - lastSwitchTimeRef.current > 25000) {
-              directionRef.current = 1;
-              lastSwitchTimeRef.current = Date.now();
-            }
-          }
-
-          return Math.max(0, Math.min(1, newTime));
-        });
-
-        requestAnimationFrame(animateTransition);
-      };
-
-      const animationFrameId = requestAnimationFrame(animateTransition);
-
-      return () => cancelAnimationFrame(animationFrameId);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, [setTimeOfDay]);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const still = reducedMotion ?? prefersReducedMotion;
+  const [ready, setReady] = useState(false);
 
   return (
-    <>
+    <div
+      aria-hidden
+      className={className}
+      style={{
+        position: "absolute",
+        inset: 0,
+        background: fallbackColor,
+        pointerEvents: interactive ? "auto" : "none",
+        ...style,
+      }}
+    >
       <Canvas
-        className={`canvas ${loaded ? "fade-in" : "bg-[#20639d]"}`}
-        onCreated={() => !loaded && setLoaded(true)}
-        dpr={[1, 1.5]} // Reduced from [1, 2] for better performance
+        frameloop={still ? "demand" : "always"}
+        dpr={[1, 1.5]}
         gl={{
           antialias: true,
-          preserveDrawingBuffer: true,
+          alpha: false,
+          stencil: false,
           powerPreference: "high-performance",
-          failIfMajorPerformanceCaveat: false,
-          alpha: false, // Disable alpha for better performance
-          stencil: false, // Disable stencil buffer if not needed
-          depth: true,
+        }}
+        style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease" }}
+        onCreated={() => {
+          setReady(true);
+          onReady?.();
         }}
       >
-        <Lighting transition={effectiveTransition} />
-        <Sky transition={effectiveTransition} />
-        <RotatingCamera />
+        <Scene rotationSpeed={rotationSpeed} starCount={starCount} still={still} />
       </Canvas>
-      <Loader />
-    </>
+    </div>
   );
 }
 
-function Lighting({ transition }: { transition: number }) {
-  const ambientColor = new THREE.Color().lerpColors(
-    new THREE.Color("#ffffff"), // White light for night
-    new THREE.Color("#ffb6c1"), // Soft pink for day
-    transition
-  );
-
-  const directionalColor = new THREE.Color().lerpColors(
-    new THREE.Color("#aaaaff"), // Cool blue moonlight
-    new THREE.Color("#ffcc99"), // Warm sunlight
-    transition
-  );
-
-  return (
-    <>
-      <ambientLight intensity={7} color={ambientColor} />
-      <directionalLight
-        position={[
-          THREE.MathUtils.lerp(-50, 50, transition), // Moves from left to right
-          THREE.MathUtils.lerp(30, 100, transition), // Moves higher for daytime
-          50,
-        ]}
-        intensity={1}
-        color={directionalColor}
-        castShadow
-      />
-    </>
-  );
+interface SceneProps {
+  rotationSpeed: number;
+  starCount: number;
+  still: boolean;
 }
 
-function RotatingCamera() {
-  const cameraRef = useRef<CameraControls>(null);
-  const rotationSpeed = 0.35;
+function Scene({ rotationSpeed, starCount, still }: SceneProps) {
+  const controls = useRef<CameraControls>(null);
 
   useFrame((_, delta) => {
-    if (cameraRef.current) {
-      cameraRef.current.azimuthAngle = THREE.MathUtils.lerp(
-        cameraRef.current.azimuthAngle,
-        cameraRef.current.azimuthAngle + rotationSpeed * delta,
-        0.02
-      );
+    if (!still) {
+      controls.current?.rotate(rotationSpeed * delta, 0, false);
     }
   });
 
   return (
-    <CameraControls
-      ref={cameraRef}
-      distance={60}
-      maxDistance={100}
-      azimuthAngle={130}
-      polarAngle={2.2}
-    />
+    <>
+      <ambientLight intensity={7} color="#ffffff" />
+      <directionalLight position={KEY_LIGHT_POSITION} intensity={1} color="#aaaaff" />
+
+      <Sky
+        sunPosition={SUN_POSITION}
+        turbidity={1}
+        rayleigh={0.06}
+        mieCoefficient={0.01}
+        mieDirectionalG={0.99}
+        distance={600}
+      />
+      <Stars radius={200} count={starCount} factor={12} fade speed={still ? 0 : 1} />
+
+      <Clouds material={THREE.MeshStandardMaterial}>
+        {CLOUDS.map((c) => (
+          <Cloud key={c.seed} concentrate="outside" {...c} />
+        ))}
+      </Clouds>
+
+      <CameraControls
+        ref={controls}
+        distance={60}
+        maxDistance={100}
+        azimuthAngle={INITIAL_AZIMUTH}
+        polarAngle={INITIAL_POLAR}
+      />
+    </>
   );
 }
 
-const CloudsComp = () => {
-  return (
-    <Clouds material={THREE.MeshStandardMaterial}>
-      <Cloud
-        position={[-50, -400, 70]}
-        concentrate="outside"
-        growth={35}
-        color="#ffffff"
-        opacity={0.6}
-        seed={4}
-        bounds={200}
-        volume={300}
-      />
-      <Cloud
-        position={[400, -400, 250]}
-        concentrate="outside"
-        growth={35}
-        color="#ffffff"
-        opacity={1}
-        seed={5}
-        bounds={500}
-        volume={600}
-      />
-      <Cloud
-        position={[100, -500, 250]}
-        concentrate="outside"
-        growth={35}
-        color="#d2acac"
-        opacity={0.75}
-        seed={8}
-        bounds={500}
-        volume={450}
-      />
-      <Cloud
-        position={[-300, -200, -250]}
-        concentrate="outside"
-        growth={35}
-        color="#f4ebeb"
-        opacity={0.75}
-        seed={9}
-        bounds={300}
-        volume={450}
-      />
-      <Cloud
-        position={[0, -500, 400]}
-        concentrate="outside"
-        growth={30}
-        color="#ebeaea"
-        opacity={1}
-        seed={7}
-        bounds={500}
-        volume={600}
-      />
-      {/* <Cloud
-            // ref={addCloudRef}
-            position={[-150, -450, 500]}
-            concentrate="outside"
-            growth={10}
-            color="#ebeaea"
-            opacity={1}
-            seed={10}
-            bounds={600}
-            volume={400}
-            speed={0.05}
-          />
-          <Cloud
-            // ref={addCloudRef}
-            position={[-150, -500, 0]}
-            concentrate="outside"
-            growth={10}
-            color="#ebeaea"
-            opacity={1}
-            seed={9}
-            bounds={500}
-            volume={300}
-            speed={0.1}
-          /> */}
-      {/* <Cloud
-            // ref={addCloudRef}
-            position={[0, 0, 0]}
-            // concentrate="outside"
-            // growth={10}
-            color="#ebeaea"
-            opacity={1}
-            seed={6}
-            bounds={200}
-            volume={200}
-             /> */}
-    </Clouds>
-  );
-};
+function usePrefersReducedMotion() {
+  const [prefers, setPrefers] = useState(false);
 
-function Sky({ transition }: { transition: number }) {
-  const ref = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefers(query.matches);
+    const onChange = (e: MediaQueryListEvent) => setPrefers(e.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
 
-  return (
-    <>
-      <Stars radius={200} count={700} factor={12} fade />
-      <group ref={ref}>
-        <SkyImpl
-          sunPosition={[
-            THREE.MathUtils.lerp(15, 30, transition),
-            50 + THREE.MathUtils.lerp(-20, 50, transition), // Keep a fixed baseline
-            THREE.MathUtils.lerp(15, 30, transition),
-          ]}
-          turbidity={THREE.MathUtils.lerp(1, 0.8, transition)}
-          rayleigh={THREE.MathUtils.lerp(0.06, 0.2, transition)}
-          mieCoefficient={THREE.MathUtils.lerp(0.01, 0.009, transition)}
-          mieDirectionalG={0.99}
-          azimuth={-60}
-          distance={600}
-        />
-      </group>
-      <CloudsComp />
-    </>
-  );
+  return prefers;
 }
